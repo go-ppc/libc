@@ -82,8 +82,8 @@ func testIssue51LocaltimeConcurrent(t *testing.T) {
 			defer wg.Done()
 			tls := NewTLS()
 			defer tls.Close()
-			tp := Xmalloc(tls, 8)    // time_t
-			tm := Xmalloc(tls, 128)  // struct tm (over-allocated)
+			tp := Xmalloc(tls, 8)   // time_t
+			tm := Xmalloc(tls, 128) // struct tm (over-allocated)
 			if tp == 0 || tm == 0 {
 				return
 			}
