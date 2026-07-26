@@ -85,3 +85,25 @@ func TestStrlen(t *testing.T) {
 		t.Fatal(g, e)
 	}
 }
+
+// TestVaListString checks that a Go string is rejected instead of landing in the
+// va_list as its 16 byte {ptr, len} header, which C would read as a char* and,
+// Go strings not being NUL terminated, walk past the end of, appending adjacent
+// Go heap. See https://gitlab.com/cznic/quickjs/-/issues/14.
+func TestVaListString(t *testing.T) {
+	defer func() {
+		e := "libc.VaList: a Go string is not a valid C variadic argument, use CString"
+		switch g := recover().(type) {
+		case nil:
+			t.Fatal("VaList accepted a Go string")
+		case string:
+			if g != e {
+				t.Fatalf("got %q, expected %q", g, e)
+			}
+		default:
+			t.Fatalf("got a %T panic value: %v", g, g)
+		}
+	}()
+
+	VaList(uintptr(unsafe.Pointer(&valist[0])), "foo")
+}
