@@ -32,6 +32,17 @@ func TestIssue51(t *testing.T) {
 	t.Run("localtime_r_concurrent", testIssue51LocaltimeConcurrent)
 }
 
+// issue51LockWord is the C lock word driven by testIssue51LockMutualExclusion;
+// its address is the lock identity. It is a package-level variable on purpose.
+// ___lock keeps the lock state in the word itself, so the address must be stable,
+// and it must sit in the Go data segment for -race to be meaningful: the race
+// detector ignores atomics outside the Go arena and data segments, so a lock word
+// in libc-allocated memory would carry no happens-before edge to the Go variable
+// the critical section guards. That matches the real static musl lock words
+// (_lock1..4, __locale_lock, ...), which are package-level [1]int32 in the
+// generated code.
+var issue51LockWord int32
+
 // testIssue51LockMutualExclusion hammers a single lock address from many
 // goroutines. Each critical section increments a non-atomic counter; if mutual
 // exclusion holds the final value is exact, and a lost update (or a -race report)
@@ -40,8 +51,7 @@ func testIssue51LockMutualExclusion(t *testing.T) {
 	const goroutines = 20
 	const iters = 10000
 
-	var word int32 // the C lock word; its address is the lock identity
-	p := uintptr(unsafe.Pointer(&word))
+	p := uintptr(unsafe.Pointer(&issue51LockWord))
 	var guarded int64 // deliberately non-atomic; protected by ___lock(p)
 
 	var wg sync.WaitGroup
