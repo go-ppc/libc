@@ -6,6 +6,10 @@ retract v1.43.0
 
 retract v1.67.5
 
+retract v1.74.2 // freeaddrinfo leaks a locked ___lock entry; deadlocks name resolution, fixed in v1.74.4
+
+retract v1.74.3 // freeaddrinfo leaks a locked ___lock entry; deadlocks name resolution, fixed in v1.74.4
+
 require (
 	github.com/dustin/go-humanize v1.0.1
 	github.com/google/uuid v1.6.0
@@ -13,7 +17,7 @@ require (
 	github.com/ncruces/go-strftime v1.0.0
 	golang.org/x/sys v0.46.0
 	golang.org/x/tools v0.47.0
-	modernc.org/cc/v4 v4.29.1
+	modernc.org/cc/v4 v4.29.2
 	modernc.org/ccgo/v4 v4.34.6
 	modernc.org/fileutil v1.4.0
 	modernc.org/goabi0 v0.2.0
