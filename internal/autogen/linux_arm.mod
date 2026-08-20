@@ -22,7 +22,7 @@ require (
 	modernc.org/fileutil v1.4.0
 	modernc.org/goabi0 v0.2.0
 	modernc.org/mathutil v1.7.1
-	modernc.org/memory v1.12.0
+	modernc.org/memory v1.12.1
 )
 
 require (
