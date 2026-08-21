@@ -85,6 +85,11 @@ func libcHeaders(paths []string) error {
 
 		var src string
 		switch filepath.ToSlash(path) {
+		case "fcntl":
+			src = `
+#define _GNU_SOURCE 1
+#include <fcntl.h>
+`
 		case "fts":
 			src = `
 #include <sys/types.h>
