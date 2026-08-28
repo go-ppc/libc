@@ -342,6 +342,19 @@ func main() {
 			}
 		}
 	}
+
+	// On these targets native_musl.go implements the hot routines
+	// natively. Rename the transpiled definitions out of the way after
+	// adding tracing; call sites keep the X names and so reach the native
+	// code, and native_musl_test.go checks the native routines against the
+	// renamed originals.
+	switch target {
+	case "linux/amd64", "linux/arm64":
+		for _, name := range []string{"fabs", "memcmp", "memcpy", "memmove", "memset", "strcspn"} {
+			util.MustShell(true, nil, "sed", "-i", fmt.Sprintf(`s/^func X%s(/func ___musl_%s(/`, name, name), fn)
+		}
+	}
+
 	//TODO use qbecc/lib
 	// switch target {
 	// case "linux/amd64":
