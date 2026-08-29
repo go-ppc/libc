@@ -403,6 +403,10 @@ func (tls *TLS) Alloc(n0 int) (r uintptr) {
 func (tls *TLS) Free(n int) {
 	//TODO shrink stacks if possible. Tcl is currently against.
 	tls.sp--
+	tls.checkSignal()
+}
+
+func (tls *TLS) checkSignal() {
 	if !tls.checkSignals {
 		return
 	}
