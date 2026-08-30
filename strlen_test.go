@@ -11,33 +11,6 @@ import (
 	"unsafe"
 )
 
-// strlenWords is the previous strlen implementation, kept as a
-// benchmark baseline: byte-wise to 8-byte alignment, then aligned
-// word loads (which cannot cross a page boundary and so cannot
-// fault) with the usual zero-in-word bit test.
-func strlenWords(s uintptr) Tsize_t {
-	if s == 0 {
-		return 0
-	}
-	p := s
-	for ; p%8 != 0; p++ {
-		if *(*byte)(unsafe.Pointer(p)) == 0 {
-			return Tsize_t(p - s)
-		}
-	}
-	for {
-		x := *(*uint64)(unsafe.Pointer(p))
-		if (x-0x0101010101010101)&^x&0x8080808080808080 != 0 {
-			break
-		}
-		p += 8
-	}
-	for *(*byte)(unsafe.Pointer(p)) != 0 {
-		p++
-	}
-	return Tsize_t(p - s)
-}
-
 func TestStrlenRandom(t *testing.T) {
 	tls := NewTLS()
 	defer tls.Close()
@@ -58,6 +31,9 @@ func TestStrlenRandom(t *testing.T) {
 		if got := strlen(p + off); got != Tsize_t(n) {
 			t.Fatalf("strlen: n=%d off=%d got=%d", n, off, got)
 		}
+		if got := strlenIndexByte(p + off); got != Tsize_t(n) {
+			t.Fatalf("strlenIndexByte: n=%d off=%d got=%d", n, off, got)
+		}
 		if got := strlenWords(p + off); got != Tsize_t(n) {
 			t.Fatalf("strlenWords: n=%d off=%d got=%d", n, off, got)
 		}
@@ -71,7 +47,8 @@ func BenchmarkStrlen(b *testing.B) {
 		name string
 		f    func(uintptr) Tsize_t
 	}{
-		{"native", strlen},
+		{"dispatch", strlen},
+		{"indexbyte", strlenIndexByte},
 		{"words", strlenWords},
 	} {
 		b.Run(impl.name, func(b *testing.B) {

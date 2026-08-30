@@ -42,6 +42,9 @@ func TestStrlenGuardPage(t *testing.T) {
 		if got := strlen(s); got != Tsize_t(n) {
 			t.Fatalf("strlen: n=%d got=%d", n, got)
 		}
+		if got := strlenIndexByte(s); got != Tsize_t(n) {
+			t.Fatalf("strlenIndexByte: n=%d got=%d", n, got)
+		}
 		if got := strlenWords(s); got != Tsize_t(n) {
 			t.Fatalf("strlenWords: n=%d got=%d", n, got)
 		}

@@ -343,16 +343,15 @@ func main() {
 		}
 	}
 
-	// On these targets native_musl.go implements the hot routines
-	// natively. Rename the transpiled definitions out of the way after
-	// adding tracing; call sites keep the X names and so reach the native
-	// code, and native_musl_test.go checks the native routines against the
-	// renamed originals.
-	switch target {
-	case "linux/amd64", "linux/arm64":
-		for _, name := range []string{"fabs", "memcmp", "memcpy", "memmove", "memset", "strcspn"} {
-			util.MustShell(true, nil, "sed", "-i", fmt.Sprintf(`s/^func X%s(/func ___musl_%s(/`, name, name), fn)
-		}
+	// native_musl.go implements these hot routines natively on every musl
+	// target. Rename the transpiled definitions out of the way after adding
+	// tracing; call sites keep the X names and so reach the native code, and
+	// native_musl_test.go checks the native routines against the renamed
+	// originals. (On linux/arm musl's memcpy is assembly and never
+	// transpiled; the hand-written one in libc_musl_linux_arm.go carries the
+	// ___musl_memcpy name itself, so that sed is a no-op there.)
+	for _, name := range []string{"fabs", "memcmp", "memcpy", "memmove", "memset", "strcspn"} {
+		util.MustShell(true, nil, "sed", "-i", fmt.Sprintf(`s/^func X%s(/func ___musl_%s(/`, name, name), fn)
 	}
 
 	//TODO use qbecc/lib
