@@ -46,6 +46,7 @@
 package libc // import "modernc.org/libc"
 
 import (
+	"bytes"
 	"math"
 	"sync/atomic"
 	"unsafe"
@@ -125,11 +126,21 @@ func strlen(s uintptr) (r Tsize_t) {
 		return 0
 	}
 
-	for ; *(*int8)(unsafe.Pointer(s)) != 0; s++ {
-		r++
+	// SIMD bytes.IndexByte over chunks that stop at 4096-byte
+	// boundaries. IndexByte never reads past its slice, and 4096
+	// divides every supported page size, so the scan touches only
+	// pages the string occupies, and cannot fault even though
+	// IndexByte reads (within the chunk) past the terminating NUL.
+	// TestStrlenGuardPage verifies this.
+	p := s
+	for {
+		chunk := 4096 - p%4096
+		b := unsafe.Slice((*byte)(unsafe.Pointer(p)), chunk)
+		if i := bytes.IndexByte(b, 0); i >= 0 {
+			return Tsize_t(p + uintptr(i) - s)
+		}
+		p += chunk
 	}
-
-	return r
 }
 
 // size_t strlen(const char *s)
