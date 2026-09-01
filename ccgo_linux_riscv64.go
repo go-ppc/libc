@@ -24629,7 +24629,7 @@ func Xfcntl(tls *TLS, fd int32, cmd int32, va uintptr) (r int32) {
 	if cmd == int32(F_SETFL) {
 		arg = arg | uint64(O_LARGEFILE)
 	}
-	if cmd == int32(F_SETLKW) {
+	if cmd == int32(F_SETLKW) || cmd == int32(F_OFD_SETLKW) {
 		return int32(X__syscall_ret(tls, Uint64FromInt64(___syscall_cp(tls, int64(SYS_fcntl), int64(fd), int64(cmd), int64(uintptr(arg)), 0, 0, 0))))
 	}
 	if cmd == int32(F_GETOWN) {
@@ -24672,6 +24672,10 @@ func Xfcntl(tls *TLS, fd int32, cmd int32, va uintptr) (r int32) {
 	case int32(F_SETLK):
 		fallthrough
 	case int32(F_GETLK):
+		fallthrough
+	case int32(F_OFD_SETLK):
+		fallthrough
+	case int32(F_OFD_GETLK):
 		fallthrough
 	case int32(F_GETOWN_EX):
 		fallthrough
