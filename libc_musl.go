@@ -788,9 +788,6 @@ func Xfork(t *TLS) int32 {
 	return -1
 }
 
-const SIG_DFL = 0
-const SIG_IGN = 1
-
 func Xsignal(tls *TLS, signum int32, handler uintptr) (r uintptr) {
 	r, tls.sigHandlers[signum] = tls.sigHandlers[signum], handler
 	switch handler {
