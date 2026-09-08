@@ -18,32 +18,31 @@ const BIG_ENDIAN = 4321
 const BYTE_ORDER = 1234
 const DBL_DECIMAL_DIG = 17
 const DBL_DIG = 15
-const DBL_EPSILON = 0
+const DBL_EPSILON = 2.220446049250313e-16
 const DBL_HAS_SUBNORM = 1
 const DBL_MANT_DIG = 53
-const DBL_MAX = 0
+const DBL_MAX = 1.7976931348623157e+308
 const DBL_MAX_10_EXP = 308
 const DBL_MAX_EXP = 1024
-const DBL_MIN = 0
+const DBL_MIN = 2.2250738585072014e-308
 const DBL_MIN_10_EXP = -307
 const DBL_MIN_EXP = -1021
-const DBL_TRUE_MIN = 0
+const DBL_TRUE_MIN = 5e-324
 const DECIMAL_DIG = 17
 const FLT_DECIMAL_DIG = 9
 const FLT_DIG = 6
-const FLT_EPSILON = 0
+const FLT_EPSILON = 1.1920928955078125e-07
 const FLT_EVAL_METHOD = 0
 const FLT_HAS_SUBNORM = 1
 const FLT_MANT_DIG = 24
-const FLT_MAX = 0
+const FLT_MAX = 3.4028234663852886e+38
 const FLT_MAX_10_EXP = 38
 const FLT_MAX_EXP = 128
-const FLT_MIN = 0
+const FLT_MIN = 1.1754943508222875e-38
 const FLT_MIN_10_EXP = -37
 const FLT_MIN_EXP = -125
 const FLT_RADIX = 2
-const FLT_ROUNDS = 0
-const FLT_TRUE_MIN = 0
+const FLT_TRUE_MIN = 1.401298464324817e-45
 const FP_FAST_FMA = 1
 const FP_FAST_FMAF = 1
 const FP_FAST_FMAL = 1
@@ -54,9 +53,8 @@ const FP_NAN = 0
 const FP_NORMAL = 4
 const FP_SUBNORMAL = 3
 const FP_ZERO = 2
-const HUGE_VALF = 0
-const I = 0
-const INFINITY = 0
+const HUGE_VALF = "INFINITY"
+const I = "_Complex_I"
 const INT16_MAX = 32767
 const INT16_MIN = -32768
 const INT32_MAX = 2147483647
@@ -87,33 +85,32 @@ const INT_LEAST8_MAX = 127
 const INT_LEAST8_MIN = -128
 const LDBL_DECIMAL_DIG = 17
 const LDBL_DIG = 15
-const LDBL_EPSILON = 0
+const LDBL_EPSILON = 2.22044604925031308085e-16
 const LDBL_HAS_SUBNORM = 1
 const LDBL_MANT_DIG = 53
-const LDBL_MAX = 0
+const LDBL_MAX = 1.79769313486231570815e+308
 const LDBL_MAX_10_EXP = 308
 const LDBL_MAX_EXP = 1024
-const LDBL_MIN = 0
+const LDBL_MIN = 2.22507385850720138309e-308
 const LDBL_MIN_10_EXP = -307
 const LDBL_MIN_EXP = -1021
-const LDBL_TRUE_MIN = 0
+const LDBL_TRUE_MIN = 4.94065645841246544177e-324
 const LITTLE_ENDIAN = 1234
 const MATH_ERREXCEPT = 2
 const MATH_ERRNO = 1
-const M_1_PI = 0
-const M_2_PI = 0
-const M_2_SQRTPI = 0
-const M_E = 0
-const M_LN10 = 0
-const M_LN2 = 0
-const M_LOG10E = 0
-const M_LOG2E = 0
-const M_PI = 0
-const M_PI_2 = 0
-const M_PI_4 = 0
-const M_SQRT1_2 = 0
-const M_SQRT2 = 0
-const NAN = 0
+const M_1_PI = 0.3183098861837907
+const M_2_PI = 0.6366197723675814
+const M_2_SQRTPI = 1.1283791670955126
+const M_E = 2.718281828459045
+const M_LN10 = 2.302585092994046
+const M_LN2 = 0.6931471805599453
+const M_LOG10E = 0.4342944819032518
+const M_LOG2E = 1.4426950408889634
+const M_PI = 3.141592653589793
+const M_PI_2 = 1.5707963267948966
+const M_PI_4 = 0.7853981633974483
+const M_SQRT1_2 = 0.7071067811865476
+const M_SQRT2 = 1.4142135623730951
 const NDEBUG = 1
 const PDP_ENDIAN = 3412
 const PTRDIFF_MAX = 9223372036854775807
@@ -154,7 +151,6 @@ const _ARCH_PWR7 = 1
 const _ARCH_PWR8 = 1
 const _CALL_ELF = 2
 const _CALL_LINUX = 1
-const _Complex_I = 0
 const _LITTLE_ENDIAN = 1
 const _LP64 = 1
 const _XOPEN_SOURCE = 700
@@ -186,27 +182,27 @@ const __DBL_MAX_10_EXP__ = 308
 const __DBL_MAX_EXP__ = 1024
 const __DBL_MIN_10_EXP__ = -307
 const __DBL_MIN_EXP__ = -1021
-const __DEC128_EPSILON__ = 0
+const __DEC128_EPSILON__ = 1e-33
 const __DEC128_MANT_DIG__ = 34
 const __DEC128_MAX_EXP__ = 6145
-const __DEC128_MAX__ = 0
+const __DEC128_MAX__ = "9.999999999999999999999999999999999E6144"
 const __DEC128_MIN_EXP__ = -6142
-const __DEC128_MIN__ = 0
-const __DEC128_SUBNORMAL_MIN__ = 0
-const __DEC32_EPSILON__ = 0
+const __DEC128_MIN__ = 1e-6143
+const __DEC128_SUBNORMAL_MIN__ = 0.000000000000000000000000000000001e-6143
+const __DEC32_EPSILON__ = 1e-6
 const __DEC32_MANT_DIG__ = 7
 const __DEC32_MAX_EXP__ = 97
-const __DEC32_MAX__ = 0
+const __DEC32_MAX__ = 9.999999e96
 const __DEC32_MIN_EXP__ = -94
-const __DEC32_MIN__ = 0
-const __DEC32_SUBNORMAL_MIN__ = 0
-const __DEC64_EPSILON__ = 0
+const __DEC32_MIN__ = 1e-95
+const __DEC32_SUBNORMAL_MIN__ = 0.000001e-95
+const __DEC64_EPSILON__ = 1e-15
 const __DEC64_MANT_DIG__ = 16
 const __DEC64_MAX_EXP__ = 385
-const __DEC64_MAX__ = 0
+const __DEC64_MAX__ = "9.999999999999999E384"
 const __DEC64_MIN_EXP__ = -382
-const __DEC64_MIN__ = 0
-const __DEC64_SUBNORMAL_MIN__ = 0
+const __DEC64_MIN__ = 1e-383
+const __DEC64_SUBNORMAL_MIN__ = 0.000000000000001e-383
 const __DECIMAL_DIG__ = 17
 const __DEC_EVAL_METHOD__ = 2
 const __ELF__ = 1
@@ -215,9 +211,9 @@ const __FLOAT128_TYPE__ = 1
 const __FLOAT128__ = 1
 const __FLOAT_WORD_ORDER__ = 1234
 const __FLT128_DECIMAL_DIG__ = 36
-const __FLT128_DENORM_MIN__ = 0
+const __FLT128_DENORM_MIN__ = 6.47517511943802511092443895822764655e-4966
 const __FLT128_DIG__ = 33
-const __FLT128_EPSILON__ = 0
+const __FLT128_EPSILON__ = 1.92592994438723585305597794258492732e-34
 const __FLT128_HAS_DENORM__ = 1
 const __FLT128_HAS_INFINITY__ = 1
 const __FLT128_HAS_QUIET_NAN__ = 1
@@ -225,15 +221,15 @@ const __FLT128_IS_IEC_60559__ = 1
 const __FLT128_MANT_DIG__ = 113
 const __FLT128_MAX_10_EXP__ = 4932
 const __FLT128_MAX_EXP__ = 16384
-const __FLT128_MAX__ = 0
+const __FLT128_MAX__ = "1.18973149535723176508575932662800702e+4932"
 const __FLT128_MIN_10_EXP__ = -4931
 const __FLT128_MIN_EXP__ = -16381
-const __FLT128_MIN__ = 0
-const __FLT128_NORM_MAX__ = 0
+const __FLT128_MIN__ = 3.36210314311209350626267781732175260e-4932
+const __FLT128_NORM_MAX__ = "1.18973149535723176508575932662800702e+4932"
 const __FLT32X_DECIMAL_DIG__ = 17
-const __FLT32X_DENORM_MIN__ = 0
+const __FLT32X_DENORM_MIN__ = 4.94065645841246544176568792868221372e-324
 const __FLT32X_DIG__ = 15
-const __FLT32X_EPSILON__ = 0
+const __FLT32X_EPSILON__ = 2.22044604925031308084726333618164062e-16
 const __FLT32X_HAS_DENORM__ = 1
 const __FLT32X_HAS_INFINITY__ = 1
 const __FLT32X_HAS_QUIET_NAN__ = 1
@@ -241,15 +237,15 @@ const __FLT32X_IS_IEC_60559__ = 1
 const __FLT32X_MANT_DIG__ = 53
 const __FLT32X_MAX_10_EXP__ = 308
 const __FLT32X_MAX_EXP__ = 1024
-const __FLT32X_MAX__ = 0
+const __FLT32X_MAX__ = 1.79769313486231570814527423731704357e+308
 const __FLT32X_MIN_10_EXP__ = -307
 const __FLT32X_MIN_EXP__ = -1021
-const __FLT32X_MIN__ = 0
-const __FLT32X_NORM_MAX__ = 0
+const __FLT32X_MIN__ = 2.22507385850720138309023271733240406e-308
+const __FLT32X_NORM_MAX__ = 1.79769313486231570814527423731704357e+308
 const __FLT32_DECIMAL_DIG__ = 9
-const __FLT32_DENORM_MIN__ = 0
+const __FLT32_DENORM_MIN__ = 1.40129846432481707092372958328991613e-45
 const __FLT32_DIG__ = 6
-const __FLT32_EPSILON__ = 0
+const __FLT32_EPSILON__ = 1.19209289550781250000000000000000000e-7
 const __FLT32_HAS_DENORM__ = 1
 const __FLT32_HAS_INFINITY__ = 1
 const __FLT32_HAS_QUIET_NAN__ = 1
@@ -257,15 +253,15 @@ const __FLT32_IS_IEC_60559__ = 1
 const __FLT32_MANT_DIG__ = 24
 const __FLT32_MAX_10_EXP__ = 38
 const __FLT32_MAX_EXP__ = 128
-const __FLT32_MAX__ = 0
+const __FLT32_MAX__ = 3.40282346638528859811704183484516925e+38
 const __FLT32_MIN_10_EXP__ = -37
 const __FLT32_MIN_EXP__ = -125
-const __FLT32_MIN__ = 0
-const __FLT32_NORM_MAX__ = 0
+const __FLT32_MIN__ = 1.17549435082228750796873653722224568e-38
+const __FLT32_NORM_MAX__ = 3.40282346638528859811704183484516925e+38
 const __FLT64X_DECIMAL_DIG__ = 36
-const __FLT64X_DENORM_MIN__ = 0
+const __FLT64X_DENORM_MIN__ = 6.47517511943802511092443895822764655e-4966
 const __FLT64X_DIG__ = 33
-const __FLT64X_EPSILON__ = 0
+const __FLT64X_EPSILON__ = 1.92592994438723585305597794258492732e-34
 const __FLT64X_HAS_DENORM__ = 1
 const __FLT64X_HAS_INFINITY__ = 1
 const __FLT64X_HAS_QUIET_NAN__ = 1
@@ -273,15 +269,15 @@ const __FLT64X_IS_IEC_60559__ = 1
 const __FLT64X_MANT_DIG__ = 113
 const __FLT64X_MAX_10_EXP__ = 4932
 const __FLT64X_MAX_EXP__ = 16384
-const __FLT64X_MAX__ = 0
+const __FLT64X_MAX__ = "1.18973149535723176508575932662800702e+4932"
 const __FLT64X_MIN_10_EXP__ = -4931
 const __FLT64X_MIN_EXP__ = -16381
-const __FLT64X_MIN__ = 0
-const __FLT64X_NORM_MAX__ = 0
+const __FLT64X_MIN__ = 3.36210314311209350626267781732175260e-4932
+const __FLT64X_NORM_MAX__ = "1.18973149535723176508575932662800702e+4932"
 const __FLT64_DECIMAL_DIG__ = 17
-const __FLT64_DENORM_MIN__ = 0
+const __FLT64_DENORM_MIN__ = 4.94065645841246544176568792868221372e-324
 const __FLT64_DIG__ = 15
-const __FLT64_EPSILON__ = 0
+const __FLT64_EPSILON__ = 2.22044604925031308084726333618164062e-16
 const __FLT64_HAS_DENORM__ = 1
 const __FLT64_HAS_INFINITY__ = 1
 const __FLT64_HAS_QUIET_NAN__ = 1
@@ -289,15 +285,15 @@ const __FLT64_IS_IEC_60559__ = 1
 const __FLT64_MANT_DIG__ = 53
 const __FLT64_MAX_10_EXP__ = 308
 const __FLT64_MAX_EXP__ = 1024
-const __FLT64_MAX__ = 0
+const __FLT64_MAX__ = 1.79769313486231570814527423731704357e+308
 const __FLT64_MIN_10_EXP__ = -307
 const __FLT64_MIN_EXP__ = -1021
-const __FLT64_MIN__ = 0
-const __FLT64_NORM_MAX__ = 0
+const __FLT64_MIN__ = 2.22507385850720138309023271733240406e-308
+const __FLT64_NORM_MAX__ = 1.79769313486231570814527423731704357e+308
 const __FLT_DECIMAL_DIG__ = 9
-const __FLT_DENORM_MIN__ = 0
+const __FLT_DENORM_MIN__ = 1.401298464324817e-45
 const __FLT_DIG__ = 6
-const __FLT_EPSILON__ = 0
+const __FLT_EPSILON__ = 1.1920928955078125e-07
 const __FLT_EVAL_METHOD_TS_18661_3__ = 0
 const __FLT_EVAL_METHOD__ = 0
 const __FLT_HAS_DENORM__ = 1
@@ -307,11 +303,11 @@ const __FLT_IS_IEC_60559__ = 1
 const __FLT_MANT_DIG__ = 24
 const __FLT_MAX_10_EXP__ = 38
 const __FLT_MAX_EXP__ = 128
-const __FLT_MAX__ = 0
+const __FLT_MAX__ = 3.4028234663852886e+38
 const __FLT_MIN_10_EXP__ = -37
 const __FLT_MIN_EXP__ = -125
-const __FLT_MIN__ = 0
-const __FLT_NORM_MAX__ = 0
+const __FLT_MIN__ = 1.1754943508222875e-38
+const __FLT_NORM_MAX__ = 3.4028234663852886e+38
 const __FLT_RADIX__ = 2
 const __FP_FAST_FMA = 1
 const __FP_FAST_FMAF = 1
@@ -319,7 +315,7 @@ const __FP_FAST_FMAF32 = 1
 const __FP_FAST_FMAF32x = 1
 const __FP_FAST_FMAF64 = 1
 const __FP_FAST_FMAL = 1
-const __FUNCTION__ = 0
+const __FUNCTION__ = "__func__"
 const __GCC_ATOMIC_BOOL_LOCK_FREE = 2
 const __GCC_ATOMIC_CHAR16_T_LOCK_FREE = 2
 const __GCC_ATOMIC_CHAR32_T_LOCK_FREE = 2
@@ -350,7 +346,7 @@ const __HAVE_BSWAP__ = 1
 const __HAVE_SPECULATION_SAFE_VALUE = 1
 const __INT16_MAX__ = 32767
 const __INT32_MAX__ = 2147483647
-const __INT32_TYPE__ = 0
+const __INT32_TYPE__ = "int"
 const __INT64_MAX__ = 9223372036854775807
 const __INT8_MAX__ = 127
 const __INTMAX_MAX__ = 9223372036854775807
@@ -368,7 +364,7 @@ const __INT_FAST8_WIDTH__ = 8
 const __INT_LEAST16_MAX__ = 32767
 const __INT_LEAST16_WIDTH__ = 16
 const __INT_LEAST32_MAX__ = 2147483647
-const __INT_LEAST32_TYPE__ = 0
+const __INT_LEAST32_TYPE__ = "int"
 const __INT_LEAST32_WIDTH__ = 32
 const __INT_LEAST64_MAX__ = 9223372036854775807
 const __INT_LEAST64_WIDTH__ = 64
@@ -377,9 +373,9 @@ const __INT_LEAST8_WIDTH__ = 8
 const __INT_MAX__ = 2147483647
 const __INT_WIDTH__ = 32
 const __LDBL_DECIMAL_DIG__ = 17
-const __LDBL_DENORM_MIN__ = 0
+const __LDBL_DENORM_MIN__ = 4.94065645841246544176568792868221372e-324
 const __LDBL_DIG__ = 15
-const __LDBL_EPSILON__ = 0
+const __LDBL_EPSILON__ = 2.22044604925031308084726333618164062e-16
 const __LDBL_HAS_DENORM__ = 1
 const __LDBL_HAS_INFINITY__ = 1
 const __LDBL_HAS_QUIET_NAN__ = 1
@@ -387,11 +383,11 @@ const __LDBL_IS_IEC_60559__ = 1
 const __LDBL_MANT_DIG__ = 53
 const __LDBL_MAX_10_EXP__ = 308
 const __LDBL_MAX_EXP__ = 1024
-const __LDBL_MAX__ = 0
+const __LDBL_MAX__ = 1.79769313486231570814527423731704357e+308
 const __LDBL_MIN_10_EXP__ = -307
 const __LDBL_MIN_EXP__ = -1021
-const __LDBL_MIN__ = 0
-const __LDBL_NORM_MAX__ = 0
+const __LDBL_MIN__ = 2.22507385850720138309023271733240406e-308
+const __LDBL_NORM_MAX__ = 1.79769313486231570814527423731704357e+308
 const __LITTLE_ENDIAN = 1234
 const __LITTLE_ENDIAN__ = 1
 const __LONG_LONG_MAX__ = 9223372036854775807
@@ -411,7 +407,7 @@ const __POWER8_VECTOR__ = 1
 const __PPC64__ = 1
 const __PPC__ = 1
 const __PRAGMA_REDEFINE_EXTNAME = 1
-const __PRETTY_FUNCTION__ = 0
+const __PRETTY_FUNCTION__ = "__func__"
 const __PTRDIFF_MAX__ = 9223372036854775807
 const __PTRDIFF_WIDTH__ = 64
 const __QUAD_MEMORY_ATOMIC__ = 1
@@ -427,7 +423,7 @@ const __SHRT_MAX__ = 32767
 const __SHRT_WIDTH__ = 16
 const __SIG_ATOMIC_MAX__ = 2147483647
 const __SIG_ATOMIC_MIN__ = -2147483648
-const __SIG_ATOMIC_TYPE__ = 0
+const __SIG_ATOMIC_TYPE__ = "int"
 const __SIG_ATOMIC_WIDTH__ = 32
 const __SIZEOF_DOUBLE__ = 8
 const __SIZEOF_FLOAT128__ = 16
@@ -472,54 +468,54 @@ const __VERSION__ = "14.2.0"
 const __VSX__ = 1
 const __WCHAR_MAX__ = 2147483647
 const __WCHAR_MIN__ = -2147483648
-const __WCHAR_TYPE__ = 0
+const __WCHAR_TYPE__ = "int"
 const __WCHAR_WIDTH__ = 32
 const __WINT_MAX__ = 4294967295
 const __WINT_MIN__ = 0
 const __WINT_WIDTH__ = 32
-const __builtin_copysignq = 0
-const __builtin_fabsq = 0
-const __builtin_huge_valq = 0
-const __builtin_infq = 0
-const __builtin_nanq = 0
-const __builtin_nansq = 0
-const __builtin_vsx_vperm = 0
-const __builtin_vsx_xvmaddadp = 0
-const __builtin_vsx_xvmaddasp = 0
-const __builtin_vsx_xvmaddmdp = 0
-const __builtin_vsx_xvmaddmsp = 0
-const __builtin_vsx_xvmsubadp = 0
-const __builtin_vsx_xvmsubasp = 0
-const __builtin_vsx_xvmsubmdp = 0
-const __builtin_vsx_xvmsubmsp = 0
-const __builtin_vsx_xvnmaddadp = 0
-const __builtin_vsx_xvnmaddasp = 0
-const __builtin_vsx_xvnmaddmdp = 0
-const __builtin_vsx_xvnmaddmsp = 0
-const __builtin_vsx_xvnmsubadp = 0
-const __builtin_vsx_xvnmsubasp = 0
-const __builtin_vsx_xvnmsubmdp = 0
-const __builtin_vsx_xvnmsubmsp = 0
-const __builtin_vsx_xxland = 0
-const __builtin_vsx_xxlandc = 0
-const __builtin_vsx_xxlnor = 0
-const __builtin_vsx_xxlor = 0
-const __builtin_vsx_xxlxor = 0
-const __builtin_vsx_xxsel = 0
-const __float128 = 0
+const __builtin_copysignq = "__builtin_copysignf128"
+const __builtin_fabsq = "__builtin_fabsf128"
+const __builtin_huge_valq = "__builtin_huge_valf128"
+const __builtin_infq = "__builtin_inff128"
+const __builtin_nanq = "__builtin_nanf128"
+const __builtin_nansq = "__builtin_nansf128"
+const __builtin_vsx_vperm = "__builtin_vec_perm"
+const __builtin_vsx_xvmaddadp = "__builtin_vsx_xvmadddp"
+const __builtin_vsx_xvmaddasp = "__builtin_vsx_xvmaddsp"
+const __builtin_vsx_xvmaddmdp = "__builtin_vsx_xvmadddp"
+const __builtin_vsx_xvmaddmsp = "__builtin_vsx_xvmaddsp"
+const __builtin_vsx_xvmsubadp = "__builtin_vsx_xvmsubdp"
+const __builtin_vsx_xvmsubasp = "__builtin_vsx_xvmsubsp"
+const __builtin_vsx_xvmsubmdp = "__builtin_vsx_xvmsubdp"
+const __builtin_vsx_xvmsubmsp = "__builtin_vsx_xvmsubsp"
+const __builtin_vsx_xvnmaddadp = "__builtin_vsx_xvnmadddp"
+const __builtin_vsx_xvnmaddasp = "__builtin_vsx_xvnmaddsp"
+const __builtin_vsx_xvnmaddmdp = "__builtin_vsx_xvnmadddp"
+const __builtin_vsx_xvnmaddmsp = "__builtin_vsx_xvnmaddsp"
+const __builtin_vsx_xvnmsubadp = "__builtin_vsx_xvnmsubdp"
+const __builtin_vsx_xvnmsubasp = "__builtin_vsx_xvnmsubsp"
+const __builtin_vsx_xvnmsubmdp = "__builtin_vsx_xvnmsubdp"
+const __builtin_vsx_xvnmsubmsp = "__builtin_vsx_xvnmsubsp"
+const __builtin_vsx_xxland = "__builtin_vec_and"
+const __builtin_vsx_xxlandc = "__builtin_vec_andc"
+const __builtin_vsx_xxlnor = "__builtin_vec_nor"
+const __builtin_vsx_xxlor = "__builtin_vec_or"
+const __builtin_vsx_xxlxor = "__builtin_vec_xor"
+const __builtin_vsx_xxsel = "__builtin_vec_sel"
+const __float128 = "__ieee128"
 const __gnu_linux__ = 1
-const __inline = 0
+const __inline = "inline"
 const __linux = 1
 const __linux__ = 1
 const __pic__ = 2
 const __pie__ = 2
 const __powerpc64__ = 1
 const __powerpc__ = 1
-const __restrict = 0
-const __restrict_arr = 0
+const __restrict = "restrict"
+const __restrict_arr = "restrict"
 const __unix = 1
 const __unix__ = 1
-const complex1 = 0
+const complex1 = "_Complex"
 const math_errhandling = 2
 
 type t__builtin_va_list = uintptr
@@ -743,8 +739,6 @@ func Xcabsl(tls *TLS, z complex128) (r float64) {
 	return Xcabs(tls, Complex128FromComplex128(z))
 }
 
-const M_PI_21 = 1.5707963267948966
-
 // FIXME: Hull et al. "Implementing the complex arcsine and arccosine functions using exception handling" 1997
 
 /* acos(z) = pi/2 - asin(z) */
@@ -782,8 +776,6 @@ func Xcacosf(tls *TLS, z complex64) (r complex64) {
 	}
 	return *(*complex64)(unsafe.Pointer(&v1))
 }
-
-const M_PI_22 = 0
 
 /* acosh(z) = i acos(z) */
 
@@ -1019,8 +1011,7 @@ func Xcasinl(tls *TLS, z complex128) (r complex128) {
 	return Complex128FromComplex128(Xcasin(tls, Complex128FromComplex128(z)))
 }
 
-const MAXNUM = 0
-const M_PI1 = 3.141592653589793
+const MAXNUM = 1e+308
 
 var _DP1 = float64(3.141592651605606)
 var _DP2 = float64(1.9841871479187034e-09)
@@ -1069,7 +1060,7 @@ func Xcatan(tls *TLS, z complex128) (r complex128) {
 	return w
 }
 
-const MAXNUMF = 0
+const MAXNUMF = 1e+38
 
 var _DP11 = float64(3.140625)
 var _DP21 = float64(0.0009675025939941406)
@@ -1120,8 +1111,6 @@ func Xcatanf(tls *TLS, z complex64) (r complex64) {
 	w = *(*complex64)(unsafe.Pointer(&v1))
 	return w
 }
-
-const M_PI2 = 0
 
 /* atanh = -i atan(i z) */
 
@@ -2916,6 +2905,7 @@ const F_TLOCK = 2
 const F_ULOCK = 0
 const L_ctermid = 20
 const L_tmpnam = 20
+const NULL = 0
 const POSIX_CLOSE_RESTART = 0
 const P_tmpdir = "/tmp"
 const R_OK = 4
@@ -3798,7 +3788,7 @@ const ELFDATA2LSB = 1
 const ELFDATA2MSB = 2
 const ELFDATANONE = 0
 const ELFDATANUM = 3
-const ELFMAG = "\\177ELF"
+const ELFMAG = "\x7fELF"
 const ELFMAG0 = 127
 const ELFMAG1 = 69
 const ELFMAG2 = 76
@@ -4074,7 +4064,6 @@ const LL_EXPORTS = 8
 const LL_IGNORE_INT_VER = 2
 const LL_NONE = 0
 const LL_REQUIRE_MINOR = 4
-const MB_CUR_MAX = 0
 const MINSIGSTKSZ = 4096
 const MIPS_AFL_ASE_DSP = 1
 const MIPS_AFL_ASE_DSPR2 = 2
@@ -6052,8 +6041,6 @@ const SIGPOLL = 29
 const SIGPROF = 27
 const SIGPWR = 30
 const SIGQUIT = 3
-const SIGRTMAX = 0
-const SIGRTMIN = 0
 const SIGSEGV = 11
 const SIGSTKFLT = 16
 const SIGSTKSZ = 10240
@@ -6073,6 +6060,10 @@ const SIGWINCH = 28
 const SIGXCPU = 24
 const SIGXFSZ = 25
 const SIG_BLOCK = 0
+const SIG_DFL = 0
+const SIG_ERR = 18446744073709551615
+const SIG_HOLD = 2
+const SIG_IGN = 1
 const SIG_SETMASK = 2
 const SIG_UNBLOCK = 1
 const SIOCGSTAMPNS_OLD = 35079
@@ -6995,7 +6986,7 @@ const __SC_setsockopt = 14
 const __SC_shutdown = 13
 const __SC_socket = 1
 const __SC_socketpair = 8
-const libc = 0
+const libc = "__libc"
 
 type Ttime_t = int64
 
@@ -12730,7 +12721,6 @@ const CLOCK_REALTIME_COARSE = 5
 const CLOCK_SGI_CYCLE = 10
 const CLOCK_TAI = 11
 const CLOCK_THREAD_CPUTIME_ID = 3
-const C_LOCALE = 0
 const DEFAULT_GUARD_MAX = 1048576
 const DEFAULT_GUARD_SIZE = 8192
 const DEFAULT_STACK_MAX = 8388608
@@ -12755,7 +12745,7 @@ const LC_COLLATE = 3
 const LC_COLLATE_MASK = 8
 const LC_CTYPE = 0
 const LC_CTYPE_MASK = 1
-const LC_GLOBAL_LOCALE = -1
+const LC_GLOBAL_LOCALE = 18446744073709551615
 const LC_MESSAGES = 5
 const LC_MESSAGES_MASK = 32
 const LC_MONETARY = 4
@@ -12765,11 +12755,12 @@ const LC_NUMERIC_MASK = 2
 const LC_TIME = 2
 const LC_TIME_MASK = 4
 const LOCALE_NAME_MAX = 23
+const LOC_MAP_FAILED = 18446744073709551615
 const MAP_ANON = 32
 const MAP_ANONYMOUS = 32
 const MAP_DENYWRITE = 2048
 const MAP_EXECUTABLE = 4096
-const MAP_FAILED = -1
+const MAP_FAILED = 18446744073709551615
 const MAP_FILE = 0
 const MAP_FIXED = 16
 const MAP_FIXED_NOREPLACE = 1048576
@@ -12814,7 +12805,7 @@ const PROT_READ = 1
 const PROT_SAO = 16
 const PROT_WRITE = 2
 const PTHREAD_BARRIER_SERIAL_THREAD = -1
-const PTHREAD_CANCELED = -1
+const PTHREAD_CANCELED = 18446744073709551615
 const PTHREAD_CANCEL_ASYNCHRONOUS = 1
 const PTHREAD_CANCEL_DEFERRED = 0
 const PTHREAD_CANCEL_DISABLE = 1
@@ -12830,6 +12821,7 @@ const PTHREAD_MUTEX_NORMAL = 0
 const PTHREAD_MUTEX_RECURSIVE = 1
 const PTHREAD_MUTEX_ROBUST = 1
 const PTHREAD_MUTEX_STALLED = 0
+const PTHREAD_NULL = 0
 const PTHREAD_ONCE_INIT = 0
 const PTHREAD_PRIO_INHERIT = 1
 const PTHREAD_PRIO_NONE = 0
@@ -12846,18 +12838,20 @@ const SCHED_OTHER = 0
 const SCHED_RESET_ON_FORK = 1073741824
 const SCHED_RR = 2
 const SIGCANCEL = 33
+const SIGPT_SET = 12884901888
 const SIGSYNCCALL = 34
 const SIGTIMER = 32
+const SIGTIMER_SET = 2147483648
 const TIMER_ABSTIME = 1
 const TIME_UTC = 1
 const TP_OFFSET = 28672
-const UTF8_LOCALE = 0
+const __ATTRP_C11_THREAD = 18446744073709551615
 const __CCGO_SIZEOF_GO_MUTEX = 8
-const __SU = 0
-const a_pre_llsc = 0
-const a_spin = 0
-const pthread = 0
-const tls_mod_off_t = 0
+const __SU = 2
+const a_pre_llsc = "a_barrier"
+const a_spin = "a_barrier"
+const pthread = "__pthread"
+const tls_mod_off_t = "size_t"
 
 type Tlconv = struct {
 	Fdecimal_point      uintptr
@@ -23628,7 +23622,7 @@ func Xwcwidth(tls *TLS, wc Twchar_t) (r int32) {
 	return int32(1)
 }
 
-const d_fileno = 0
+const d_fileno = "d_ino"
 
 type Tino_t = uint64
 
@@ -23894,8 +23888,8 @@ const SPLICE_F_NONBLOCK = 2
 const SYNC_FILE_RANGE_WAIT_AFTER = 4
 const SYNC_FILE_RANGE_WAIT_BEFORE = 1
 const SYNC_FILE_RANGE_WRITE = 2
-const alloca = 0
-const loff_t = 0
+const alloca = "__builtin_alloca"
+const loff_t = "off_t"
 
 type Tiovec = struct {
 	Fiov_base uintptr
@@ -24998,6 +24992,7 @@ func Xposix_fallocate(tls *TLS, fd int32, base Toff_t, len1 Toff_t) (r int32) {
 
 const FE_ALL_EXCEPT = 1040187392
 const FE_ALL_INVALID = 33031936
+const FE_DFL_ENV = 18446744073709551615
 const FE_DIVBYZERO = 67108864
 const FE_DOWNWARD = 3
 const FE_INEXACT = 33554432
@@ -25143,11 +25138,7 @@ const F_NOWR = 8
 const F_PERM = 1
 const F_SVB = 64
 const KMAX = 128
-const LDBL_EPSILON1 = 2.22044604925031308085e-16
-const LDBL_MAX1 = 1.79769313486231570815e+308
-const LDBL_MIN1 = 2.22507385850720138309e-308
 const LD_B1B_DIG = 2
-const LD_B1B_MAX = 254740991
 const MASK = 127
 const MAYBE_WAITERS = 1073741824
 const UNGET = 8
@@ -26817,11 +26808,12 @@ const IPC_CREAT = 512
 const IPC_EXCL = 1024
 const IPC_INFO = 3
 const IPC_NOWAIT = 2048
+const IPC_PRIVATE = 0
 const IPC_RMID = 0
 const IPC_SET = 1
 const IPC_STAT = 2
-const __ipc_perm_key = 0
-const __ipc_perm_seq = 0
+const __ipc_perm_key = "__key"
+const __ipc_perm_seq = "__seq"
 
 type Tkey_t = int32
 
@@ -26871,7 +26863,7 @@ const MSG_INFO = 12
 const MSG_NOERROR = 4096
 const MSG_STAT = 11
 const MSG_STAT_ANY = 13
-const __msg_cbytes = 0
+const __msg_cbytes = "msg_cbytes"
 
 type Tmsgqnum_t = uint64
 
@@ -27054,8 +27046,8 @@ func Xsemop(tls *TLS, id int32, buf uintptr, n Tsize_t) (r int32) {
 }
 
 const NO_TIME32 = 0
-const __key = 0
-const __seq = 0
+const __key = "key"
+const __seq = "seq"
 
 type Tipc_perm1 = struct {
 	Fkey    Tkey_t
@@ -27376,6 +27368,7 @@ func Xftw(tls *TLS, path uintptr, __ccgo_fp_fn uintptr, fd_limit int32) (r int32
 	return Xnftw(tls, path, __ccgo_fp_fn, fd_limit, int32(FTW_PHYS))
 }
 
+const NFDBITS = 64
 const STATX_ALL = 4095
 const STATX_ATIME = 32
 const STATX_BASIC_STATS = 2047
@@ -27447,7 +27440,7 @@ func Xfutimes(tls *TLS, fd int32, tv uintptr) (r int32) {
 	return Xfutimens(tls, fd, bp)
 }
 
-const prlimit64 = 0
+const prlimit64 = "prlimit"
 
 func Xgetdtablesize(tls *TLS) (r int32) {
 	if __ccgo_strace {
@@ -27964,8 +27957,8 @@ const NEW_TIME = 3
 const OLD_TIME = 4
 const RUN_LVL = 1
 const USER_PROCESS = 7
-const e_exit = 0
-const e_termination = 0
+const e_exit = "__e_exit"
+const e_termination = "__e_termination"
 
 type Tutmpx = struct {
 	Fut_type   int16
@@ -28568,7 +28561,7 @@ const FAN_ENABLE_AUDIT = 64
 const FAN_EVENT_INFO_TYPE_DFID = 3
 const FAN_EVENT_INFO_TYPE_DFID_NAME = 2
 const FAN_EVENT_INFO_TYPE_FID = 1
-const FAN_EVENT_METADATA_LEN = 0
+const FAN_EVENT_METADATA_LEN = 24
 const FAN_EVENT_ON_CHILD = 134217728
 const FAN_MARK_ADD = 1
 const FAN_MARK_DONT_FOLLOW = 4
@@ -28891,13 +28884,10 @@ func Xdelete_module(tls *TLS, a uintptr, b uint32) (r int32) {
 	return int32(X__syscall_ret(tls, Uint64FromInt64(X__syscall2(tls, int64(SYS_delete_module), int64(a), Int64FromUint32(b)))))
 }
 
-const BLKBSZGET = 1073746544
-const BLKBSZSET = 2147488369
 const BLKFLSBUF = 536875617
 const BLKFRAGET = 536875621
 const BLKFRASET = 536875620
 const BLKGETSIZE = 536875616
-const BLKGETSIZE64 = 1073746546
 const BLKRAGET = 536875619
 const BLKRASET = 536875618
 const BLKROGET = 536875614
@@ -28906,13 +28896,13 @@ const BLKRRPART = 536875615
 const BLKSECTGET = 536875623
 const BLKSECTSET = 536875622
 const BLKSSZGET = 536875624
-const FIOASYNC = 2147509885
+const FIOASYNC = 2147772029
 const FIOCLEX = 536897025
 const FIOGETOWN = 35075
-const FIONBIO = 2147509886
+const FIONBIO = 2147772030
 const FIONCLEX = 536897026
-const FIONREAD = 1073768063
-const FIOQSIZE = 1073768064
+const FIONREAD = 1074030207
+const FIOQSIZE = 1074292352
 const FIOSETOWN = 35073
 const MNT_DETACH = 2
 const MNT_EXPIRE = 4
@@ -29038,39 +29028,39 @@ const SIOCSPGRP = 35074
 const SIOCSRARP = 35170
 const SIOGIFINDEX = 35123
 const TCFLSH = 536900639
-const TCGETA = 1073771543
-const TCGETS = 1073771539
+const TCGETA = 1075082263
+const TCGETS = 1076655123
 const TCSBRK = 536900637
 const TCSBRKP = 21541
-const TCSETA = 2147513368
-const TCSETAF = 2147513372
-const TCSETAW = 2147513369
-const TCSETS = 2147513364
-const TCSETSF = 2147513366
-const TCSETSW = 2147513365
+const TCSETA = 2148824088
+const TCSETAF = 2148824092
+const TCSETAW = 2148824089
+const TCSETS = 2150396948
+const TCSETSF = 2150396950
+const TCSETSW = 2150396949
 const TCXONC = 536900638
 const TIOCCBRK = 21544
 const TIOCCONS = 21533
 const TIOCEXCL = 21516
-const TIOCGDEV = 1073763378
-const TIOCGETC = 1073771538
+const TIOCGDEV = 1074025522
+const TIOCGETC = 1074164754
 const TIOCGETD = 21540
-const TIOCGETP = 1073771528
-const TIOCGEXCL = 1073763392
+const TIOCGETP = 1074164744
+const TIOCGEXCL = 1074025536
 const TIOCGICOUNT = 21597
 const TIOCGLCKTRMIOS = 21590
-const TIOCGLTC = 1073771636
-const TIOCGPGRP = 1073771639
-const TIOCGPKT = 1073763384
-const TIOCGPTLCK = 1073763385
-const TIOCGPTN = 1073763376
+const TIOCGLTC = 1074164852
+const TIOCGPGRP = 1074033783
+const TIOCGPKT = 1074025528
+const TIOCGPTLCK = 1074025529
+const TIOCGPTN = 1074025520
 const TIOCGPTPEER = 536892481
 const TIOCGRS485 = 21550
 const TIOCGSERIAL = 21534
 const TIOCGSID = 21545
 const TIOCGSOFTCAR = 21529
-const TIOCGWINSZ = 1073771624
-const TIOCINQ = 1073768063
+const TIOCGWINSZ = 1074295912
+const TIOCINQ = 1074030207
 const TIOCLINUX = 21532
 const TIOCMBIC = 21527
 const TIOCMBIS = 21526
@@ -29093,7 +29083,7 @@ const TIOCM_SR = 16
 const TIOCM_ST = 8
 const TIOCNOTTY = 21538
 const TIOCNXCL = 21517
-const TIOCOUTQ = 1073771635
+const TIOCOUTQ = 1074033779
 const TIOCPKT = 21536
 const TIOCPKT_DATA = 0
 const TIOCPKT_DOSTOP = 32
@@ -29112,22 +29102,22 @@ const TIOCSERGSTRUCT = 21592
 const TIOCSERGWILD = 21588
 const TIOCSERSETMULTI = 21595
 const TIOCSERSWILD = 21589
-const TIOCSETC = 2147513361
+const TIOCSETC = 2147906577
 const TIOCSETD = 21539
-const TIOCSETN = 2147513354
-const TIOCSETP = 2147513353
-const TIOCSIG = 2147505206
+const TIOCSETN = 2147906570
+const TIOCSETP = 2147906569
+const TIOCSIG = 2147767350
 const TIOCSLCKTRMIOS = 21591
-const TIOCSLTC = 2147513461
-const TIOCSPGRP = 2147513462
-const TIOCSPTLCK = 2147505201
+const TIOCSLTC = 2147906677
+const TIOCSPGRP = 2147775606
+const TIOCSPTLCK = 2147767345
 const TIOCSRS485 = 21551
 const TIOCSSERIAL = 21535
 const TIOCSSOFTCAR = 21530
 const TIOCSTART = 536900718
 const TIOCSTI = 21522
 const TIOCSTOP = 536900719
-const TIOCSWINSZ = 2147513447
+const TIOCSWINSZ = 2148037735
 const TIOCVHANGUP = 21559
 const UMOUNT_NOFOLLOW = 8
 const _IOC_NONE = 1
@@ -29846,8 +29836,8 @@ func Xsetns(tls *TLS, fd int32, nstype int32) (r int32) {
 	return int32(X__syscall_ret(tls, Uint64FromInt64(X__syscall2(tls, int64(SYS_setns), int64(fd), int64(nstype)))))
 }
 
-const __tm_gmtoff = 0
-const __tm_zone = 0
+const __tm_gmtoff = "tm_gmtoff"
+const __tm_zone = "tm_zone"
 
 type Ttm1 = struct {
 	Ftm_sec    int32
@@ -30122,7 +30112,7 @@ const SA_NOMASK = 1073741824
 const SA_ONESHOT = 2147483648
 const SYS_SECCOMP = 1
 const SYS_USER_DISPATCH = 2
-const __ucontext = 0
+const __ucontext = "ucontext"
 
 type Tgreg_t = uint64
 
@@ -30736,10 +30726,10 @@ func Xcatopen(tls *TLS, name uintptr, oflag int32) (r Tnl_catd) {
 	return uintptr(-Int32FromInt32(1))
 }
 
-const calloc = 0
-const free = 0
-const malloc = 0
-const realloc = 0
+const calloc = "__libc_calloc"
+const free = "undef"
+const malloc = "__libc_malloc"
+const realloc = "undef"
 
 type Tbinding = struct {
 	Fnext       uintptr
@@ -31204,6 +31194,8 @@ func Xdgettext(tls *TLS, domainname uintptr, msgid uintptr) (r uintptr) {
 	return Xdcngettext(tls, domainname, msgid, uintptr(0), uint64(1), int32(LC_MESSAGES))
 }
 
+const calloc1 = "undef"
+
 func X__duplocale(tls *TLS, old Tlocale_t) (r Tlocale_t) {
 	if __ccgo_strace {
 		trc("tls=%v old=%v, (%v:)", tls, old, origin(2))
@@ -31229,6 +31221,9 @@ func Xduplocale(tls *TLS, old Tlocale_t) (r Tlocale_t) {
 	}
 	return X__duplocale(tls, old)
 }
+
+const free1 = "__libc_free"
+const malloc1 = "undef"
 
 func Xfreelocale(tls *TLS, l Tlocale_t) {
 	if __ccgo_strace {
@@ -31266,8 +31261,8 @@ const UTF_32BE = 192
 const UTF_32LE = 195
 const UTF_8 = 200
 const WCHAR_T = 198
-const mbrtowc_utf8 = 0
-const wctomb_utf8 = 0
+const mbrtowc_utf8 = "mbrtowc"
+const wctomb_utf8 = "wctomb"
 
 type Ticonv_t = uintptr
 
@@ -98663,6 +98658,9 @@ func Xnl_langinfo_l(tls *TLS, item Tnl_item, loc Tlocale_t) (r uintptr) {
 	return X__nl_langinfo_l(tls, item, loc)
 }
 
+const free2 = "undef"
+const malloc2 = "__libc_malloc"
+
 func X__lctrans_impl(tls *TLS, msg uintptr, lm uintptr) (r uintptr) {
 	if __ccgo_strace {
 		trc("tls=%v msg=%v lm=%v, (%v:)", tls, msg, lm, origin(2))
@@ -99802,10 +99800,6 @@ func Xreallocarray(tls *TLS, ptr uintptr, m Tsize_t, n Tsize_t) (r uintptr) {
 	return Xrealloc(tls, ptr, m*n)
 }
 
-const LDBL_EPSILON2 = 0
-const LDBL_MAX2 = 0
-const LDBL_MIN2 = 0
-
 var _C1 = float64(0.0416666666666666)                 /* 0x3FA55555, 0x5555554C */
 var _C2 = -Float64FromFloat64(0.001388888888887411)   /* 0xBF56C16C, 0x16C15177 */
 var _C3 = float64(2.480158728947673e-05)              /* 0x3EFA01A0, 0x19CB1590 */
@@ -99991,8 +99985,8 @@ func X__fpclassifyl(tls *TLS, x float64) (r int32) {
 	return X__fpclassify(tls, x)
 }
 
-const pio2_hi = 0
-const pio2_lo = 0
+const pio2_hi = "__pio2_hi"
+const pio2_lo = "__pio2_lo"
 
 func X__math_divzero(tls *TLS, sign Tuint32_t) (r float64) {
 	if __ccgo_strace {
@@ -100126,8 +100120,7 @@ _5:
 	return v4
 }
 
-const DBL_EPSILON1 = 2.220446049250313e-16
-const EPS = 0
+const EPS = 2.220446049250313e-16
 
 // C documentation
 //
@@ -100335,8 +100328,6 @@ _1:
 	**(**float64)(__ccgo_up(y + 1*8)) = (**(**[2]float64)(__ccgo_up(bp + 32)))[int32(1)]
 	return n
 }
-
-const DBL_EPSILON2 = 0
 
 var _init_jk = [4]int32{
 	0: int32(3),
@@ -100830,8 +100821,6 @@ _18:
 	return n & int32(7)
 }
 
-const DBL_EPSILON3 = 2.220446049250313e-16
-
 // C documentation
 //
 //	/*
@@ -100909,8 +100898,6 @@ func X__rem_pio2f(tls *TLS, x float32, y uintptr) (r int32) {
 	**(**float64)(__ccgo_up(y)) = (**(**[1]float64)(__ccgo_up(bp + 16)))[0]
 	return n
 }
-
-const DBL_EPSILON4 = 0
 
 // C documentation
 //
@@ -102424,8 +102411,6 @@ func Xcbrtl(tls *TLS, x float64) (r float64) {
 	return Xcbrt(tls, x)
 }
 
-const DBL_EPSILON5 = 2.220446049250313e-16
-
 var _toint2 = Float64FromInt32(1) / Float64FromFloat64(2.220446049250313e-16)
 
 func Xceil(tls *TLS, x3 float64) (r float64) {
@@ -102485,8 +102470,6 @@ func Xceil(tls *TLS, x3 float64) (r float64) {
 	}
 	return x3 + y3
 }
-
-const DBL_EPSILON6 = 0
 
 func Xceilf(tls *TLS, x3 float32) (r float32) {
 	if __ccgo_strace {
@@ -102698,8 +102681,6 @@ func Xcos(tls *TLS, x3 float64) (r float64) {
 	return r
 }
 
-const M_PI_23 = 1.5707963267948966
-
 // C documentation
 //
 //	/* Small multiples of pi/2 rounded to double precision. */
@@ -102791,8 +102772,6 @@ func Xcosf(tls *TLS, x3 float32) (r float32) {
 	}
 	return r
 }
-
-const M_PI_24 = 0
 
 // C documentation
 //
@@ -103455,7 +103434,7 @@ _7:
 	return v1
 }
 
-const HUGE = 0
+const HUGE = 3.4028234663852886e+38
 
 func Xexp10(tls *TLS, x float64) (r float64) {
 	if __ccgo_strace {
@@ -104399,8 +104378,6 @@ _2:
 	return BoolInt32(v1&uint32(0x7fffffff) < uint32(0x7f800000))
 }
 
-const DBL_EPSILON7 = 2.220446049250313e-16
-
 var _toint3 = Float64FromInt32(1) / Float64FromFloat64(2.220446049250313e-16)
 
 func Xfloor(tls *TLS, x3 float64) (r float64) {
@@ -104460,8 +104437,6 @@ func Xfloor(tls *TLS, x3 float64) (r float64) {
 	}
 	return x3 + y3
 }
-
-const DBL_EPSILON8 = 0
 
 func Xfloorf(tls *TLS, x3 float32) (r float32) {
 	if __ccgo_strace {
@@ -104538,8 +104513,6 @@ func Xfloorl(tls *TLS, x float64) (r float64) {
 	return Xfloor(tls, x)
 }
 
-const DBL_MIN1 = 2.2250738585072014e-308
-const FLT_MIN1 = 1.1754943508222875e-38
 const ZEROINFNAN = 971
 
 type Tnum = struct {
@@ -104759,9 +104732,6 @@ func Xfma(tls *TLS, x1 float64, y float64, z float64) (r1 float64) {
 	}
 	return Xscalbn(tls, r, e)
 }
-
-const DBL_MIN2 = 0
-const FLT_MIN2 = 0
 
 func Xfmal(tls *TLS, x float64, y float64, z float64) (r float64) {
 	if __ccgo_strace {
@@ -105405,8 +105375,6 @@ func Xfrexpl(tls *TLS, x float64, e uintptr) (r float64) {
 	}
 	return Xfrexp(tls, x, e)
 }
-
-const SPLIT = 1
 
 func _sq(tls *TLS, hi uintptr, lo uintptr, x float64) {
 	var xc, xh, xl Tdouble_t
@@ -110745,8 +110713,6 @@ func Xremquol(tls *TLS, x float64, y float64, quo uintptr) (r float64) {
 	return Xremquo(tls, x, y, quo)
 }
 
-const DBL_EPSILON9 = 2.220446049250313e-16
-
 var _toint4 = Float64FromInt32(1) / Float64FromFloat64(2.220446049250313e-16)
 
 func Xrint(tls *TLS, x float64) (r float64) {
@@ -110793,8 +110759,7 @@ func Xrint(tls *TLS, x float64) (r float64) {
 	return y
 }
 
-const DBL_EPSILON10 = 0
-const FLT_EPSILON1 = 1.1920928955078125e-07
+const EPS1 = 1.1920928955078125e-07
 
 var _toint5 = Float32FromInt32(1) / Float32FromFloat32(1.1920928955078125e-07)
 
@@ -110842,8 +110807,6 @@ func Xrintf(tls *TLS, x float32) (r float32) {
 	return y
 }
 
-const FLT_EPSILON2 = 0
-
 func Xrintl(tls *TLS, x float64) (r float64) {
 	if __ccgo_strace {
 		trc("tls=%v x=%v, (%v:)", tls, x, origin(2))
@@ -110852,7 +110815,7 @@ func Xrintl(tls *TLS, x float64) (r float64) {
 	return Xrint(tls, x)
 }
 
-const DBL_EPSILON11 = 2.220446049250313e-16
+const EPS2 = 2.220446049250313e-16
 
 var _toint6 = Float64FromInt32(1) / Float64FromFloat64(2.220446049250313e-16)
 
@@ -110916,8 +110879,7 @@ func Xround(tls *TLS, x3 float64) (r float64) {
 	return y3
 }
 
-const DBL_EPSILON12 = 0
-const FLT_EPSILON3 = 1.1920928955078125e-07
+const EPS3 = 1.1920928955078125e-07
 
 var _toint7 = Float32FromInt32(1) / Float32FromFloat32(1.1920928955078125e-07)
 
@@ -110979,8 +110941,6 @@ func Xroundf(tls *TLS, x3 float32) (r float32) {
 	}
 	return y3
 }
-
-const FLT_EPSILON4 = 0
 
 func Xroundl(tls *TLS, x float64) (r float64) {
 	if __ccgo_strace {
@@ -111388,8 +111348,6 @@ func Xsincos(tls *TLS, x3 float64, sin uintptr, cos uintptr) {
 	}
 }
 
-const M_PI_25 = 1.5707963267948966
-
 // C documentation
 //
 //	/* Small multiples of pi/2 rounded to double precision. */
@@ -111535,8 +111493,6 @@ func Xsincosf(tls *TLS, x3 float32, sin uintptr, cos uintptr) {
 	}
 }
 
-const M_PI_26 = 0
-
 func Xsincosl(tls *TLS, x float64, sin uintptr, cos uintptr) {
 	if __ccgo_strace {
 		trc("tls=%v x=%v sin=%v cos=%v, (%v:)", tls, x, sin, cos, origin(2))
@@ -111549,8 +111505,6 @@ func Xsincosl(tls *TLS, x float64, sin uintptr, cos uintptr) {
 	**(**float64)(__ccgo_up(sin)) = float64(**(**float64)(__ccgo_up(bp)))
 	**(**float64)(__ccgo_up(cos)) = float64(**(**float64)(__ccgo_up(bp + 8)))
 }
-
-const M_PI_27 = 1.5707963267948966
 
 // C documentation
 //
@@ -111656,8 +111610,6 @@ func Xsinf(tls *TLS, x3 float32) (r float32) {
 	}
 	return r
 }
-
-const M_PI_28 = 0
 
 // C documentation
 //
@@ -112101,8 +112053,6 @@ func Xtan(tls *TLS, x3 float64) (r float64) {
 	return X__tan(tls, (**(**[2]float64)(__ccgo_up(bp)))[0], (**(**[2]float64)(__ccgo_up(bp)))[int32(1)], Int32FromUint32(n&uint32(1)))
 }
 
-const M_PI_29 = 1.5707963267948966
-
 // C documentation
 //
 //	/* Small multiples of pi/2 rounded to double precision. */
@@ -112201,8 +112151,6 @@ func Xtanf(tls *TLS, x3 float32) (r float32) {
 	n = Uint32FromInt32(X__rem_pio2f(tls, x3, bp))
 	return X__tandf(tls, **(**float64)(__ccgo_up(bp)), Int32FromUint32(n&uint32(1)))
 }
-
-const M_PI_210 = 0
 
 // C documentation
 //
@@ -112942,8 +112890,12 @@ const MM_NOMSG = 1
 const MM_NOSEV = 0
 const MM_NOTOK = -1
 const MM_NRECOV = 128
+const MM_NULLACT = 0
+const MM_NULLLBL = 0
 const MM_NULLMC = 0
 const MM_NULLSEV = 0
+const MM_NULLTAG = 0
+const MM_NULLTXT = 0
 const MM_OK = 0
 const MM_OPSYS = 32
 const MM_PRINT = 256
@@ -113265,7 +113217,7 @@ func Xgethostid(tls *TLS) (r int64) {
 	return 0
 }
 
-const optpos = 0
+const optpos = "__optpos"
 
 type t__ucontext1 = Tucontext_t1
 
@@ -114167,17 +114119,17 @@ func Xlockf(tls *TLS, fd int32, op int32, size Toff_t) (r int32) {
 }
 
 const ACCOUNTING = 9
-const UTMP_FILE = "_PATH_UTMP"
-const UTMP_FILENAME = "_PATH_UTMP"
+const UTMP_FILE = "/dev/null/utmp"
+const UTMP_FILENAME = "/dev/null/utmp"
 const UT_HOSTSIZE = 256
 const UT_LINESIZE = 32
 const UT_NAMESIZE = 32
-const WTMP_FILE = "_PATH_WTMP"
-const WTMP_FILENAME = "_PATH_WTMP"
+const WTMP_FILE = "/dev/null/wtmp"
+const WTMP_FILENAME = "/dev/null/wtmp"
 const _PATH_UTMP = "/dev/null/utmp"
 const _PATH_WTMP = "/dev/null/wtmp"
-const ut_name = 0
-const utmp = 0
+const ut_name = "ut_user"
+const utmp = "utmpx"
 
 type Tlastlog = struct {
 	Fll_time Ttime_t
@@ -114215,7 +114167,6 @@ const MNTTYPE_IGNORE = "ignore"
 const MNTTYPE_NFS = "nfs"
 const MNTTYPE_SWAP = "swap"
 const MOUNTED = "/etc/mtab"
-const SENTINEL = 0
 
 type Tmntent = struct {
 	Fmnt_fsname uintptr
@@ -115823,9 +115774,10 @@ func Xshm_unlink(tls *TLS, name uintptr) (r int32) {
 	return Xunlink(tls, name)
 }
 
+const FAILSTATE = 3758096384
 const SA = 194
 const SB = 244
-const bittab = 0
+const bittab = "__fsmu8"
 
 func Xbtowc(tls *TLS, c int32) (r Twint_t) {
 	if __ccgo_strace {
@@ -116994,19 +116946,29 @@ _11:
 	return int32(X__syscall_ret(tls, Uint64FromInt64(v10)))
 }
 
-const ADD = 0
-const C_ANY = 0
-const C_CHAOS = 0
-const C_HS = 0
-const C_IN = 0
-const C_NONE = 0
+const ADD = 1
+const C_ANY = 255
+const C_CHAOS = 3
+const C_HS = 4
+const C_IN = 1
+const C_NONE = 254
 const DELETE = 0
-const FORMERR = 0
-const GETLONG = 0
-const GETSHORT = 0
+const FORMERR = 1
+const GETLONG = "NS_GET32"
+const GETSHORT = "NS_GET16"
 const HFIXEDSZ = 12
 const IN6ADDRSZ = 16
 const INADDRSZ = 4
+const INADDR_ALLHOSTS_GROUP = 3758096385
+const INADDR_ALLRTRS_GROUP = 3758096386
+const INADDR_ALLSNOOPERS_GROUP = 3758096490
+const INADDR_ANY = 0
+const INADDR_BROADCAST = 4294967295
+const INADDR_DUMMY = 3221225480
+const INADDR_LOOPBACK = 2130706433
+const INADDR_MAX_LOCAL_GROUP = 3758096639
+const INADDR_NONE = 4294967295
+const INADDR_UNSPEC_GROUP = 3758096384
 const INDIR_MASK = 192
 const INET6_ADDRSTRLEN = 46
 const INET_ADDRSTRLEN = 16
@@ -117184,7 +117146,7 @@ const IP_TTL = 2
 const IP_UNBLOCK_SOURCE = 37
 const IP_UNICAST_IF = 50
 const IP_XFRM_POLICY = 17
-const IQUERY = 0
+const IQUERY = 1
 const LOCALDOMAINPARTS = 2
 const MAXCDNAME = 255
 const MAXDFLSRCH = 3
@@ -117195,9 +117157,9 @@ const MAXNS = 3
 const MAXRESOLVSORT = 10
 const NAMESERVER_PORT = 53
 const NOERROR = 0
-const NOTAUTH = 0
-const NOTIMP = 0
-const NOTZONE = 0
+const NOTAUTH = 9
+const NOTIMP = 4
+const NOTZONE = 10
 const NS_ALG_DH = 2
 const NS_ALG_DSA = 3
 const NS_ALG_DSS = 3
@@ -117253,7 +117215,7 @@ const NS_MD5RSA_MAX_BYTES = 8195
 const NS_MD5RSA_MAX_SIZE = 512
 const NS_MD5RSA_MIN_BITS = 512
 const NS_MD5RSA_MIN_SIZE = 64
-const NS_NOTIFY_OP = 0
+const NS_NOTIFY_OP = 4
 const NS_NXT_BITS = 8
 const NS_NXT_MAX = 127
 const NS_OPT_DNSSEC_OK = 32768
@@ -117275,69 +117237,99 @@ const NS_TSIG_ERROR_NO_SPACE = -11
 const NS_TSIG_ERROR_NO_TSIG = -10
 const NS_TSIG_FUDGE = 300
 const NS_TSIG_TCP_COUNT = 100
-const NS_UPDATE_OP = 0
-const NXDOMAIN = 0
-const NXRRSET = 0
+const NS_UPDATE_OP = 5
+const NXDOMAIN = 3
+const NXRRSET = 8
 const PACKETSZ = 512
 const PRIX16 = "X"
 const PRIX32 = "X"
+const PRIX64 = "lX"
 const PRIX8 = "X"
 const PRIXFAST16 = "X"
 const PRIXFAST32 = "X"
+const PRIXFAST64 = "lX"
 const PRIXFAST8 = "X"
 const PRIXLEAST16 = "X"
 const PRIXLEAST32 = "X"
+const PRIXLEAST64 = "lX"
 const PRIXLEAST8 = "X"
+const PRIXMAX = "lX"
+const PRIXPTR = "lX"
 const PRId16 = "d"
 const PRId32 = "d"
+const PRId64 = "ld"
 const PRId8 = "d"
 const PRIdFAST16 = "d"
 const PRIdFAST32 = "d"
+const PRIdFAST64 = "ld"
 const PRIdFAST8 = "d"
 const PRIdLEAST16 = "d"
 const PRIdLEAST32 = "d"
+const PRIdLEAST64 = "ld"
 const PRIdLEAST8 = "d"
+const PRIdMAX = "ld"
+const PRIdPTR = "ld"
 const PRIi16 = "i"
 const PRIi32 = "i"
+const PRIi64 = "li"
 const PRIi8 = "i"
 const PRIiFAST16 = "i"
 const PRIiFAST32 = "i"
+const PRIiFAST64 = "li"
 const PRIiFAST8 = "i"
 const PRIiLEAST16 = "i"
 const PRIiLEAST32 = "i"
+const PRIiLEAST64 = "li"
 const PRIiLEAST8 = "i"
+const PRIiMAX = "li"
+const PRIiPTR = "li"
 const PRIo16 = "o"
 const PRIo32 = "o"
+const PRIo64 = "lo"
 const PRIo8 = "o"
 const PRIoFAST16 = "o"
 const PRIoFAST32 = "o"
+const PRIoFAST64 = "lo"
 const PRIoFAST8 = "o"
 const PRIoLEAST16 = "o"
 const PRIoLEAST32 = "o"
+const PRIoLEAST64 = "lo"
 const PRIoLEAST8 = "o"
+const PRIoMAX = "lo"
+const PRIoPTR = "lo"
 const PRIu16 = "u"
 const PRIu32 = "u"
+const PRIu64 = "lu"
 const PRIu8 = "u"
 const PRIuFAST16 = "u"
 const PRIuFAST32 = "u"
+const PRIuFAST64 = "lu"
 const PRIuFAST8 = "u"
 const PRIuLEAST16 = "u"
 const PRIuLEAST32 = "u"
+const PRIuLEAST64 = "lu"
 const PRIuLEAST8 = "u"
+const PRIuMAX = "lu"
+const PRIuPTR = "lu"
 const PRIx16 = "x"
 const PRIx32 = "x"
+const PRIx64 = "lx"
 const PRIx8 = "x"
 const PRIxFAST16 = "x"
 const PRIxFAST32 = "x"
+const PRIxFAST64 = "lx"
 const PRIxFAST8 = "x"
 const PRIxLEAST16 = "x"
 const PRIxLEAST32 = "x"
+const PRIxLEAST64 = "lx"
 const PRIxLEAST8 = "x"
-const PUTLONG = 0
-const PUTSHORT = 0
+const PRIxMAX = "lx"
+const PRIxPTR = "lx"
+const PUTLONG = "NS_PUT32"
+const PUTSHORT = "NS_PUT16"
 const QFIXEDSZ = 4
 const QUERY = 0
-const REFUSED = 0
+const REFUSED = 5
 const RES_AAONLY = 4
 const RES_BLAST = 131072
 const RES_DEBUG = 2
@@ -117391,136 +117383,161 @@ const RES_USE_INET6 = 8192
 const RRFIXEDSZ = 10
 const SCNd16 = "hd"
 const SCNd32 = "d"
+const SCNd64 = "ld"
 const SCNd8 = "hhd"
 const SCNdFAST16 = "d"
 const SCNdFAST32 = "d"
+const SCNdFAST64 = "ld"
 const SCNdFAST8 = "hhd"
 const SCNdLEAST16 = "hd"
 const SCNdLEAST32 = "d"
+const SCNdLEAST64 = "ld"
 const SCNdLEAST8 = "hhd"
+const SCNdMAX = "ld"
+const SCNdPTR = "ld"
 const SCNi16 = "hi"
 const SCNi32 = "i"
+const SCNi64 = "li"
 const SCNi8 = "hhi"
 const SCNiFAST16 = "i"
 const SCNiFAST32 = "i"
+const SCNiFAST64 = "li"
 const SCNiFAST8 = "hhi"
 const SCNiLEAST16 = "hi"
 const SCNiLEAST32 = "i"
+const SCNiLEAST64 = "li"
 const SCNiLEAST8 = "hhi"
+const SCNiMAX = "li"
+const SCNiPTR = "li"
 const SCNo16 = "ho"
 const SCNo32 = "o"
+const SCNo64 = "lo"
 const SCNo8 = "hho"
 const SCNoFAST16 = "o"
 const SCNoFAST32 = "o"
+const SCNoFAST64 = "lo"
 const SCNoFAST8 = "hho"
 const SCNoLEAST16 = "ho"
 const SCNoLEAST32 = "o"
+const SCNoLEAST64 = "lo"
 const SCNoLEAST8 = "hho"
+const SCNoMAX = "lo"
+const SCNoPTR = "lo"
 const SCNu16 = "hu"
 const SCNu32 = "u"
+const SCNu64 = "lu"
 const SCNu8 = "hhu"
 const SCNuFAST16 = "u"
 const SCNuFAST32 = "u"
+const SCNuFAST64 = "lu"
 const SCNuFAST8 = "hhu"
 const SCNuLEAST16 = "hu"
 const SCNuLEAST32 = "u"
+const SCNuLEAST64 = "lu"
 const SCNuLEAST8 = "hhu"
+const SCNuMAX = "lu"
+const SCNuPTR = "lu"
 const SCNx16 = "hx"
 const SCNx32 = "x"
+const SCNx64 = "lx"
 const SCNx8 = "hhx"
 const SCNxFAST16 = "x"
 const SCNxFAST32 = "x"
+const SCNxFAST64 = "lx"
 const SCNxFAST8 = "hhx"
 const SCNxLEAST16 = "hx"
 const SCNxLEAST32 = "x"
+const SCNxLEAST64 = "lx"
 const SCNxLEAST8 = "hhx"
-const SERVFAIL = 0
-const STATUS = 0
-const S_ADDT = 0
-const S_PREREQ = 0
-const S_UPDATE = 0
+const SCNxMAX = "lx"
+const SCNxPTR = "lx"
+const SERVFAIL = 2
+const STATUS = 2
+const S_ADDT = 3
+const S_PREREQ = 1
+const S_UPDATE = 2
 const S_ZONE = 0
-const T_A = 0
-const T_A6 = 0
-const T_AAAA = 0
-const T_AFSDB = 0
-const T_ANY = 0
-const T_ATMA = 0
-const T_AVC = 0
-const T_AXFR = 0
-const T_CAA = 0
-const T_CDNSKEY = 0
-const T_CDS = 0
-const T_CNAME = 0
-const T_CSYNC = 0
-const T_DHCID = 0
-const T_DLV = 0
-const T_DNAME = 0
-const T_DNSKEY = 0
-const T_DS = 0
-const T_EID = 0
-const T_EUI48 = 0
-const T_EUI64 = 0
-const T_GID = 0
-const T_GPOS = 0
-const T_HINFO = 0
-const T_HIP = 0
-const T_IPSECKEY = 0
-const T_ISDN = 0
-const T_IXFR = 0
-const T_KEY = 0
-const T_L32 = 0
-const T_L64 = 0
-const T_LOC = 0
-const T_LP = 0
-const T_MAILA = 0
-const T_MAILB = 0
-const T_MB = 0
-const T_MD = 0
-const T_MF = 0
-const T_MG = 0
-const T_MINFO = 0
-const T_MR = 0
-const T_MX = 0
-const T_NAPTR = 0
-const T_NID = 0
-const T_NIMLOC = 0
-const T_NINFO = 0
-const T_NS = 0
-const T_NSAP = 0
-const T_NSAP_PTR = 0
-const T_NSEC = 0
-const T_NSEC3 = 0
-const T_NSEC3PARAM = 0
-const T_NULL = 0
-const T_NXT = 0
-const T_OPENPGPKEY = 0
-const T_PTR = 0
-const T_PX = 0
-const T_RKEY = 0
-const T_RP = 0
-const T_RRSIG = 0
-const T_RT = 0
-const T_SIG = 0
-const T_SMIMEA = 0
-const T_SOA = 0
-const T_SPF = 0
-const T_SRV = 0
-const T_SSHFP = 0
-const T_TA = 0
-const T_TALINK = 0
-const T_TKEY = 0
-const T_TLSA = 0
-const T_TSIG = 0
-const T_TXT = 0
-const T_UID = 0
-const T_UINFO = 0
-const T_UNSPEC = 0
-const T_URI = 0
-const T_WKS = 0
-const T_X25 = 0
-const YXDOMAIN = 0
-const YXRRSET = 0
+const T_A = 1
+const T_A6 = 38
+const T_AAAA = 28
+const T_AFSDB = 18
+const T_ANY = 255
+const T_ATMA = 34
+const T_AVC = 258
+const T_AXFR = 252
+const T_CAA = 257
+const T_CDNSKEY = 60
+const T_CDS = 59
+const T_CNAME = 5
+const T_CSYNC = 62
+const T_DHCID = 49
+const T_DLV = 32769
+const T_DNAME = 39
+const T_DNSKEY = 48
+const T_DS = 43
+const T_EID = 31
+const T_EUI48 = 108
+const T_EUI64 = 109
+const T_GID = 102
+const T_GPOS = 27
+const T_HINFO = 13
+const T_HIP = 55
+const T_IPSECKEY = 45
+const T_ISDN = 20
+const T_IXFR = 251
+const T_KEY = 25
+const T_L32 = 105
+const T_L64 = 106
+const T_LOC = 29
+const T_LP = 107
+const T_MAILA = 254
+const T_MAILB = 253
+const T_MB = 7
+const T_MD = 3
+const T_MF = 4
+const T_MG = 8
+const T_MINFO = 14
+const T_MR = 9
+const T_MX = 15
+const T_NAPTR = 35
+const T_NID = 104
+const T_NIMLOC = 32
+const T_NINFO = 56
+const T_NS = 2
+const T_NSAP = 22
+const T_NSAP_PTR = 23
+const T_NSEC = 47
+const T_NSEC3 = 50
+const T_NSEC3PARAM = 51
+const T_NULL = 10
+const T_NXT = 30
+const T_OPENPGPKEY = 61
+const T_PTR = 12
+const T_PX = 26
+const T_RKEY = 57
+const T_RP = 17
+const T_RRSIG = 46
+const T_RT = 21
+const T_SIG = 24
+const T_SMIMEA = 53
+const T_SOA = 6
+const T_SPF = 99
+const T_SRV = 33
+const T_SSHFP = 44
+const T_TA = 32768
+const T_TALINK = 58
+const T_TKEY = 249
+const T_TLSA = 52
+const T_TSIG = 250
+const T_TXT = 16
+const T_UID = 101
+const T_UINFO = 100
+const T_UNSPEC = 103
+const T_URI = 256
+const T_WKS = 11
+const T_X25 = 19
+const YXDOMAIN = 6
+const YXRRSET = 7
 const _PATH_RESCONF = "/etc/resolv.conf"
 const __BIND = 19950621
 const __NAMESER = 19991006
@@ -117541,7 +117558,6 @@ const __UAPI_DEF_IPV6_OPTIONS = 0
 const __UAPI_DEF_IP_MREQ = 0
 const __UAPI_DEF_SOCKADDR_IN = 0
 const __UAPI_DEF_SOCKADDR_IN6 = 0
-const _res = 0
 
 type Tns_sect = int32
 
@@ -119081,7 +119097,6 @@ const NO_ADDRESS = 4
 const NO_DATA = 4
 const NO_RECOVERY = 3
 const TRY_AGAIN = 2
-const h_errno = 0
 
 type Tip_mreq = struct {
 	Fimr_multiaddr Tin_addr
@@ -119813,6 +119828,7 @@ func Xgetifaddrs(tls *TLS, ifap uintptr) (r1 int32) {
 	return r
 }
 
+const PTR_MAX = 78
 const RR_PTR = 12
 
 func _itoa(tls *TLS, p uintptr, x uint32) (r uintptr) {
@@ -120220,7 +120236,7 @@ var _se Tservent
 
 var _buf3 [2]uintptr
 
-const ALIGN = 0
+const ALIGN = 8
 
 func Xgetservbyname_r(tls *TLS, name uintptr, prots uintptr, se uintptr, buf uintptr, buflen Tsize_t, res uintptr) (r int32) {
 	if __ccgo_strace {
@@ -123953,10 +123969,10 @@ func X__res_state(tls *TLS) (r uintptr) {
 		trc("tls=%v, (%v:)", tls, origin(2))
 		defer func() { trc("-> %v", r) }()
 	}
-	return uintptr(unsafe.Pointer(&_res1))
+	return uintptr(unsafe.Pointer(&_res))
 }
 
-var _res1 t__res_state
+var _res t__res_state
 
 func X__get_resolv_conf(tls *TLS, conf uintptr, search uintptr, search_sz Tsize_t) (r int32) {
 	if __ccgo_strace {
@@ -126975,6 +126991,8 @@ const POSIX_SPAWN_SETSID = 128
 const POSIX_SPAWN_SETSIGDEF = 4
 const POSIX_SPAWN_SETSIGMASK = 8
 const POSIX_SPAWN_USEVFORK = 64
+const calloc2 = "__libc_calloc"
+const free3 = "__libc_free"
 
 type Tposix_spawnattr_t = struct {
 	F__flags int32
@@ -128387,31 +128405,31 @@ const REG_OK = 0
 const TAG = -3
 const TRE_CHAR_MAX = 1114111
 const TRE_MEM_BLOCK_SIZE = 1024
-const TRE_REGEX_T_FIELD = 0
-const tre_ctype = 0
-const tre_isalnum = 0
-const tre_isalpha = 0
-const tre_isblank = 0
-const tre_iscntrl = 0
-const tre_isctype = 0
-const tre_isdigit = 0
-const tre_isgraph = 0
-const tre_islower = 0
-const tre_isprint = 0
-const tre_ispunct = 0
-const tre_isspace = 0
-const tre_isupper = 0
-const tre_isxdigit = 0
-const tre_mem_alloc_impl = 0
-const tre_mem_destroy = 0
-const tre_mem_new_impl = 0
-const tre_strlen = 0
-const tre_tolower = 0
-const tre_toupper = 0
-const xcalloc = 0
-const xfree = 0
-const xmalloc = 0
-const xrealloc = 0
+const TRE_REGEX_T_FIELD = "__opaque"
+const tre_ctype = "wctype"
+const tre_isalnum = "iswalnum"
+const tre_isalpha = "iswalpha"
+const tre_isblank = "iswblank"
+const tre_iscntrl = "iswcntrl"
+const tre_isctype = "iswctype"
+const tre_isdigit = "iswdigit"
+const tre_isgraph = "iswgraph"
+const tre_islower = "iswlower"
+const tre_isprint = "iswprint"
+const tre_ispunct = "iswpunct"
+const tre_isspace = "iswspace"
+const tre_isupper = "iswupper"
+const tre_isxdigit = "iswxdigit"
+const tre_mem_alloc_impl = "__tre_mem_alloc_impl"
+const tre_mem_destroy = "__tre_mem_destroy"
+const tre_mem_new_impl = "__tre_mem_new_impl"
+const tre_strlen = "wcslen"
+const tre_tolower = "towlower"
+const tre_toupper = "towupper"
+const xcalloc = "calloc"
+const xfree = "free"
+const xmalloc = "malloc"
+const xrealloc = "realloc"
 
 type Tregoff_t = int64
 
@@ -132002,9 +132020,9 @@ func Xregerror(tls *TLS, e int32, preg uintptr, buf uintptr, size Tsize_t) (r Ts
 	return Uint64FromInt32(int32(1) + Xsnprintf(tls, buf, size, __ccgo_ts+15, VaList(bp+8, s)))
 }
 
-const tre_bt_mem_alloc = 0
-const tre_bt_mem_destroy = 0
-const tre_bt_mem_new = 0
+const tre_bt_mem_alloc = "tre_mem_alloc"
+const tre_bt_mem_destroy = "tre_mem_destroy"
+const tre_bt_mem_new = "tre_mem_new"
 
 /***********************************************************************
  from tre-match-utils.h
@@ -133201,7 +133219,7 @@ func X__tre_mem_alloc_impl(tls *TLS, mem Ttre_mem_t, provided int32, provided_bl
 	return ptr
 }
 
-const MAXSIZE = 1
+const MAXSIZE = 9223372036854775808
 const MINSIZE = 8
 
 type TACTION = int32
@@ -133532,7 +133550,7 @@ func Xlfind(tls *TLS, key uintptr, base uintptr, nelp uintptr, width Tsize_t, __
 	return uintptr(0)
 }
 
-const MAXH = 0
+const MAXH = 96
 
 type Tnode1 = struct {
 	Fkey uintptr
@@ -134420,7 +134438,7 @@ func Xsigaltstack(tls *TLS, ss uintptr, old uintptr) (r int32) {
 	return int32(X__syscall_ret(tls, Uint64FromInt64(X__syscall2(tls, int64(SYS_sigaltstack), int64(ss), int64(old)))))
 }
 
-const SST_SIZE = 8
+const SST_SIZE = 1
 
 func Xsigandset(tls *TLS, dest uintptr, left uintptr, right uintptr) (r1 int32) {
 	if __ccgo_strace {
@@ -139789,7 +139807,6 @@ func Xvdprintf(tls *TLS, fd int32, fmt uintptr, ap Tva_list) (r int32) {
 const ALT_FORM = 8
 const FLAGMASK = 75913
 const GROUPED = 128
-const LDBL_EPSILON3 = 2.22044604925031308085e-16
 const LEFT_ADJ = 8192
 const MARK_POS = 2048
 const PAD_POS = 1
@@ -144675,9 +144692,9 @@ func Xindex(tls *TLS, s uintptr, c int32) (r uintptr) {
 	return Xstrchr(tls, s, c)
 }
 
-const ALIGN1 = -1
-const HIGHS = 0
-const ONES = 0
+const ALIGN1 = 7
+const HIGHS = 9259542123273814144
+const ONES = 72340172838076673
 
 /* Support signed or unsigned plain-char */
 
@@ -144762,7 +144779,7 @@ tail:
 	return uintptr(0)
 }
 
-const SS = 0
+const SS = 8
 
 /* Support signed or unsigned plain-char */
 
@@ -144855,8 +144872,8 @@ func ___musl_memcmp(tls *TLS, vl uintptr, vr uintptr, n Tsize_t) (r1 int32) {
 	return v2
 }
 
-const LS = 0
-const RS = 0
+const LS = ">>"
+const RS = "<<"
 
 func ___musl_memcpy(tls *TLS, dest uintptr, src uintptr, n Tsize_t) (r uintptr) {
 	if __ccgo_strace {
@@ -145502,7 +145519,7 @@ func Xmemmem(tls *TLS, h0 uintptr, k Tsize_t, n0 uintptr, l Tsize_t) (r uintptr)
 	return _twoway_memmem(tls, h, h+uintptr(k), n, l)
 }
 
-const WS = 0
+const WS = 8
 
 type TWT = uint64
 
@@ -145728,7 +145745,7 @@ func Xrindex(tls *TLS, s uintptr, c int32) (r uintptr) {
 	return Xstrrchr(tls, s, c)
 }
 
-const ALIGN2 = 0
+const ALIGN2 = 8
 
 /* Support signed or unsigned plain-char */
 
@@ -145813,7 +145830,7 @@ func Xstpcpy(tls *TLS, d uintptr, s uintptr) (r uintptr) {
 	return X__stpcpy(tls, d, s)
 }
 
-const ALIGN3 = -1
+const ALIGN3 = 7
 
 /* Support signed or unsigned plain-char */
 
@@ -145994,7 +146011,7 @@ func Xstrchr(tls *TLS, s uintptr, c int32) (r1 uintptr) {
 	return v1
 }
 
-const ALIGN4 = 0
+const ALIGN4 = 8
 
 /* Support signed or unsigned plain-char */
 
@@ -146197,7 +146214,7 @@ func Xstrlcat(tls *TLS, d uintptr, s uintptr, n Tsize_t) (r Tsize_t) {
 	return l + Xstrlcpy(tls, d+uintptr(l), s, n-l)
 }
 
-const ALIGN5 = -1
+const ALIGN5 = 7
 
 /* Support signed or unsigned plain-char */
 
@@ -146282,7 +146299,7 @@ finish:
 	return r
 }
 
-const ALIGN6 = 0
+const ALIGN6 = 8
 
 func Xstrncasecmp(tls *TLS, _l uintptr, _r uintptr, n Tsize_t) (r1 int32) {
 	if __ccgo_strace {
@@ -148247,6 +148264,9 @@ func X__tm_to_secs(tls *TLS, tm uintptr) (r int64) {
 	t = t + int64((*Ttm)(unsafe.Pointer(tm)).Ftm_sec)
 	return t
 }
+
+const calloc3 = "undef"
+const free4 = "undef"
 
 var _std_name [7]uint8
 var _dst_name [7]uint8
