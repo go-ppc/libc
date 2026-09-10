@@ -3788,3 +3788,42 @@ func Xcbrtl(tls *TLS, x float64) (r float64) {
 	}
 	return Xcbrt(tls, x)
 }
+
+// putenvNarrow stores the "name=value" string kv in the environment getenv
+// reads, replacing an existing entry of the same name.
+func putenvNarrow(t *TLS, kv string) {
+	x := strings.IndexByte(kv, '=')
+	if x <= 0 {
+		return
+	}
+
+	p := Environ()
+	n := 0
+	for ; ; n++ {
+		q := *(*uintptr)(unsafe.Pointer(p + uintptr(n)*uintptrSize))
+		if q == 0 {
+			break
+		}
+
+		s := GoString(q)
+		if len(s) > x && s[x] == '=' && s[:x] == kv[:x] {
+			ns := Xcalloc(t, 1, types.Size_t(len(kv)+1))
+			copy(unsafe.Slice((*byte)(unsafe.Pointer(ns)), len(kv)), kv)
+			Xfree(t, q)
+			*(*uintptr)(unsafe.Pointer(p + uintptr(n)*uintptrSize)) = ns
+			return
+		}
+	}
+
+	// Append: n entries plus the terminator become n+2 slots.
+	np := Xrealloc(t, p, types.Size_t((n+2)*int(uintptrSize)))
+	if np == 0 {
+		panic("OOM")
+	}
+
+	ns := Xcalloc(t, 1, types.Size_t(len(kv)+1))
+	copy(unsafe.Slice((*byte)(unsafe.Pointer(ns)), len(kv)), kv)
+	*(*uintptr)(unsafe.Pointer(np + uintptr(n)*uintptrSize)) = ns
+	*(*uintptr)(unsafe.Pointer(np + uintptr(n+1)*uintptrSize)) = 0
+	Xenviron = np
+}
