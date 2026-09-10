@@ -301,13 +301,70 @@ func NewTLS() (r *TLS) {
 		Fself:   pthread,
 		Ftid:    id,
 	}
-	return &TLS{
+	r = &TLS{
 		ID:          id,
 		ownsPthread: true,
 		pthread:     pthread,
 		sigFlags:    map[int32]int32{},
 		sigHandlers: map[int32]uintptr{},
 	}
+	tlsRegistryMu.Lock()
+	tlsByTID[id] = r
+	tlsRegistryMu.Unlock()
+	return r
+}
+
+var (
+	// tlsRegistryMu guards tlsByTID, threadNames and the creation of
+	// TLS.pendingSignals, the only TLS field another C thread reads.
+	tlsRegistryMu sync.Mutex
+	tlsByTID      = map[int32]*TLS{}
+	threadNames   = map[uintptr]string{} // pthread_t -> name
+)
+
+// tlsByTid returns the TLS of the live C thread with the emulated tid, or nil.
+func tlsByTid(tid int32) *TLS {
+	tlsRegistryMu.Lock()
+
+	defer tlsRegistryMu.Unlock()
+
+	return tlsByTID[tid]
+}
+
+// signalChan returns tls.pendingSignals, creating it if necessary. The
+// channel is created under tlsRegistryMu because killSignal reads it from
+// another goroutine.
+func (tls *TLS) signalChan() chan os.Signal {
+	tlsRegistryMu.Lock()
+
+	defer tlsRegistryMu.Unlock()
+
+	if tls.pendingSignals == nil {
+		tls.pendingSignals = make(chan os.Signal, 3)
+	}
+	return tls.pendingSignals
+}
+
+// killSignal implements tkill(2) directed at tls from another C thread. The
+// signal is queued for delivery at the next check point of tls when it has
+// registered for signals, otherwise it goes to the process.
+func (tls *TLS) killSignal(sig int32) long {
+	tlsRegistryMu.Lock()
+	ch := tls.pendingSignals
+	tlsRegistryMu.Unlock()
+	if ch != nil {
+		select {
+		case ch <- unix.Signal(sig):
+			return 0
+		default:
+			// Full, fall through.
+		}
+	}
+	if err := unix.Kill(unix.Getpid(), unix.Signal(sig)); err != nil {
+		return long(-err.(unix.Errno))
+	}
+
+	return 0
 }
 
 // StackSlots reports the number of tls stack slots currently in use.
@@ -507,6 +564,10 @@ func (tls *TLS) AllocaExit() {
 func (tls *TLS) Close() {
 	defer func() { *tls = TLS{} }()
 
+	tlsRegistryMu.Lock()
+	delete(tlsByTID, tls.ID)
+	delete(threadNames, tls.pthread)
+	tlsRegistryMu.Unlock()
 	for _, v := range tls.allocas {
 		Xfree(tls, v)
 	}
@@ -652,10 +713,11 @@ func ___unlock(tls *TLS, p uintptr) {
 	}
 }
 
-// lockPark collects the goroutines parked on one lock word address.
+// lockPark collects the goroutines parked on one lock word address, in
+// arrival order. Every waiter has its own channel, so a wake can target one
+// waiter and a waiter can leave on a timeout.
 type lockPark struct {
-	cond    sync.Cond
-	waiters int
+	waiters []chan struct{}
 }
 
 var (
@@ -666,41 +728,98 @@ var (
 // lockWait parks the calling goroutine while *p is still val, standing in for
 // musl's __futexwait.
 func lockWait(p uintptr, val int32) {
+	lockWaitTimeout(p, val, -1)
+}
+
+// lockWaitTimeout is lockWait with a timeout, none if it is negative. It
+// reports false when the timeout expired before a wake arrived.
+func lockWaitTimeout(p uintptr, val int32, timeout time.Duration) bool {
 	lockParkMu.Lock()
-
-	defer lockParkMu.Unlock()
-
 	// Re-check under lockParkMu: ___unlock stores to *p before lockWake takes
 	// lockParkMu, so a wake that would otherwise be delivered before we park shows
 	// up here as a changed value.
 	if atomic.LoadInt32((*int32)(unsafe.Pointer(p))) != val {
-		return
+		lockParkMu.Unlock()
+		return true
 	}
 
 	q := lockParked[p]
 	if q == nil {
 		q = &lockPark{}
-		q.cond.L = &lockParkMu
 		lockParked[p] = q
 	}
-	q.waiters++
-	q.cond.Wait()
-	q.waiters--
-	if q.waiters == 0 {
-		delete(lockParked, p)
+	ch := make(chan struct{}, 1)
+	q.waiters = append(q.waiters, ch)
+	lockParkMu.Unlock()
+
+	if timeout < 0 {
+		<-ch
+		return true
 	}
+
+	t := time.NewTimer(timeout)
+
+	defer t.Stop()
+
+	select {
+	case <-ch:
+		return true
+	case <-t.C:
+	}
+
+	lockParkMu.Lock()
+
+	defer lockParkMu.Unlock()
+
+	// A wake may have arrived while the timer fired: it is then in ch, and the
+	// waker has already removed us.
+	select {
+	case <-ch:
+		return true
+	default:
+	}
+
+	if q := lockParked[p]; q != nil {
+		for i, v := range q.waiters {
+			if v == ch {
+				q.waiters = append(q.waiters[:i], q.waiters[i+1:]...)
+				break
+			}
+		}
+		if len(q.waiters) == 0 {
+			delete(lockParked, p)
+		}
+	}
+	return false
 }
 
 // lockWake releases one goroutine parked on p, if any, standing in for musl's
 // __wake. Waking one suffices: whoever wakes either acquires p, and then owes
 // the next wake when it unlocks, or re-marks p contended before parking again.
 func lockWake(p uintptr) {
+	lockWakeN(p, 1)
+}
+
+// lockWakeN releases up to cnt goroutines parked on p, all of them if cnt is
+// negative.
+func lockWakeN(p uintptr, cnt int32) {
 	lockParkMu.Lock()
 
 	defer lockParkMu.Unlock()
 
-	if q := lockParked[p]; q != nil {
-		q.cond.Signal()
+	q := lockParked[p]
+	if q == nil {
+		return
+	}
+
+	for len(q.waiters) != 0 && cnt != 0 {
+		ch := q.waiters[0]
+		q.waiters = q.waiters[1:]
+		ch <- struct{}{}
+		cnt--
+	}
+	if len(q.waiters) == 0 {
+		delete(lockParked, p)
 	}
 }
 
@@ -733,26 +852,42 @@ func ___futexwait(tls *TLS, addr uintptr, val int32, priv int32) {
 	lockWait(addr, val)
 }
 
-// lockWakeN releases up to cnt goroutines parked on p, all of them if cnt is
-// negative.
-func lockWakeN(p uintptr, cnt int32) {
-	lockParkMu.Lock()
+// int __timedwait_cp(volatile int *addr, int val, clockid_t clk, const struct timespec *at, int priv)
+//
+// Parks while *addr is val, until the absolute time at on clock clk when at
+// is not null. Cancellation points are not implemented. See
+// https://gitlab.com/cznic/libc/-/issues/55.
+func ___timedwait_cp(tls *TLS, addr uintptr, val int32, clk Tclockid_t, at uintptr, priv int32) int32 {
+	timeout := time.Duration(-1)
+	if at != 0 {
+		ts := (*Ttimespec)(unsafe.Pointer(at))
+		if ts.Ftv_nsec < 0 || ts.Ftv_nsec >= 1e9 {
+			return EINVAL
+		}
 
-	defer lockParkMu.Unlock()
+		var now unix.Timespec
+		if err := unix.ClockGettime(int32(clk), &now); err != nil {
+			return EINVAL
+		}
 
-	q := lockParked[p]
-	if q == nil {
-		return
+		secs := int64(ts.Ftv_sec) - int64(now.Sec)
+		switch {
+		case secs < 0:
+			return ETIMEDOUT
+		case secs > 1<<31:
+			// Far enough to be no timeout at all.
+		default:
+			timeout = time.Duration(secs)*time.Second + time.Duration(int64(ts.Ftv_nsec)-int64(now.Nsec))
+			if timeout <= 0 {
+				return ETIMEDOUT
+			}
+		}
+	}
+	if !lockWaitTimeout(addr, val, timeout) {
+		return ETIMEDOUT
 	}
 
-	if cnt < 0 {
-		q.cond.Broadcast()
-		return
-	}
-
-	for ; cnt > 0; cnt-- {
-		q.cond.Signal()
-	}
+	return 0
 }
 
 func X__lockfile(tls *TLS, file uintptr) int32 {
@@ -891,13 +1026,68 @@ func Xsignal(tls *TLS, signum int32, handler uintptr) (r uintptr) {
 	case SIG_IGN:
 		gosignal.Ignore(unix.Signal(signum))
 	default:
-		if tls.pendingSignals == nil {
-			tls.pendingSignals = make(chan os.Signal, 3)
-			tls.checkSignals = true
-		}
-		gosignal.Notify(tls.pendingSignals, unix.Signal(signum))
+		ch := tls.signalChan()
+		tls.checkSignals = true
+		gosignal.Notify(ch, unix.Signal(signum))
 	}
 	return r
+}
+
+// int pthread_setname_np(pthread_t thread, const char *name)
+//
+// Emulated threads have no kernel thread of their own, so names are kept
+// here instead of in /proc. See https://gitlab.com/cznic/libc/-/issues/55.
+func Xpthread_setname_np(tls *TLS, thread uintptr, name uintptr) int32 {
+	s := GoString(name)
+	if len(s) > 15 {
+		return ERANGE
+	}
+
+	tlsRegistryMu.Lock()
+	threadNames[thread] = s
+	tlsRegistryMu.Unlock()
+	return 0
+}
+
+// int pthread_getname_np(pthread_t thread, char *name, size_t len)
+//
+// An unnamed thread reports the process name, as the kernel would.
+func Xpthread_getname_np(tls *TLS, thread uintptr, name uintptr, len1 Tsize_t) int32 {
+	if len1 < 16 {
+		return ERANGE
+	}
+
+	tlsRegistryMu.Lock()
+	s, ok := threadNames[thread]
+	tlsRegistryMu.Unlock()
+	if !ok {
+		var buf [16]byte
+		if err := unix.Prctl(unix.PR_GET_NAME, uintptr(unsafe.Pointer(&buf[0])), 0, 0, 0); err != nil {
+			return int32(err.(unix.Errno))
+		}
+
+		n := 0
+		for n < len(buf) && buf[n] != 0 {
+			n++
+		}
+		s = string(buf[:n])
+	}
+	copy(unsafe.Slice((*byte)(unsafe.Pointer(name)), len(s)+1), s+"\x00")
+	return 0
+}
+
+// int pthread_getcpuclockid(pthread_t t, clockid_t *clockid)
+//
+// The calling thread gets the CPU clock of the kernel thread it runs on.
+// Other emulated threads have no kernel thread and hence no clock, which is
+// reported as ESRCH.
+func Xpthread_getcpuclockid(tls *TLS, t uintptr, clockid uintptr) int32 {
+	if t != tls.pthread {
+		return ESRCH
+	}
+
+	*(*Tclockid_t)(unsafe.Pointer(clockid)) = CLOCK_THREAD_CPUTIME_ID
+	return 0
 }
 
 // int __libc_sigaction(int sig, const struct sigaction *sa, struct sigaction *old)

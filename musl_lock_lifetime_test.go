@@ -161,7 +161,7 @@ func parkedOn(p uintptr) (waiters int, entry bool) {
 		return 0, false
 	}
 
-	return q.waiters, true
+	return len(q.waiters), true
 }
 
 // waitParked reports whether a goroutine shows up parked on p within d.

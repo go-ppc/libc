@@ -126,8 +126,33 @@ func main() {
 	util.Shell(nil, "sh", "-c", fmt.Sprintf("rm -rf %s", filepath.Join(libRoot, "src", "malloc/*")))
 	util.Shell(nil, "sh", "-c", fmt.Sprintf("rm -rf %s", filepath.Join(libRoot, "src", "math", muslArch+"/*")))
 	util.Shell(nil, "sh", "-c", fmt.Sprintf("rm -rf %s", filepath.Join(libRoot, "src", "mq/*")))
-	util.Shell(nil, "sh", "-c", fmt.Sprintf("rm -rf %s", filepath.Join(libRoot, "src", "sched/*")))
-	util.Shell(nil, "sh", "-c", fmt.Sprintf("rm -rf %s", filepath.Join(libRoot, "src", "thread/*")))
+	// pthreads are implemented in pthread_musl.go and sched_yield in
+	// libc_musl.go. Keep only what translates on top of the Go atomics and the
+	// Go __timedwait_cp/__wake, see https://gitlab.com/cznic/libc/-/issues/55.
+	// sched_getcpu.c uses the vDSO.
+	keepOnly(filepath.Join(libRoot, "src", "sched"),
+		"affinity.c",
+		"sched_cpucount.c",
+		"sched_get_priority_max.c",
+		"sched_getparam.c",
+		"sched_getscheduler.c",
+		"sched_rr_get_interval.c",
+		"sched_setparam.c",
+		"sched_setscheduler.c",
+	)
+	keepOnly(filepath.Join(libRoot, "src", "thread"),
+		"pthread_kill.c",
+		"pthread_testcancel.c",
+		"sem_destroy.c",
+		"sem_getvalue.c",
+		"sem_init.c",
+		"sem_open.c",
+		"sem_post.c",
+		"sem_timedwait.c",
+		"sem_trywait.c",
+		"sem_unlink.c",
+		"sem_wait.c",
+	)
 	util.Shell(nil, "sh", "-c", fmt.Sprintf("rm -rf %s", filepath.Join(libRoot, "src", "string", "aarch64")))
 
 	switch target {
@@ -399,4 +424,22 @@ func traceLine(s string) string {
 	}
 	b.WriteString("}")
 	return b.String()
+}
+
+// keepOnly removes everything in dir except the named entries.
+func keepOnly(dir string, keep ...string) {
+	m := map[string]bool{}
+	for _, v := range keep {
+		m[v] = true
+	}
+	ents, err := os.ReadDir(dir)
+	if err != nil {
+		util.Fatalf(true, "%v", err)
+	}
+
+	for _, e := range ents {
+		if !m[e.Name()] {
+			util.Shell(nil, "rm", "-rf", filepath.Join(dir, e.Name()))
+		}
+	}
 }

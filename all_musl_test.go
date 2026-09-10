@@ -565,7 +565,14 @@ func (p *parallel) run(path string) {
 		return
 	}
 
-	if out, err := shell(10*time.Minute, bin); err != nil {
+	// A test known to fail on this target may also hang, do not spend ten
+	// minutes on it: since semaphores exist the blacklisted pthread_cancel and
+	// pthread_mutex tests build and block.
+	to := 10 * time.Minute
+	if _, ok := p.blacklist[path]; ok {
+		to = time.Minute
+	}
+	if out, err := shell(to, bin); err != nil {
 		switch s := fmt.Sprintf("%s %s", out, err); {
 		case
 			strings.Contains(s, "Function not implemented"),
@@ -1751,10 +1758,6 @@ var blacklists = map[string]map[string]struct{}{
 		"src/functional/pthread_mutex_pi.exe.go":               {},
 		"src/functional/pthread_robust-static.exe.go":          {},
 		"src/functional/pthread_robust.exe.go":                 {},
-		"src/functional/sem_init-static.exe.go":                {},
-		"src/functional/sem_init.exe.go":                       {},
-		"src/functional/sem_open-static.exe.go":                {},
-		"src/functional/sem_open.exe.go":                       {},
 		"src/functional/setjmp-static.exe.go":                  {},
 		"src/functional/setjmp.exe.go":                         {},
 		"src/functional/spawn-static.exe.go":                   {},
@@ -2642,5 +2645,6 @@ func TestLibc(t *testing.T) {
 	// 202403211526 all_musl_test.go:1214: files=477 buildFails=  0 skip=274 execFails= 0 pass=203
 	// 202504172309 all_musl_test.go:2613: files=477 buildFails=  0 skip=273 execFails= 0 pass=204
 	// 202609101844 all_musl_test.go:2627: files=471 buildFails=  0 skip=269 execFails= 0 pass=204
+	// 202609102140 all_musl_test.go:2630: files=471 buildFails=  0 skip=261 execFails= 0 pass=212
 
 }
