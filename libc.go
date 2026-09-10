@@ -208,14 +208,6 @@ func Xsetbuf(t *TLS, stream, buf uintptr) {
 	//TODO panic(todo(""))
 }
 
-// size_t confstr(int name, char *buf, size_t len);
-func Xconfstr(t *TLS, name int32, buf uintptr, len types.Size_t) types.Size_t {
-	if __ccgo_strace {
-		trc("t=%v name=%v buf=%v len=%v, (%v:)", t, name, buf, len, origin(2))
-	}
-	panic(todo(""))
-}
-
 // int puts(const char *s);
 func Xputs(t *TLS, s uintptr) int32 {
 	if __ccgo_strace {
@@ -2503,33 +2495,6 @@ func Xmblen(t *TLS, s uintptr, n types.Size_t) int32 {
 	panic(todo(""))
 }
 
-// ssize_t readv(int fd, const struct iovec *iov, int iovcnt);
-func Xreadv(t *TLS, fd int32, iov uintptr, iovcnt int32) types.Ssize_t {
-	if __ccgo_strace {
-		trc("t=%v fd=%v iov=%v iovcnt=%v, (%v:)", t, fd, iov, iovcnt, origin(2))
-	}
-	panic(todo(""))
-}
-
-// int openpty(int *amaster, int *aslave, char *name,
-//
-//	const struct termios *termp,
-//	const struct winsize *winp);
-func Xopenpty(t *TLS, amaster, aslave, name, termp, winp uintptr) int32 {
-	if __ccgo_strace {
-		trc("t=%v winp=%v, (%v:)", t, winp, origin(2))
-	}
-	panic(todo(""))
-}
-
-// pid_t setsid(void);
-func Xsetsid(t *TLS) types.Pid_t {
-	if __ccgo_strace {
-		trc("t=%v, (%v:)", t, origin(2))
-	}
-	panic(todo(""))
-}
-
 // int pselect(int nfds, fd_set *readfds, fd_set *writefds,
 //
 //	fd_set *exceptfds, const struct timespec *timeout,
@@ -2537,14 +2502,6 @@ func Xsetsid(t *TLS) types.Pid_t {
 func Xpselect(t *TLS, nfds int32, readfds, writefds, exceptfds, timeout, sigmask uintptr) int32 {
 	if __ccgo_strace {
 		trc("t=%v nfds=%v sigmask=%v, (%v:)", t, nfds, sigmask, origin(2))
-	}
-	panic(todo(""))
-}
-
-// int kill(pid_t pid, int sig);
-func Xkill(t *TLS, pid types.Pid_t, sig int32) int32 {
-	if __ccgo_strace {
-		trc("t=%v pid=%v sig=%v, (%v:)", t, pid, sig, origin(2))
 	}
 	panic(todo(""))
 }
@@ -2681,11 +2638,12 @@ func X__sync_sub_and_fetch_uint32(t *TLS, p uintptr, v uint32) uint32 {
 }
 
 // int sched_yield(void);
-func Xsched_yield(t *TLS) {
+func Xsched_yield(t *TLS) int32 {
 	if __ccgo_strace {
 		trc("t=%v, (%v:)", t, origin(2))
 	}
 	runtime.Gosched()
+	return 0
 }
 
 // int getc(FILE *stream);

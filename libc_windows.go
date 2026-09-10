@@ -7935,3 +7935,38 @@ func Xbsearch(tls *TLS, key uintptr, base uintptr, nel Tsize_t, width Tsize_t, c
 	}
 	return 0
 }
+
+// The functions below used to be shared TODO stubs in libc.go. They have unix
+// implementations in libc_unix.go now; they stay unimplemented here.
+
+// int kill(pid_t pid, int sig);
+func Xkill(t *TLS, pid types.Pid_t, sig int32) int32 {
+	if __ccgo_strace {
+		trc("t=%v pid=%v sig=%v, (%v:)", t, pid, sig, origin(2))
+	}
+	panic(todo(""))
+}
+
+// ssize_t readv(int fd, const struct iovec *iov, int iovcnt);
+func Xreadv(t *TLS, fd int32, iov uintptr, iovcnt int32) types.Ssize_t {
+	if __ccgo_strace {
+		trc("t=%v fd=%v iov=%v iovcnt=%v, (%v:)", t, fd, iov, iovcnt, origin(2))
+	}
+	panic(todo(""))
+}
+
+// pid_t setsid(void);
+func Xsetsid(t *TLS) types.Pid_t {
+	if __ccgo_strace {
+		trc("t=%v, (%v:)", t, origin(2))
+	}
+	panic(todo(""))
+}
+
+// size_t confstr(int name, char *buf, size_t len);
+func Xconfstr(t *TLS, name int32, buf uintptr, len types.Size_t) types.Size_t {
+	if __ccgo_strace {
+		trc("t=%v name=%v buf=%v len=%v, (%v:)", t, name, buf, len, origin(2))
+	}
+	panic(todo(""))
+}
