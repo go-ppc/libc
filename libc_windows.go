@@ -7456,6 +7456,14 @@ func Xfabsl(t *TLS, x float64) float64 {
 	return math.Abs(x)
 }
 
+// double scalbn(double x, int n)
+func Xscalbn(t *TLS, x float64, n int32) float64 {
+	if __ccgo_strace {
+		trc("t=%v x=%v n=%v, (%v:)", t, x, n, origin(2))
+	}
+	return math.Ldexp(x, int(n))
+}
+
 func X__stdio_common_vfprintf(t *TLS, args ...interface{}) int32     { panic("TODO") }
 func X__stdio_common_vfprintf_p(t *TLS, args ...interface{}) int32   { panic("TODO") }
 func X__stdio_common_vfprintf_s(t *TLS, args ...interface{}) int32   { panic("TODO") }
