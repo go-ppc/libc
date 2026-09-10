@@ -2538,7 +2538,10 @@ var blacklists = map[string]map[string]struct{}{
 		"src/regression/sigreturn.exe.go":                 {},
 	},
 	"": { // all
-		"src/functional/vfork.c": {},
+		// Alternate signal stacks: handlers run on the goroutine stack.
+		"src/regression/sigaltstack-static.exe.go": {},
+		"src/regression/sigaltstack.exe.go":        {},
+		"src/functional/vfork.c":                   {},
 	},
 }
 
@@ -2638,5 +2641,6 @@ func TestLibc(t *testing.T) {
 	// 202403151750 all_musl_test.go:1213: files=476 buildFails=  0 skip=273 execFails= 0 pass=203
 	// 202403211526 all_musl_test.go:1214: files=477 buildFails=  0 skip=274 execFails= 0 pass=203
 	// 202504172309 all_musl_test.go:2613: files=477 buildFails=  0 skip=273 execFails= 0 pass=204
+	// 202609101844 all_musl_test.go:2627: files=471 buildFails=  0 skip=269 execFails= 0 pass=204
 
 }

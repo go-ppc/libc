@@ -272,6 +272,7 @@ type TLS struct {
 	pthread             uintptr // *t__pthread
 	pthreadCleanupItems []pthreadCleanupItem
 	pthreadKeyValues    map[Tpthread_key_t]uintptr
+	sigFlags            map[int32]int32 // sa_flags of sigHandlers installed by sigaction
 	sigHandlers         map[int32]uintptr
 	sp                  int
 	stack               []tlsStackSlot
@@ -304,6 +305,7 @@ func NewTLS() (r *TLS) {
 		ID:          id,
 		ownsPthread: true,
 		pthread:     pthread,
+		sigFlags:    map[int32]int32{},
 		sigHandlers: map[int32]uintptr{},
 	}
 }
@@ -414,23 +416,68 @@ func (tls *TLS) Free(n int) {
 func (tls *TLS) checkSignal() {
 	select {
 	case sig := <-tls.pendingSignals:
-		signum := int32(sig.(unix.Signal))
-		h, ok := tls.sigHandlers[signum]
-		if !ok {
-			break
-		}
-
-		switch h {
-		case SIG_DFL:
-			// nop
-		case SIG_IGN:
-			// nop
-		default:
-			(*(*func(*TLS, int32))(unsafe.Pointer(&struct{ uintptr }{h})))(tls, signum)
-		}
+		tls.deliverSignal(int32(sig.(unix.Signal)))
 	default:
 		// nop
 	}
+}
+
+// deliverSignal runs the handler installed for signum, if any, on the calling
+// goroutine.
+func (tls *TLS) deliverSignal(signum int32) {
+	h, ok := tls.sigHandlers[signum]
+	if !ok {
+		return
+	}
+
+	switch h {
+	case SIG_DFL:
+		// nop
+	case SIG_IGN:
+		// nop
+	default:
+		flags := tls.sigFlags[signum]
+		if uint32(flags)&SA_RESETHAND != 0 {
+			Xsignal(tls, signum, SIG_DFL)
+		}
+		if flags&SA_SIGINFO != 0 {
+			// void handler(int sig, siginfo_t *info, void *ctx)
+			n := int(unsafe.Sizeof(Tsiginfo_t{}))
+			info := tls.Alloc(n)
+			*(*Tsiginfo_t)(unsafe.Pointer(info)) = Tsiginfo_t{Fsi_signo: signum}
+			(*(*func(*TLS, int32, uintptr, uintptr))(unsafe.Pointer(&struct{ uintptr }{h})))(tls, signum, info, 0)
+			tls.Free(n)
+			return
+		}
+
+		(*(*func(*TLS, int32))(unsafe.Pointer(&struct{ uintptr }{h})))(tls, signum)
+	}
+}
+
+// tid returns the emulated thread id of the C thread tls represents.
+func (tls *TLS) tid() int32 {
+	return (*t__pthread)(unsafe.Pointer(tls.pthread)).Ftid
+}
+
+// raiseSignal implements tkill(2) directed at the calling C thread, which is
+// what raise() and pthread_kill(pthread_self(), sig) reduce to. A handler
+// installed with signal() or sigaction() runs before the call returns, as it
+// does for a single threaded C program. Without one the signal is sent to the
+// process so the default action applies.
+func (tls *TLS) raiseSignal(sig int32) long {
+	switch h, ok := tls.sigHandlers[sig]; {
+	case ok && h == SIG_IGN:
+		return 0
+	case ok && h != SIG_DFL:
+		tls.deliverSignal(sig)
+		return 0
+	}
+
+	if err := unix.Kill(unix.Getpid(), unix.Signal(sig)); err != nil {
+		return long(-err.(unix.Errno))
+	}
+
+	return 0
 }
 
 func (tls *TLS) alloca(n Tsize_t) (r uintptr) {
@@ -547,7 +594,7 @@ func _exit(tls *TLS, code int32) {
 var abort Tsigaction
 
 func Xabort(tls *TLS) {
-	X__libc_sigaction(tls, SIGABRT, uintptr(unsafe.Pointer(&abort)), 0)
+	___libc_sigaction(tls, SIGABRT, uintptr(unsafe.Pointer(&abort)), 0)
 	unix.Kill(unix.Getpid(), unix.Signal(SIGABRT))
 	panic(todo("unrechable"))
 }
@@ -657,35 +704,89 @@ func lockWake(p uintptr) {
 	}
 }
 
-type lockedFile struct {
-	ch      chan struct{}
-	waiters int
+// casInt32 is musl's a_cas: it stores s into *p if *p is t and returns the
+// value *p had before.
+func casInt32(p uintptr, t, s int32) int32 {
+	w := (*int32)(unsafe.Pointer(p))
+	for {
+		old := atomic.LoadInt32(w)
+		if old != t {
+			return old
+		}
+
+		if atomic.CompareAndSwapInt32(w, t, s) {
+			return t
+		}
+	}
 }
 
-var (
-	lockedFilesMu sync.Mutex
-	lockedFiles   = map[uintptr]*lockedFile{}
-)
+// static inline void __wake(volatile void *addr, int cnt, int priv)
+//
+// The pthread_impl.h overlay declares __wake and __futexwait without a body,
+// because a futex syscall would never wake a goroutine parked by lockWait.
+func ___wake(tls *TLS, addr uintptr, cnt int32, priv int32) {
+	lockWakeN(addr, cnt)
+}
+
+// static inline void __futexwait(volatile void *addr, int val, int priv)
+func ___futexwait(tls *TLS, addr uintptr, val int32, priv int32) {
+	lockWait(addr, val)
+}
+
+// lockWakeN releases up to cnt goroutines parked on p, all of them if cnt is
+// negative.
+func lockWakeN(p uintptr, cnt int32) {
+	lockParkMu.Lock()
+
+	defer lockParkMu.Unlock()
+
+	q := lockParked[p]
+	if q == nil {
+		return
+	}
+
+	if cnt < 0 {
+		q.cond.Broadcast()
+		return
+	}
+
+	for ; cnt > 0; cnt-- {
+		q.cond.Signal()
+	}
+}
 
 func X__lockfile(tls *TLS, file uintptr) int32 {
 	return ___lockfile(tls, file)
 }
 
 // int __lockfile(FILE *f)
+//
+// Transliterated from musl src/stdio/__lockfile.c, which the generator removes.
+// The transpiled ftrylockfile, funlockfile and the locking getc/putc helpers
+// operate on the same lock word with a_cas and a_swap, so the protocol must be
+// kept exactly: the owner's tid, MAYBE_WAITERS when someone parked.
 func ___lockfile(tls *TLS, file uintptr) int32 {
-	panic(todo(""))
-	// lockedFilesMu.Lock()
+	p := file + unsafe.Offsetof(TFILE{}.Flock)
+	tid := (*t__pthread)(unsafe.Pointer(___get_tp(tls))).Ftid
+	owner := atomic.LoadInt32((*int32)(unsafe.Pointer(p)))
+	if owner & ^int32(MAYBE_WAITERS) == tid {
+		return 0
+	}
 
-	// defer lockedFilesMu.Unlock()
+	if casInt32(p, 0, tid) == 0 {
+		return 1
+	}
 
-	// l := lockedFiles[file]
-	// if l == nil {
-	// 	l = &lockedFile{ch: make(chan struct{}, 1)}
-	// 	lockedFiles[file] = l
-	// }
+	for {
+		owner = casInt32(p, 0, tid|MAYBE_WAITERS)
+		if owner == 0 {
+			return 1
+		}
 
-	// l.waiters++
-	// l.ch <- struct{}{}
+		if owner&MAYBE_WAITERS != 0 || casInt32(p, owner, owner|MAYBE_WAITERS) == owner {
+			lockWait(p, owner|MAYBE_WAITERS)
+		}
+	}
 }
 
 func X__unlockfile(tls *TLS, file uintptr) {
@@ -694,17 +795,10 @@ func X__unlockfile(tls *TLS, file uintptr) {
 
 // void __unlockfile(FILE *f)
 func ___unlockfile(tls *TLS, file uintptr) {
-	panic(todo(""))
-	lockedFilesMu.Lock()
-
-	defer lockedFilesMu.Unlock()
-
-	l := lockedFiles[file]
-	l.waiters--
-	if l.waiters == 0 {
-		delete(lockedFiles, file)
+	p := file + unsafe.Offsetof(TFILE{}.Flock)
+	if atomic.SwapInt32((*int32)(unsafe.Pointer(p)), 0)&MAYBE_WAITERS != 0 {
+		lockWake(p)
 	}
-	<-l.ch
 }
 
 // void __synccall(void (*func)(void *), void *ctx)
@@ -790,6 +884,7 @@ func Xfork(t *TLS) int32 {
 
 func Xsignal(tls *TLS, signum int32, handler uintptr) (r uintptr) {
 	r, tls.sigHandlers[signum] = tls.sigHandlers[signum], handler
+	delete(tls.sigFlags, signum)
 	switch handler {
 	case SIG_DFL:
 		gosignal.Reset(unix.Signal(signum))
@@ -803,6 +898,33 @@ func Xsignal(tls *TLS, signum int32, handler uintptr) (r uintptr) {
 		gosignal.Notify(tls.pendingSignals, unix.Signal(signum))
 	}
 	return r
+}
+
+// int __libc_sigaction(int sig, const struct sigaction *sa, struct sigaction *old)
+//
+// The transpiled musl version installs the handler with the rt_sigaction
+// syscall, which cannot work here: the handler and the restorer would be Go
+// function values. The generator hides it and this version records the
+// disposition the same way Xsignal does, delivering through os/signal and
+// checkSignal. sa_mask and the flags other than SA_SIGINFO and SA_RESETHAND are
+// ignored. See https://gitlab.com/cznic/libc/-/issues/53.
+func ___libc_sigaction(tls *TLS, sig int32, sa, old uintptr) int32 {
+	if old != 0 {
+		h, ok := tls.sigHandlers[sig]
+		if !ok {
+			h = SIG_DFL
+		}
+		flags := tls.sigFlags[sig]
+		*(*Tsigaction)(unsafe.Pointer(old)) = Tsigaction{}
+		*(*uintptr)(unsafe.Pointer(old)) = h // sa_handler, sa_sigaction
+		(*Tsigaction)(unsafe.Pointer(old)).Fsa_flags = flags
+	}
+	if sa != 0 {
+		flags := (*Tsigaction)(unsafe.Pointer(sa)).Fsa_flags
+		Xsignal(tls, sig, *(*uintptr)(unsafe.Pointer(sa)))
+		tls.sigFlags[sig] = flags
+	}
+	return 0
 }
 
 var (

@@ -262,6 +262,7 @@ func main() {
 			"-ignore-unsupported-alignment",
 			"-isystem", "",
 			"-hide", "strlen", // https://gitlab.com/cznic/sqlite/-/merge_requests/88
+			"-hide", "__libc_sigaction", // implemented in libc_musl.go, https://gitlab.com/cznic/libc/-/issues/53
 		}
 		switch target {
 		case "linux/s390x":

@@ -1,3 +1,5 @@
+#ifndef __CCGO__
+
 #include "libc.h"
 
 #if __ARM_ARCH_4__ || __ARM_ARCH_4T__ || __ARM_ARCH == 4
@@ -13,39 +15,27 @@ extern hidden uintptr_t __a_cas_ptr, __a_barrier_ptr;
 
 #define a_ll a_ll
 static inline int a_ll(volatile int *p)
-#ifndef __CCGO__	
 {
 	int v;
 	__asm__ __volatile__ ("ldrex %0, %1" : "=r"(v) : "Q"(*p));
 	return v;
 }
-#else
-;
-#endif
 
 #define a_sc a_sc
 static inline int a_sc(volatile int *p, int v)
-#ifndef __CCGO__	
 {
 	int r;
 	__asm__ __volatile__ ("strex %0,%2,%1" : "=&r"(r), "=Q"(*p) : "r"(v) : "memory");
 	return !r;
 }
-#else
-;
-#endif
 
 #if __ARM_ARCH_7A__ || __ARM_ARCH_7R__ ||  __ARM_ARCH >= 7
 
 #define a_barrier a_barrier
 static inline void a_barrier()
-#ifndef __CCGO__	
 {
 	__asm__ __volatile__ ("dmb ish" : : : "memory");
 }
-#else
-;
-#endif
 
 #endif
 
@@ -56,7 +46,6 @@ static inline void a_barrier()
 
 #define a_cas a_cas
 static inline int a_cas(volatile int *p, int t, int s)
-#ifndef __CCGO__	
 {
 	for (;;) {
 		register int r0 __asm__("r0") = t;
@@ -72,28 +61,20 @@ static inline int a_cas(volatile int *p, int t, int s)
 		if ((old=*p)!=t) return old;
 	}
 }
-#else
-;
-#endif
 
 #endif
 
 #ifndef a_barrier
 #define a_barrier a_barrier
 static inline void a_barrier()
-#ifndef __CCGO__	
 {
 	register uintptr_t ip __asm__("ip") = __a_barrier_ptr;
 	__asm__ __volatile__( BLX " ip" : "+r"(ip) : : "memory", "cc", "lr" );
 }
-#else
-;
-#endif
 #endif
 
 #define a_crash a_crash
 static inline void a_crash()
-#ifndef __CCGO__	
 {
 	__asm__ __volatile__(
 #ifndef __thumb__
@@ -103,37 +84,46 @@ static inline void a_crash()
 #endif
 		: : : "memory");
 }
-#else
-;
-#endif
 
 #if __ARM_ARCH >= 5 && (!__thumb__ || __thumb2__)
 
 #define a_clz_32 a_clz_32
 static inline int a_clz_32(uint32_t x)
-#ifndef __CCGO__	
 {
 	__asm__ ("clz %0, %1" : "=r"(x) : "r"(x));
 	return x;
 }
-#else
-;
-#endif
 
 #if __ARM_ARCH_6T2__ || __ARM_ARCH_7A__ || __ARM_ARCH_7R__ || __ARM_ARCH >= 7
 
 #define a_ctz_32 a_ctz_32
 static inline int a_ctz_32(uint32_t x)
-#ifndef __CCGO__	
 {
 	uint32_t xr;
 	__asm__ ("rbit %0, %1" : "=r"(xr) : "r"(x));
 	return a_clz_32(xr);
 }
-#else
-;
+
 #endif
 
 #endif
+
+#else
+
+/* ccgo cannot translate the inline assembly above. The primitives are only
+ * declared here and implemented in Go, see libc_musl_linux_arm.go in
+ * modernc.org/libc. The rest is derived from a_cas by atomic.h. */
+
+#define a_cas a_cas
+static inline int a_cas(volatile int *p, int t, int s);
+
+#define a_barrier a_barrier
+static inline void a_barrier(void);
+
+#define a_crash a_crash
+static inline void a_crash(void);
+
+#define a_clz_32 a_clz_32
+static inline int a_clz_32(uint32_t x);
 
 #endif

@@ -198,6 +198,7 @@ hidden void __unmapself(void *, size_t);
 hidden int __timedwait(volatile int *, int, clockid_t, const struct timespec *, int);
 hidden int __timedwait_cp(volatile int *, int, clockid_t, const struct timespec *, int);
 hidden void __wait(volatile int *, volatile int *, int, int);
+#ifndef __CCGO__
 static inline void __wake(volatile void *addr, int cnt, int priv)
 {
 	if (priv) priv = FUTEX_PRIVATE;
@@ -211,6 +212,13 @@ static inline void __futexwait(volatile void *addr, int val, int priv)
 	__syscall(SYS_futex, addr, FUTEX_WAIT|priv, val, 0) != -ENOSYS ||
 	__syscall(SYS_futex, addr, FUTEX_WAIT, val, 0);
 }
+#else
+/* modernc.org/libc parks goroutines instead of using futexes, see ___lock in
+ * libc_musl.go. Waiting and waking must go through the same mechanism, so
+ * these are only declared here and implemented in Go. */
+static inline void __wake(volatile void *addr, int cnt, int priv);
+static inline void __futexwait(volatile void *addr, int val, int priv);
+#endif
 
 hidden void __acquire_ptc(void);
 hidden void __release_ptc(void);
