@@ -380,6 +380,26 @@ func main() {
 		util.MustShell(true, nil, "sed", "-i", fmt.Sprintf(`s/^func X%s(/func ___musl_%s(/`, name, name), fn)
 	}
 
+	// The environment functions are renamed the same way and wrapped, in the
+	// generated file so that every arch stays consistent until regenerated,
+	// by versions that mirror the change to the Go environment. See
+	// https://gitlab.com/cznic/libc/-/issues/58.
+	for _, name := range []string{"clearenv", "putenv", "setenv", "unsetenv"} {
+		util.MustShell(true, nil, "sed", "-i", fmt.Sprintf(`s/^func X%s(/func ___musl_%s(/`, name, name), fn)
+	}
+	envOut, err := os.OpenFile(fn, os.O_APPEND|os.O_WRONLY, 0)
+	if err != nil {
+		fail(1, "%s\n", err)
+	}
+
+	if _, err := envOut.WriteString(envWrappers); err != nil {
+		fail(1, "%s\n", err)
+	}
+
+	if err := envOut.Close(); err != nil {
+		fail(1, "%s\n", err)
+	}
+
 	//TODO use qbecc/lib
 	// switch target {
 	// case "linux/amd64":
@@ -443,3 +463,41 @@ func keepOnly(dir string, keep ...string) {
 		}
 	}
 }
+
+// envWrappers is appended to the generated file. The transpiled musl
+// functions keep the C environment; these keep the Go environment in step so
+// that os.Getenv and friends agree with getenv. The helpers are in
+// libc_musl.go.
+const envWrappers = `
+// The environment functions below wrap the transpiled musl versions, renamed
+// to ___musl_*, and mirror successful changes to the Go environment. See
+// https://gitlab.com/cznic/libc/-/issues/58.
+
+func Xsetenv(tls *TLS, var1 uintptr, value uintptr, overwrite int32) (r int32) {
+	if r = ___musl_setenv(tls, var1, value, overwrite); r == 0 {
+		envMirrorSet(GoString(var1), GoString(Xgetenv(tls, var1)))
+	}
+	return r
+}
+
+func Xunsetenv(tls *TLS, name uintptr) (r int32) {
+	if r = ___musl_unsetenv(tls, name); r == 0 {
+		envMirrorUnset(GoString(name))
+	}
+	return r
+}
+
+func Xputenv(tls *TLS, s uintptr) (r int32) {
+	if r = ___musl_putenv(tls, s); r == 0 {
+		envMirrorPut(GoString(s))
+	}
+	return r
+}
+
+func Xclearenv(tls *TLS) (r int32) {
+	if r = ___musl_clearenv(tls); r == 0 {
+		envMirrorClear()
+	}
+	return r
+}
+`

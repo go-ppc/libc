@@ -8260,3 +8260,54 @@ func dup2(t *TLS, oldfd, newfd int32) int32 {
 	}
 	return newfd
 }
+
+// The functions below expose the descriptor table for code that has to share
+// it with this libc, such as UCRT replacements, so that it does not need
+// go:linkname into unexported functions. See
+// https://gitlab.com/cznic/libc/-/issues/58.
+
+// WindowsHandle returns the handle behind the descriptor fd and whether fd is
+// open in this libc.
+func WindowsHandle(fd int32) (windows.Handle, bool) {
+	f, ok := fdToFile(fd)
+	if !ok {
+		return windows.InvalidHandle, false
+	}
+
+	return f.Handle, true
+}
+
+// WrapWindowsHandle enters h into the descriptor table under a new
+// descriptor, which it returns. Closing the descriptor closes h.
+func WrapWindowsHandle(h windows.Handle) int32 {
+	_, fd := wrapFdHandle(h)
+	return fd
+}
+
+// WrapWindowsHandleAt enters h into the descriptor table as fd, replacing a
+// descriptor of that number without closing its handle. Closing the
+// descriptor closes h.
+func WrapWindowsHandleAt(h windows.Handle, fd int32) {
+	if old, ok := fdToFile(fd); ok {
+		remFile(old)
+	}
+	addFile(h, fd)
+	for {
+		n := atomic.LoadInt32(&w_nextFd)
+		if n >= fd || atomic.CompareAndSwapInt32(&w_nextFd, n, fd) {
+			break
+		}
+	}
+}
+
+// ReleaseWindowsHandle removes fd from the descriptor table without closing
+// its handle, which it returns together with whether fd was open.
+func ReleaseWindowsHandle(fd int32) (windows.Handle, bool) {
+	f, ok := fdToFile(fd)
+	if !ok {
+		return windows.InvalidHandle, false
+	}
+
+	remFile(f)
+	return f.Handle, true
+}

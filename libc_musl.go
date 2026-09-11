@@ -1515,3 +1515,31 @@ func Xuuid_unparse(t *TLS, uu, out uintptr) {
 }
 
 var Xzero_struct_address Taddress
+
+// The env mirror helpers are called by the setenv family wrappers that
+// generator.go appends to the generated file: a change made through the C
+// environment functions is applied to the Go environment too, so that
+// os.Getenv agrees with getenv. Changes made with os.Setenv are not visible
+// to getenv; make them through the libc functions when C code must see them.
+
+func envMirrorSet(name, value string) {
+	os.Setenv(name, value)
+}
+
+func envMirrorUnset(name string) {
+	os.Unsetenv(name)
+}
+
+// envMirrorPut applies a putenv string: "name=value" sets, "name" unsets.
+func envMirrorPut(s string) {
+	if x := strings.IndexByte(s, '='); x >= 0 {
+		os.Setenv(s[:x], s[x+1:])
+		return
+	}
+
+	os.Unsetenv(s)
+}
+
+func envMirrorClear() {
+	os.Clearenv()
+}
