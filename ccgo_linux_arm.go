@@ -1,4 +1,4 @@
-// Code generated for linux/arm by 'gcc --package-name=libc --prefix-enumerator=_ --prefix-external=x_ --prefix-field=F --prefix-static-internal=_ --prefix-static-none=_ --prefix-tagged-enum=_ --prefix-tagged-struct=T --prefix-tagged-union=T --prefix-typename=T --prefix-undefined=_ -emit-func-aliases -eval-all-macros -extended-errors -ignore-asm-errors -ignore-unsupported-alignment -isystem  -hide strlen -std=c99 -nostdinc -ffreestanding -D_XOPEN_SOURCE=700 -I./arch/arm -I./arch/generic -Iobj/src/internal -I./src/include -I./src/internal -Iobj/include -I./include -DNDEBUG -nostdlib -shared -o lib/libc.so.go obj/src/complex/__cexp.lo.go obj/src/complex/__cexpf.lo.go obj/src/complex/cabs.lo.go obj/src/complex/cabsf.lo.go obj/src/complex/cabsl.lo.go obj/src/complex/cacos.lo.go obj/src/complex/cacosf.lo.go obj/src/complex/cacosh.lo.go obj/src/complex/cacoshf.lo.go obj/src/complex/cacoshl.lo.go obj/src/complex/cacosl.lo.go obj/src/complex/carg.lo.go obj/src/complex/cargf.lo.go obj/src/complex/cargl.lo.go obj/src/complex/casin.lo.go obj/src/complex/casinf.lo.go obj/src/complex/casinh.lo.go obj/src/complex/casinhf.lo.go obj/src/complex/casinhl.lo.go obj/src/complex/casinl.lo.go obj/src/complex/catan.lo.go obj/src/complex/catanf.lo.go obj/src/complex/catanh.lo.go obj/src/complex/catanhf.lo.go obj/src/complex/catanhl.lo.go obj/src/complex/catanl.lo.go obj/src/complex/ccos.lo.go obj/src/complex/ccosf.lo.go obj/src/complex/ccosh.lo.go obj/src/complex/ccoshf.lo.go obj/src/complex/ccoshl.lo.go obj/src/complex/ccosl.lo.go obj/src/complex/cexp.lo.go obj/src/complex/cexpf.lo.go obj/src/complex/cexpl.lo.go obj/src/complex/cimag.lo.go obj/src/complex/cimagf.lo.go obj/src/complex/cimagl.lo.go obj/src/complex/clog.lo.go obj/src/complex/clogf.lo.go obj/src/complex/clogl.lo.go obj/src/complex/conj.lo.go obj/src/complex/conjf.lo.go obj/src/complex/conjl.lo.go obj/src/complex/cpow.lo.go obj/src/complex/cpowf.lo.go obj/src/complex/cpowl.lo.go obj/src/complex/cproj.lo.go obj/src/complex/cprojf.lo.go obj/src/complex/cprojl.lo.go obj/src/complex/creal.lo.go obj/src/complex/crealf.lo.go obj/src/complex/creall.lo.go obj/src/complex/csin.lo.go obj/src/complex/csinf.lo.go obj/src/complex/csinh.lo.go obj/src/complex/csinhf.lo.go obj/src/complex/csinhl.lo.go obj/src/complex/csinl.lo.go obj/src/complex/csqrt.lo.go obj/src/complex/csqrtf.lo.go obj/src/complex/csqrtl.lo.go obj/src/complex/ctan.lo.go obj/src/complex/ctanf.lo.go obj/src/complex/ctanh.lo.go obj/src/complex/ctanhf.lo.go obj/src/complex/ctanhl.lo.go obj/src/complex/ctanl.lo.go obj/src/conf/confstr.lo.go obj/src/conf/fpathconf.lo.go obj/src/conf/legacy.lo.go obj/src/conf/pathconf.lo.go obj/src/conf/sysconf.lo.go obj/src/crypt/crypt.lo.go obj/src/crypt/crypt_blowfish.lo.go obj/src/crypt/crypt_des.lo.go obj/src/crypt/crypt_md5.lo.go obj/src/crypt/crypt_r.lo.go obj/src/crypt/crypt_sha256.lo.go obj/src/crypt/crypt_sha512.lo.go obj/src/crypt/encrypt.lo.go obj/src/ctype/__ctype_b_loc.lo.go obj/src/ctype/__ctype_get_mb_cur_max.lo.go obj/src/ctype/__ctype_tolower_loc.lo.go obj/src/ctype/__ctype_toupper_loc.lo.go obj/src/ctype/isalnum.lo.go obj/src/ctype/isalpha.lo.go obj/src/ctype/isascii.lo.go obj/src/ctype/isblank.lo.go obj/src/ctype/iscntrl.lo.go obj/src/ctype/isdigit.lo.go obj/src/ctype/isgraph.lo.go obj/src/ctype/islower.lo.go obj/src/ctype/isprint.lo.go obj/src/ctype/ispunct.lo.go obj/src/ctype/isspace.lo.go obj/src/ctype/isupper.lo.go obj/src/ctype/iswalnum.lo.go obj/src/ctype/iswalpha.lo.go obj/src/ctype/iswblank.lo.go obj/src/ctype/iswcntrl.lo.go obj/src/ctype/iswctype.lo.go obj/src/ctype/iswdigit.lo.go obj/src/ctype/iswgraph.lo.go obj/src/ctype/iswlower.lo.go obj/src/ctype/iswprint.lo.go obj/src/ctype/iswpunct.lo.go obj/src/ctype/iswspace.lo.go obj/src/ctype/iswupper.lo.go obj/src/ctype/iswxdigit.lo.go obj/src/ctype/isxdigit.lo.go obj/src/ctype/toascii.lo.go obj/src/ctype/tolower.lo.go obj/src/ctype/toupper.lo.go obj/src/ctype/towctrans.lo.go obj/src/ctype/wcswidth.lo.go obj/src/ctype/wctrans.lo.go obj/src/ctype/wcwidth.lo.go obj/src/dirent/alphasort.lo.go obj/src/dirent/closedir.lo.go obj/src/dirent/dirfd.lo.go obj/src/dirent/fdopendir.lo.go obj/src/dirent/opendir.lo.go obj/src/dirent/readdir.lo.go obj/src/dirent/readdir_r.lo.go obj/src/dirent/rewinddir.lo.go obj/src/dirent/scandir.lo.go obj/src/dirent/seekdir.lo.go obj/src/dirent/telldir.lo.go obj/src/dirent/versionsort.lo.go obj/src/env/__environ.lo.go obj/src/env/__reset_tls.lo.go obj/src/env/__stack_chk_fail.lo.go obj/src/env/clearenv.lo.go obj/src/env/getenv.lo.go obj/src/env/putenv.lo.go obj/src/env/secure_getenv.lo.go obj/src/env/setenv.lo.go obj/src/env/unsetenv.lo.go obj/src/errno/strerror.lo.go obj/src/exit/_Exit.lo.go obj/src/exit/abort_lock.lo.go obj/src/exit/assert.lo.go obj/src/exit/at_quick_exit.lo.go obj/src/exit/quick_exit.lo.go obj/src/fcntl/creat.lo.go obj/src/fcntl/fcntl.lo.go obj/src/fcntl/open.lo.go obj/src/fcntl/openat.lo.go obj/src/fcntl/posix_fadvise.lo.go obj/src/fcntl/posix_fallocate.lo.go obj/src/fenv/arm/fenv.lo.go obj/src/internal/defsysinfo.lo.go obj/src/internal/emulate_wait4.lo.go obj/src/internal/floatscan.lo.go obj/src/internal/intscan.lo.go obj/src/internal/libc.lo.go obj/src/internal/procfdname.lo.go obj/src/internal/shgetc.lo.go obj/src/internal/syscall_ret.lo.go obj/src/internal/vdso.lo.go obj/src/internal/version.lo.go obj/src/ipc/ftok.lo.go obj/src/ipc/msgctl.lo.go obj/src/ipc/msgget.lo.go obj/src/ipc/msgrcv.lo.go obj/src/ipc/msgsnd.lo.go obj/src/ipc/semctl.lo.go obj/src/ipc/semget.lo.go obj/src/ipc/semop.lo.go obj/src/ipc/semtimedop.lo.go obj/src/ipc/shmat.lo.go obj/src/ipc/shmctl.lo.go obj/src/ipc/shmdt.lo.go obj/src/ipc/shmget.lo.go obj/src/legacy/cuserid.lo.go obj/src/legacy/err.lo.go obj/src/legacy/euidaccess.lo.go obj/src/legacy/ftw.lo.go obj/src/legacy/futimes.lo.go obj/src/legacy/getdtablesize.lo.go obj/src/legacy/getloadavg.lo.go obj/src/legacy/getpagesize.lo.go obj/src/legacy/getpass.lo.go obj/src/legacy/getusershell.lo.go obj/src/legacy/isastream.lo.go obj/src/legacy/lutimes.lo.go obj/src/legacy/ulimit.lo.go obj/src/legacy/utmpx.lo.go obj/src/linux/adjtime.lo.go obj/src/linux/adjtimex.lo.go obj/src/linux/arch_prctl.lo.go obj/src/linux/brk.lo.go obj/src/linux/cache.lo.go obj/src/linux/cap.lo.go obj/src/linux/chroot.lo.go obj/src/linux/clock_adjtime.lo.go obj/src/linux/copy_file_range.lo.go obj/src/linux/epoll.lo.go obj/src/linux/eventfd.lo.go obj/src/linux/fallocate.lo.go obj/src/linux/fanotify.lo.go obj/src/linux/flock.lo.go obj/src/linux/getdents.lo.go obj/src/linux/getrandom.lo.go obj/src/linux/inotify.lo.go obj/src/linux/ioperm.lo.go obj/src/linux/iopl.lo.go obj/src/linux/klogctl.lo.go obj/src/linux/memfd_create.lo.go obj/src/linux/mlock2.lo.go obj/src/linux/module.lo.go obj/src/linux/mount.lo.go obj/src/linux/name_to_handle_at.lo.go obj/src/linux/open_by_handle_at.lo.go obj/src/linux/personality.lo.go obj/src/linux/pivot_root.lo.go obj/src/linux/prctl.lo.go obj/src/linux/preadv2.lo.go obj/src/linux/prlimit.lo.go obj/src/linux/process_vm.lo.go obj/src/linux/ptrace.lo.go obj/src/linux/pwritev2.lo.go obj/src/linux/quotactl.lo.go obj/src/linux/readahead.lo.go obj/src/linux/reboot.lo.go obj/src/linux/remap_file_pages.lo.go obj/src/linux/sbrk.lo.go obj/src/linux/sendfile.lo.go obj/src/linux/setfsgid.lo.go obj/src/linux/setfsuid.lo.go obj/src/linux/sethostname.lo.go obj/src/linux/setns.lo.go obj/src/linux/settimeofday.lo.go obj/src/linux/signalfd.lo.go obj/src/linux/splice.lo.go obj/src/linux/statx.lo.go obj/src/linux/stime.lo.go obj/src/linux/swap.lo.go obj/src/linux/sync_file_range.lo.go obj/src/linux/syncfs.lo.go obj/src/linux/sysinfo.lo.go obj/src/linux/tee.lo.go obj/src/linux/timerfd.lo.go obj/src/linux/unshare.lo.go obj/src/linux/utimes.lo.go obj/src/linux/vhangup.lo.go obj/src/linux/vmsplice.lo.go obj/src/linux/wait3.lo.go obj/src/linux/wait4.lo.go obj/src/linux/xattr.lo.go obj/src/locale/__lctrans.lo.go obj/src/locale/__mo_lookup.lo.go obj/src/locale/bind_textdomain_codeset.lo.go obj/src/locale/c_locale.lo.go obj/src/locale/catclose.lo.go obj/src/locale/catgets.lo.go obj/src/locale/catopen.lo.go obj/src/locale/dcngettext.lo.go obj/src/locale/duplocale.lo.go obj/src/locale/freelocale.lo.go obj/src/locale/iconv.lo.go obj/src/locale/iconv_close.lo.go obj/src/locale/langinfo.lo.go obj/src/locale/locale_map.lo.go obj/src/locale/localeconv.lo.go obj/src/locale/newlocale.lo.go obj/src/locale/pleval.lo.go obj/src/locale/setlocale.lo.go obj/src/locale/strcoll.lo.go obj/src/locale/strfmon.lo.go obj/src/locale/strtod_l.lo.go obj/src/locale/strxfrm.lo.go obj/src/locale/textdomain.lo.go obj/src/locale/uselocale.lo.go obj/src/locale/wcscoll.lo.go obj/src/locale/wcsxfrm.lo.go obj/src/malloc/reallocarray.lo.go obj/src/math/__cos.lo.go obj/src/math/__cosdf.lo.go obj/src/math/__cosl.lo.go obj/src/math/__expo2.lo.go obj/src/math/__expo2f.lo.go obj/src/math/__fpclassify.lo.go obj/src/math/__fpclassifyf.lo.go obj/src/math/__fpclassifyl.lo.go obj/src/math/__invtrigl.lo.go obj/src/math/__math_divzero.lo.go obj/src/math/__math_divzerof.lo.go obj/src/math/__math_invalid.lo.go obj/src/math/__math_invalidf.lo.go obj/src/math/__math_invalidl.lo.go obj/src/math/__math_oflow.lo.go obj/src/math/__math_oflowf.lo.go obj/src/math/__math_uflow.lo.go obj/src/math/__math_uflowf.lo.go obj/src/math/__math_xflow.lo.go obj/src/math/__math_xflowf.lo.go obj/src/math/__polevll.lo.go obj/src/math/__rem_pio2.lo.go obj/src/math/__rem_pio2_large.lo.go obj/src/math/__rem_pio2f.lo.go obj/src/math/__rem_pio2l.lo.go obj/src/math/__signbit.lo.go obj/src/math/__signbitf.lo.go obj/src/math/__signbitl.lo.go obj/src/math/__sin.lo.go obj/src/math/__sindf.lo.go obj/src/math/__sinl.lo.go obj/src/math/__tan.lo.go obj/src/math/__tandf.lo.go obj/src/math/__tanl.lo.go obj/src/math/acos.lo.go obj/src/math/acosf.lo.go obj/src/math/acosh.lo.go obj/src/math/acoshf.lo.go obj/src/math/acoshl.lo.go obj/src/math/acosl.lo.go obj/src/math/asin.lo.go obj/src/math/asinf.lo.go obj/src/math/asinh.lo.go obj/src/math/asinhf.lo.go obj/src/math/asinhl.lo.go obj/src/math/asinl.lo.go obj/src/math/atan.lo.go obj/src/math/atan2.lo.go obj/src/math/atan2f.lo.go obj/src/math/atan2l.lo.go obj/src/math/atanf.lo.go obj/src/math/atanh.lo.go obj/src/math/atanhf.lo.go obj/src/math/atanhl.lo.go obj/src/math/atanl.lo.go obj/src/math/cbrt.lo.go obj/src/math/cbrtf.lo.go obj/src/math/cbrtl.lo.go obj/src/math/ceil.lo.go obj/src/math/ceilf.lo.go obj/src/math/ceill.lo.go obj/src/math/copysign.lo.go obj/src/math/copysignf.lo.go obj/src/math/copysignl.lo.go obj/src/math/cos.lo.go obj/src/math/cosf.lo.go obj/src/math/cosh.lo.go obj/src/math/coshf.lo.go obj/src/math/coshl.lo.go obj/src/math/cosl.lo.go obj/src/math/erf.lo.go obj/src/math/erff.lo.go obj/src/math/erfl.lo.go obj/src/math/exp.lo.go obj/src/math/exp10.lo.go obj/src/math/exp10f.lo.go obj/src/math/exp10l.lo.go obj/src/math/exp2.lo.go obj/src/math/exp2f.lo.go obj/src/math/exp2f_data.lo.go obj/src/math/exp2l.lo.go obj/src/math/exp_data.lo.go obj/src/math/expf.lo.go obj/src/math/expl.lo.go obj/src/math/expm1.lo.go obj/src/math/expm1f.lo.go obj/src/math/expm1l.lo.go obj/src/math/fabs.lo.go obj/src/math/fabsf.lo.go obj/src/math/fabsl.lo.go obj/src/math/fdim.lo.go obj/src/math/fdimf.lo.go obj/src/math/fdiml.lo.go obj/src/math/finite.lo.go obj/src/math/finitef.lo.go obj/src/math/floor.lo.go obj/src/math/floorf.lo.go obj/src/math/floorl.lo.go obj/src/math/fma.lo.go obj/src/math/fmal.lo.go obj/src/math/fmax.lo.go obj/src/math/fmaxf.lo.go obj/src/math/fmaxl.lo.go obj/src/math/fmin.lo.go obj/src/math/fminf.lo.go obj/src/math/fminl.lo.go obj/src/math/fmod.lo.go obj/src/math/fmodf.lo.go obj/src/math/fmodl.lo.go obj/src/math/frexp.lo.go obj/src/math/frexpf.lo.go obj/src/math/frexpl.lo.go obj/src/math/hypot.lo.go obj/src/math/hypotf.lo.go obj/src/math/hypotl.lo.go obj/src/math/ilogb.lo.go obj/src/math/ilogbf.lo.go obj/src/math/ilogbl.lo.go obj/src/math/j0.lo.go obj/src/math/j0f.lo.go obj/src/math/j1.lo.go obj/src/math/j1f.lo.go obj/src/math/jn.lo.go obj/src/math/jnf.lo.go obj/src/math/ldexp.lo.go obj/src/math/ldexpf.lo.go obj/src/math/ldexpl.lo.go obj/src/math/lgamma.lo.go obj/src/math/lgamma_r.lo.go obj/src/math/lgammaf.lo.go obj/src/math/lgammaf_r.lo.go obj/src/math/lgammal.lo.go obj/src/math/llrint.lo.go obj/src/math/llrintf.lo.go obj/src/math/llrintl.lo.go obj/src/math/llround.lo.go obj/src/math/llroundf.lo.go obj/src/math/llroundl.lo.go obj/src/math/log.lo.go obj/src/math/log10.lo.go obj/src/math/log10f.lo.go obj/src/math/log10l.lo.go obj/src/math/log1p.lo.go obj/src/math/log1pf.lo.go obj/src/math/log1pl.lo.go obj/src/math/log2.lo.go obj/src/math/log2_data.lo.go obj/src/math/log2f.lo.go obj/src/math/log2f_data.lo.go obj/src/math/log2l.lo.go obj/src/math/log_data.lo.go obj/src/math/logb.lo.go obj/src/math/logbf.lo.go obj/src/math/logbl.lo.go obj/src/math/logf.lo.go obj/src/math/logf_data.lo.go obj/src/math/logl.lo.go obj/src/math/lrint.lo.go obj/src/math/lrintf.lo.go obj/src/math/lrintl.lo.go obj/src/math/lround.lo.go obj/src/math/lroundf.lo.go obj/src/math/lroundl.lo.go obj/src/math/modf.lo.go obj/src/math/modff.lo.go obj/src/math/modfl.lo.go obj/src/math/nan.lo.go obj/src/math/nanf.lo.go obj/src/math/nanl.lo.go obj/src/math/nextafter.lo.go obj/src/math/nextafterf.lo.go obj/src/math/nextafterl.lo.go obj/src/math/nexttoward.lo.go obj/src/math/nexttowardf.lo.go obj/src/math/nexttowardl.lo.go obj/src/math/pow.lo.go obj/src/math/pow_data.lo.go obj/src/math/powf.lo.go obj/src/math/powf_data.lo.go obj/src/math/powl.lo.go obj/src/math/remainder.lo.go obj/src/math/remainderf.lo.go obj/src/math/remainderl.lo.go obj/src/math/remquo.lo.go obj/src/math/remquof.lo.go obj/src/math/remquol.lo.go obj/src/math/rint.lo.go obj/src/math/rintf.lo.go obj/src/math/rintl.lo.go obj/src/math/round.lo.go obj/src/math/roundf.lo.go obj/src/math/roundl.lo.go obj/src/math/scalb.lo.go obj/src/math/scalbf.lo.go obj/src/math/scalbln.lo.go obj/src/math/scalblnf.lo.go obj/src/math/scalblnl.lo.go obj/src/math/scalbn.lo.go obj/src/math/scalbnf.lo.go obj/src/math/scalbnl.lo.go obj/src/math/signgam.lo.go obj/src/math/significand.lo.go obj/src/math/significandf.lo.go obj/src/math/sin.lo.go obj/src/math/sincos.lo.go obj/src/math/sincosf.lo.go obj/src/math/sincosl.lo.go obj/src/math/sinf.lo.go obj/src/math/sinh.lo.go obj/src/math/sinhf.lo.go obj/src/math/sinhl.lo.go obj/src/math/sinl.lo.go obj/src/math/sqrt.lo.go obj/src/math/sqrt_data.lo.go obj/src/math/sqrtf.lo.go obj/src/math/sqrtl.lo.go obj/src/math/tan.lo.go obj/src/math/tanf.lo.go obj/src/math/tanh.lo.go obj/src/math/tanhf.lo.go obj/src/math/tanhl.lo.go obj/src/math/tanl.lo.go obj/src/math/tgamma.lo.go obj/src/math/tgammaf.lo.go obj/src/math/tgammal.lo.go obj/src/math/trunc.lo.go obj/src/math/truncf.lo.go obj/src/math/truncl.lo.go obj/src/misc/a64l.lo.go obj/src/misc/basename.lo.go obj/src/misc/dirname.lo.go obj/src/misc/ffs.lo.go obj/src/misc/ffsl.lo.go obj/src/misc/ffsll.lo.go obj/src/misc/fmtmsg.lo.go obj/src/misc/get_current_dir_name.lo.go obj/src/misc/getauxval.lo.go obj/src/misc/getdomainname.lo.go obj/src/misc/getentropy.lo.go obj/src/misc/gethostid.lo.go obj/src/misc/getopt.lo.go obj/src/misc/getopt_long.lo.go obj/src/misc/getpriority.lo.go obj/src/misc/getresgid.lo.go obj/src/misc/getresuid.lo.go obj/src/misc/getrlimit.lo.go obj/src/misc/getrusage.lo.go obj/src/misc/getsubopt.lo.go obj/src/misc/ioctl.lo.go obj/src/misc/issetugid.lo.go obj/src/misc/lockf.lo.go obj/src/misc/login_tty.lo.go obj/src/misc/mntent.lo.go obj/src/misc/nftw.lo.go obj/src/misc/openpty.lo.go obj/src/misc/ptsname.lo.go obj/src/misc/pty.lo.go obj/src/misc/realpath.lo.go obj/src/misc/setdomainname.lo.go obj/src/misc/setpriority.lo.go obj/src/misc/setrlimit.lo.go obj/src/misc/syscall.lo.go obj/src/misc/syslog.lo.go obj/src/misc/uname.lo.go obj/src/mman/madvise.lo.go obj/src/mman/mincore.lo.go obj/src/mman/mlock.lo.go obj/src/mman/mlockall.lo.go obj/src/mman/mmap.lo.go obj/src/mman/mprotect.lo.go obj/src/mman/mremap.lo.go obj/src/mman/msync.lo.go obj/src/mman/munlock.lo.go obj/src/mman/munlockall.lo.go obj/src/mman/munmap.lo.go obj/src/mman/posix_madvise.lo.go obj/src/mman/shm_open.lo.go obj/src/multibyte/btowc.lo.go obj/src/multibyte/c16rtomb.lo.go obj/src/multibyte/c32rtomb.lo.go obj/src/multibyte/internal.lo.go obj/src/multibyte/mblen.lo.go obj/src/multibyte/mbrlen.lo.go obj/src/multibyte/mbrtoc16.lo.go obj/src/multibyte/mbrtoc32.lo.go obj/src/multibyte/mbrtowc.lo.go obj/src/multibyte/mbsinit.lo.go obj/src/multibyte/mbsnrtowcs.lo.go obj/src/multibyte/mbsrtowcs.lo.go obj/src/multibyte/mbstowcs.lo.go obj/src/multibyte/mbtowc.lo.go obj/src/multibyte/wcrtomb.lo.go obj/src/multibyte/wcsnrtombs.lo.go obj/src/multibyte/wcsrtombs.lo.go obj/src/multibyte/wcstombs.lo.go obj/src/multibyte/wctob.lo.go obj/src/multibyte/wctomb.lo.go obj/src/network/accept.lo.go obj/src/network/accept4.lo.go obj/src/network/bind.lo.go obj/src/network/connect.lo.go obj/src/network/dn_comp.lo.go obj/src/network/dn_expand.lo.go obj/src/network/dn_skipname.lo.go obj/src/network/dns_parse.lo.go obj/src/network/ent.lo.go obj/src/network/ether.lo.go obj/src/network/freeaddrinfo.lo.go obj/src/network/gai_strerror.lo.go obj/src/network/getaddrinfo.lo.go obj/src/network/gethostbyaddr.lo.go obj/src/network/gethostbyaddr_r.lo.go obj/src/network/gethostbyname.lo.go obj/src/network/gethostbyname2.lo.go obj/src/network/gethostbyname2_r.lo.go obj/src/network/gethostbyname_r.lo.go obj/src/network/getifaddrs.lo.go obj/src/network/getnameinfo.lo.go obj/src/network/getpeername.lo.go obj/src/network/getservbyname.lo.go obj/src/network/getservbyname_r.lo.go obj/src/network/getsockname.lo.go obj/src/network/getsockopt.lo.go obj/src/network/h_errno.lo.go obj/src/network/herror.lo.go obj/src/network/hstrerror.lo.go obj/src/network/htonl.lo.go obj/src/network/htons.lo.go obj/src/network/if_freenameindex.lo.go obj/src/network/if_indextoname.lo.go obj/src/network/if_nameindex.lo.go obj/src/network/if_nametoindex.lo.go obj/src/network/in6addr_any.lo.go obj/src/network/in6addr_loopback.lo.go obj/src/network/inet_addr.lo.go obj/src/network/inet_aton.lo.go obj/src/network/inet_legacy.lo.go obj/src/network/inet_ntoa.lo.go obj/src/network/inet_ntop.lo.go obj/src/network/inet_pton.lo.go obj/src/network/listen.lo.go obj/src/network/lookup_ipliteral.lo.go obj/src/network/lookup_name.lo.go obj/src/network/lookup_serv.lo.go obj/src/network/netlink.lo.go obj/src/network/netname.lo.go obj/src/network/ns_parse.lo.go obj/src/network/ntohl.lo.go obj/src/network/ntohs.lo.go obj/src/network/proto.lo.go obj/src/network/recv.lo.go obj/src/network/recvfrom.lo.go obj/src/network/recvmmsg.lo.go obj/src/network/recvmsg.lo.go obj/src/network/res_init.lo.go obj/src/network/res_mkquery.lo.go obj/src/network/res_msend.lo.go obj/src/network/res_send.lo.go obj/src/network/res_state.lo.go obj/src/network/resolvconf.lo.go obj/src/network/send.lo.go obj/src/network/sendmmsg.lo.go obj/src/network/sendmsg.lo.go obj/src/network/sendto.lo.go obj/src/network/serv.lo.go obj/src/network/setsockopt.lo.go obj/src/network/shutdown.lo.go obj/src/network/sockatmark.lo.go obj/src/network/socket.lo.go obj/src/network/socketpair.lo.go obj/src/passwd/fgetgrent.lo.go obj/src/passwd/fgetpwent.lo.go obj/src/passwd/getgr_a.lo.go obj/src/passwd/getgr_r.lo.go obj/src/passwd/getgrent.lo.go obj/src/passwd/getgrent_a.lo.go obj/src/passwd/getgrouplist.lo.go obj/src/passwd/getpw_a.lo.go obj/src/passwd/getpw_r.lo.go obj/src/passwd/getpwent.lo.go obj/src/passwd/getpwent_a.lo.go obj/src/passwd/getspent.lo.go obj/src/passwd/lckpwdf.lo.go obj/src/passwd/nscd_query.lo.go obj/src/passwd/putgrent.lo.go obj/src/passwd/putpwent.lo.go obj/src/passwd/putspent.lo.go obj/src/prng/__rand48_step.lo.go obj/src/prng/__seed48.lo.go obj/src/prng/drand48.lo.go obj/src/prng/lcong48.lo.go obj/src/prng/lrand48.lo.go obj/src/prng/mrand48.lo.go obj/src/prng/rand.lo.go obj/src/prng/rand_r.lo.go obj/src/prng/random.lo.go obj/src/prng/seed48.lo.go obj/src/prng/srand48.lo.go obj/src/process/execl.lo.go obj/src/process/execle.lo.go obj/src/process/execlp.lo.go obj/src/process/execv.lo.go obj/src/process/execve.lo.go obj/src/process/execvp.lo.go obj/src/process/fexecve.lo.go obj/src/process/fork.lo.go obj/src/process/posix_spawn_file_actions_addchdir.lo.go obj/src/process/posix_spawn_file_actions_addclose.lo.go obj/src/process/posix_spawn_file_actions_adddup2.lo.go obj/src/process/posix_spawn_file_actions_addfchdir.lo.go obj/src/process/posix_spawn_file_actions_addopen.lo.go obj/src/process/posix_spawn_file_actions_destroy.lo.go obj/src/process/posix_spawn_file_actions_init.lo.go obj/src/process/posix_spawnattr_destroy.lo.go obj/src/process/posix_spawnattr_getflags.lo.go obj/src/process/posix_spawnattr_getpgroup.lo.go obj/src/process/posix_spawnattr_getsigdefault.lo.go obj/src/process/posix_spawnattr_getsigmask.lo.go obj/src/process/posix_spawnattr_init.lo.go obj/src/process/posix_spawnattr_sched.lo.go obj/src/process/posix_spawnattr_setflags.lo.go obj/src/process/posix_spawnattr_setpgroup.lo.go obj/src/process/posix_spawnattr_setsigdefault.lo.go obj/src/process/posix_spawnattr_setsigmask.lo.go obj/src/process/vfork.lo.go obj/src/process/wait.lo.go obj/src/process/waitid.lo.go obj/src/process/waitpid.lo.go obj/src/regex/fnmatch.lo.go obj/src/regex/glob.lo.go obj/src/regex/regcomp.lo.go obj/src/regex/regerror.lo.go obj/src/regex/regexec.lo.go obj/src/regex/tre-mem.lo.go obj/src/search/hsearch.lo.go obj/src/search/insque.lo.go obj/src/search/lsearch.lo.go obj/src/search/tdelete.lo.go obj/src/search/tdestroy.lo.go obj/src/search/tfind.lo.go obj/src/search/tsearch.lo.go obj/src/search/twalk.lo.go obj/src/select/poll.lo.go obj/src/select/ppoll.lo.go obj/src/select/pselect.lo.go obj/src/select/select.lo.go obj/src/signal/block.lo.go obj/src/signal/getitimer.lo.go obj/src/signal/kill.lo.go obj/src/signal/killpg.lo.go obj/src/signal/psiginfo.lo.go obj/src/signal/psignal.lo.go obj/src/signal/raise.lo.go obj/src/signal/restore.lo.go obj/src/signal/setitimer.lo.go obj/src/signal/sigaction.lo.go obj/src/signal/sigaddset.lo.go obj/src/signal/sigaltstack.lo.go obj/src/signal/sigandset.lo.go obj/src/signal/sigdelset.lo.go obj/src/signal/sigemptyset.lo.go obj/src/signal/sigfillset.lo.go obj/src/signal/sigisemptyset.lo.go obj/src/signal/sigismember.lo.go obj/src/signal/sigorset.lo.go obj/src/signal/sigpending.lo.go obj/src/signal/sigprocmask.lo.go obj/src/signal/sigqueue.lo.go obj/src/signal/sigrtmax.lo.go obj/src/signal/sigrtmin.lo.go obj/src/signal/sigsetjmp.lo.go obj/src/signal/sigsetjmp_tail.lo.go obj/src/signal/sigsuspend.lo.go obj/src/signal/sigtimedwait.lo.go obj/src/signal/sigwait.lo.go obj/src/signal/sigwaitinfo.lo.go obj/src/stat/__xstat.lo.go obj/src/stat/chmod.lo.go obj/src/stat/fchmod.lo.go obj/src/stat/fchmodat.lo.go obj/src/stat/fstat.lo.go obj/src/stat/fstatat.lo.go obj/src/stat/futimens.lo.go obj/src/stat/futimesat.lo.go obj/src/stat/lchmod.lo.go obj/src/stat/lstat.lo.go obj/src/stat/mkdir.lo.go obj/src/stat/mkdirat.lo.go obj/src/stat/mkfifo.lo.go obj/src/stat/mkfifoat.lo.go obj/src/stat/mknod.lo.go obj/src/stat/mknodat.lo.go obj/src/stat/stat.lo.go obj/src/stat/statvfs.lo.go obj/src/stat/umask.lo.go obj/src/stat/utimensat.lo.go obj/src/stdio/__fclose_ca.lo.go obj/src/stdio/__fdopen.lo.go obj/src/stdio/__fmodeflags.lo.go obj/src/stdio/__fopen_rb_ca.lo.go obj/src/stdio/__overflow.lo.go obj/src/stdio/__stdio_close.lo.go obj/src/stdio/__stdio_exit.lo.go obj/src/stdio/__stdio_read.lo.go obj/src/stdio/__stdio_seek.lo.go obj/src/stdio/__stdio_write.lo.go obj/src/stdio/__stdout_write.lo.go obj/src/stdio/__toread.lo.go obj/src/stdio/__towrite.lo.go obj/src/stdio/__uflow.lo.go obj/src/stdio/asprintf.lo.go obj/src/stdio/clearerr.lo.go obj/src/stdio/dprintf.lo.go obj/src/stdio/ext.lo.go obj/src/stdio/ext2.lo.go obj/src/stdio/fclose.lo.go obj/src/stdio/feof.lo.go obj/src/stdio/ferror.lo.go obj/src/stdio/fflush.lo.go obj/src/stdio/fgetc.lo.go obj/src/stdio/fgetln.lo.go obj/src/stdio/fgetpos.lo.go obj/src/stdio/fgets.lo.go obj/src/stdio/fgetwc.lo.go obj/src/stdio/fgetws.lo.go obj/src/stdio/fileno.lo.go obj/src/stdio/flockfile.lo.go obj/src/stdio/fmemopen.lo.go obj/src/stdio/fopen.lo.go obj/src/stdio/fopencookie.lo.go obj/src/stdio/fprintf.lo.go obj/src/stdio/fputc.lo.go obj/src/stdio/fputs.lo.go obj/src/stdio/fputwc.lo.go obj/src/stdio/fputws.lo.go obj/src/stdio/fread.lo.go obj/src/stdio/freopen.lo.go obj/src/stdio/fscanf.lo.go obj/src/stdio/fseek.lo.go obj/src/stdio/fsetpos.lo.go obj/src/stdio/ftell.lo.go obj/src/stdio/ftrylockfile.lo.go obj/src/stdio/funlockfile.lo.go obj/src/stdio/fwide.lo.go obj/src/stdio/fwprintf.lo.go obj/src/stdio/fwrite.lo.go obj/src/stdio/fwscanf.lo.go obj/src/stdio/getc.lo.go obj/src/stdio/getc_unlocked.lo.go obj/src/stdio/getchar.lo.go obj/src/stdio/getchar_unlocked.lo.go obj/src/stdio/getdelim.lo.go obj/src/stdio/getline.lo.go obj/src/stdio/gets.lo.go obj/src/stdio/getw.lo.go obj/src/stdio/getwc.lo.go obj/src/stdio/getwchar.lo.go obj/src/stdio/ofl.lo.go obj/src/stdio/ofl_add.lo.go obj/src/stdio/open_memstream.lo.go obj/src/stdio/open_wmemstream.lo.go obj/src/stdio/pclose.lo.go obj/src/stdio/perror.lo.go obj/src/stdio/printf.lo.go obj/src/stdio/putc.lo.go obj/src/stdio/putc_unlocked.lo.go obj/src/stdio/putchar.lo.go obj/src/stdio/putchar_unlocked.lo.go obj/src/stdio/puts.lo.go obj/src/stdio/putw.lo.go obj/src/stdio/putwc.lo.go obj/src/stdio/putwchar.lo.go obj/src/stdio/remove.lo.go obj/src/stdio/rename.lo.go obj/src/stdio/rewind.lo.go obj/src/stdio/scanf.lo.go obj/src/stdio/setbuf.lo.go obj/src/stdio/setbuffer.lo.go obj/src/stdio/setlinebuf.lo.go obj/src/stdio/setvbuf.lo.go obj/src/stdio/snprintf.lo.go obj/src/stdio/sprintf.lo.go obj/src/stdio/sscanf.lo.go obj/src/stdio/stderr.lo.go obj/src/stdio/stdin.lo.go obj/src/stdio/stdout.lo.go obj/src/stdio/swprintf.lo.go obj/src/stdio/swscanf.lo.go obj/src/stdio/tempnam.lo.go obj/src/stdio/tmpfile.lo.go obj/src/stdio/tmpnam.lo.go obj/src/stdio/ungetc.lo.go obj/src/stdio/ungetwc.lo.go obj/src/stdio/vasprintf.lo.go obj/src/stdio/vdprintf.lo.go obj/src/stdio/vfprintf.lo.go obj/src/stdio/vfscanf.lo.go obj/src/stdio/vfwprintf.lo.go obj/src/stdio/vfwscanf.lo.go obj/src/stdio/vprintf.lo.go obj/src/stdio/vscanf.lo.go obj/src/stdio/vsnprintf.lo.go obj/src/stdio/vsprintf.lo.go obj/src/stdio/vsscanf.lo.go obj/src/stdio/vswprintf.lo.go obj/src/stdio/vswscanf.lo.go obj/src/stdio/vwprintf.lo.go obj/src/stdio/vwscanf.lo.go obj/src/stdio/wprintf.lo.go obj/src/stdio/wscanf.lo.go obj/src/stdlib/abs.lo.go obj/src/stdlib/atof.lo.go obj/src/stdlib/atoi.lo.go obj/src/stdlib/atol.lo.go obj/src/stdlib/atoll.lo.go obj/src/stdlib/bsearch.lo.go obj/src/stdlib/div.lo.go obj/src/stdlib/ecvt.lo.go obj/src/stdlib/fcvt.lo.go obj/src/stdlib/gcvt.lo.go obj/src/stdlib/imaxabs.lo.go obj/src/stdlib/imaxdiv.lo.go obj/src/stdlib/labs.lo.go obj/src/stdlib/ldiv.lo.go obj/src/stdlib/llabs.lo.go obj/src/stdlib/lldiv.lo.go obj/src/stdlib/qsort.lo.go obj/src/stdlib/qsort_nr.lo.go obj/src/stdlib/strtod.lo.go obj/src/stdlib/strtol.lo.go obj/src/stdlib/wcstod.lo.go obj/src/stdlib/wcstol.lo.go obj/src/string/bcmp.lo.go obj/src/string/bcopy.lo.go obj/src/string/bzero.lo.go obj/src/string/explicit_bzero.lo.go obj/src/string/index.lo.go obj/src/string/memccpy.lo.go obj/src/string/memchr.lo.go obj/src/string/memcmp.lo.go obj/src/string/memmem.lo.go obj/src/string/memmove.lo.go obj/src/string/mempcpy.lo.go obj/src/string/memrchr.lo.go obj/src/string/memset.lo.go obj/src/string/rindex.lo.go obj/src/string/stpcpy.lo.go obj/src/string/stpncpy.lo.go obj/src/string/strcasecmp.lo.go obj/src/string/strcasestr.lo.go obj/src/string/strcat.lo.go obj/src/string/strchr.lo.go obj/src/string/strchrnul.lo.go obj/src/string/strcmp.lo.go obj/src/string/strcpy.lo.go obj/src/string/strcspn.lo.go obj/src/string/strdup.lo.go obj/src/string/strerror_r.lo.go obj/src/string/strlcat.lo.go obj/src/string/strlcpy.lo.go obj/src/string/strlen.lo.go obj/src/string/strncasecmp.lo.go obj/src/string/strncat.lo.go obj/src/string/strncmp.lo.go obj/src/string/strncpy.lo.go obj/src/string/strndup.lo.go obj/src/string/strnlen.lo.go obj/src/string/strpbrk.lo.go obj/src/string/strrchr.lo.go obj/src/string/strsep.lo.go obj/src/string/strsignal.lo.go obj/src/string/strspn.lo.go obj/src/string/strstr.lo.go obj/src/string/strtok.lo.go obj/src/string/strtok_r.lo.go obj/src/string/strverscmp.lo.go obj/src/string/swab.lo.go obj/src/string/wcpcpy.lo.go obj/src/string/wcpncpy.lo.go obj/src/string/wcscasecmp.lo.go obj/src/string/wcscasecmp_l.lo.go obj/src/string/wcscat.lo.go obj/src/string/wcschr.lo.go obj/src/string/wcscmp.lo.go obj/src/string/wcscpy.lo.go obj/src/string/wcscspn.lo.go obj/src/string/wcsdup.lo.go obj/src/string/wcslen.lo.go obj/src/string/wcsncasecmp.lo.go obj/src/string/wcsncasecmp_l.lo.go obj/src/string/wcsncat.lo.go obj/src/string/wcsncmp.lo.go obj/src/string/wcsncpy.lo.go obj/src/string/wcsnlen.lo.go obj/src/string/wcspbrk.lo.go obj/src/string/wcsrchr.lo.go obj/src/string/wcsspn.lo.go obj/src/string/wcsstr.lo.go obj/src/string/wcstok.lo.go obj/src/string/wcswcs.lo.go obj/src/string/wmemchr.lo.go obj/src/string/wmemcmp.lo.go obj/src/string/wmemcpy.lo.go obj/src/string/wmemmove.lo.go obj/src/string/wmemset.lo.go obj/src/temp/mkdtemp.lo.go obj/src/temp/mkostemp.lo.go obj/src/temp/mkostemps.lo.go obj/src/temp/mkstemp.lo.go obj/src/temp/mkstemps.lo.go obj/src/temp/mktemp.lo.go obj/src/termios/cfgetospeed.lo.go obj/src/termios/cfmakeraw.lo.go obj/src/termios/cfsetospeed.lo.go obj/src/termios/tcdrain.lo.go obj/src/termios/tcflow.lo.go obj/src/termios/tcflush.lo.go obj/src/termios/tcgetattr.lo.go obj/src/termios/tcgetsid.lo.go obj/src/termios/tcgetwinsize.lo.go obj/src/termios/tcsendbreak.lo.go obj/src/termios/tcsetattr.lo.go obj/src/termios/tcsetwinsize.lo.go obj/src/time/__map_file.lo.go obj/src/time/__month_to_secs.lo.go obj/src/time/__secs_to_tm.lo.go obj/src/time/__tm_to_secs.lo.go obj/src/time/__tz.lo.go obj/src/time/__year_to_secs.lo.go obj/src/time/asctime.lo.go obj/src/time/asctime_r.lo.go obj/src/time/clock.lo.go obj/src/time/clock_getcpuclockid.lo.go obj/src/time/clock_getres.lo.go obj/src/time/clock_gettime.lo.go obj/src/time/clock_nanosleep.lo.go obj/src/time/clock_settime.lo.go obj/src/time/ctime.lo.go obj/src/time/ctime_r.lo.go obj/src/time/difftime.lo.go obj/src/time/ftime.lo.go obj/src/time/getdate.lo.go obj/src/time/gettimeofday.lo.go obj/src/time/gmtime.lo.go obj/src/time/gmtime_r.lo.go obj/src/time/localtime.lo.go obj/src/time/localtime_r.lo.go obj/src/time/mktime.lo.go obj/src/time/nanosleep.lo.go obj/src/time/strftime.lo.go obj/src/time/strptime.lo.go obj/src/time/time.lo.go obj/src/time/timegm.lo.go obj/src/time/timer_delete.lo.go obj/src/time/timer_getoverrun.lo.go obj/src/time/timer_gettime.lo.go obj/src/time/timer_settime.lo.go obj/src/time/times.lo.go obj/src/time/timespec_get.lo.go obj/src/time/utime.lo.go obj/src/time/wcsftime.lo.go obj/src/unistd/_exit.lo.go obj/src/unistd/access.lo.go obj/src/unistd/acct.lo.go obj/src/unistd/alarm.lo.go obj/src/unistd/chdir.lo.go obj/src/unistd/chown.lo.go obj/src/unistd/close.lo.go obj/src/unistd/ctermid.lo.go obj/src/unistd/dup.lo.go obj/src/unistd/dup2.lo.go obj/src/unistd/dup3.lo.go obj/src/unistd/faccessat.lo.go obj/src/unistd/fchdir.lo.go obj/src/unistd/fchown.lo.go obj/src/unistd/fchownat.lo.go obj/src/unistd/fdatasync.lo.go obj/src/unistd/fsync.lo.go obj/src/unistd/ftruncate.lo.go obj/src/unistd/getcwd.lo.go obj/src/unistd/getegid.lo.go obj/src/unistd/geteuid.lo.go obj/src/unistd/getgid.lo.go obj/src/unistd/getgroups.lo.go obj/src/unistd/gethostname.lo.go obj/src/unistd/getlogin.lo.go obj/src/unistd/getlogin_r.lo.go obj/src/unistd/getpgid.lo.go obj/src/unistd/getpgrp.lo.go obj/src/unistd/getpid.lo.go obj/src/unistd/getppid.lo.go obj/src/unistd/getsid.lo.go obj/src/unistd/getuid.lo.go obj/src/unistd/isatty.lo.go obj/src/unistd/lchown.lo.go obj/src/unistd/link.lo.go obj/src/unistd/linkat.lo.go obj/src/unistd/lseek.lo.go obj/src/unistd/nice.lo.go obj/src/unistd/pause.lo.go obj/src/unistd/pipe.lo.go obj/src/unistd/pipe2.lo.go obj/src/unistd/posix_close.lo.go obj/src/unistd/pread.lo.go obj/src/unistd/preadv.lo.go obj/src/unistd/pwrite.lo.go obj/src/unistd/pwritev.lo.go obj/src/unistd/read.lo.go obj/src/unistd/readlink.lo.go obj/src/unistd/readlinkat.lo.go obj/src/unistd/readv.lo.go obj/src/unistd/renameat.lo.go obj/src/unistd/rmdir.lo.go obj/src/unistd/setgid.lo.go obj/src/unistd/setpgid.lo.go obj/src/unistd/setpgrp.lo.go obj/src/unistd/setsid.lo.go obj/src/unistd/setuid.lo.go obj/src/unistd/setxid.lo.go obj/src/unistd/sleep.lo.go obj/src/unistd/symlink.lo.go obj/src/unistd/symlinkat.lo.go obj/src/unistd/sync.lo.go obj/src/unistd/tcgetpgrp.lo.go obj/src/unistd/tcsetpgrp.lo.go obj/src/unistd/truncate.lo.go obj/src/unistd/ttyname.lo.go obj/src/unistd/ttyname_r.lo.go obj/src/unistd/ualarm.lo.go obj/src/unistd/unlink.lo.go obj/src/unistd/unlinkat.lo.go obj/src/unistd/usleep.lo.go obj/src/unistd/write.lo.go obj/src/unistd/writev.lo.go obj/compat/time32/__xstat.lo.go obj/compat/time32/adjtime32.lo.go obj/compat/time32/adjtimex_time32.lo.go obj/compat/time32/clock_adjtime32.lo.go obj/compat/time32/clock_getres_time32.lo.go obj/compat/time32/clock_gettime32.lo.go obj/compat/time32/clock_nanosleep_time32.lo.go obj/compat/time32/clock_settime32.lo.go obj/compat/time32/ctime32.lo.go obj/compat/time32/ctime32_r.lo.go obj/compat/time32/difftime32.lo.go obj/compat/time32/fstat_time32.lo.go obj/compat/time32/fstatat_time32.lo.go obj/compat/time32/ftime32.lo.go obj/compat/time32/futimens_time32.lo.go obj/compat/time32/futimes_time32.lo.go obj/compat/time32/futimesat_time32.lo.go obj/compat/time32/getitimer_time32.lo.go obj/compat/time32/getrusage_time32.lo.go obj/compat/time32/gettimeofday_time32.lo.go obj/compat/time32/gmtime32.lo.go obj/compat/time32/gmtime32_r.lo.go obj/compat/time32/localtime32.lo.go obj/compat/time32/localtime32_r.lo.go obj/compat/time32/lstat_time32.lo.go obj/compat/time32/lutimes_time32.lo.go obj/compat/time32/mktime32.lo.go obj/compat/time32/nanosleep_time32.lo.go obj/compat/time32/ppoll_time32.lo.go obj/compat/time32/pselect_time32.lo.go obj/compat/time32/recvmmsg_time32.lo.go obj/compat/time32/select_time32.lo.go obj/compat/time32/semtimedop_time32.lo.go obj/compat/time32/setitimer_time32.lo.go obj/compat/time32/settimeofday_time32.lo.go obj/compat/time32/sigtimedwait_time32.lo.go obj/compat/time32/stat_time32.lo.go obj/compat/time32/stime32.lo.go obj/compat/time32/time32.lo.go obj/compat/time32/time32gm.lo.go obj/compat/time32/timer_gettime32.lo.go obj/compat/time32/timer_settime32.lo.go obj/compat/time32/timerfd_gettime32.lo.go obj/compat/time32/timerfd_settime32.lo.go obj/compat/time32/timespec_get_time32.lo.go obj/compat/time32/utime_time32.lo.go obj/compat/time32/utimensat_time32.lo.go obj/compat/time32/utimes_time32.lo.go obj/compat/time32/wait3_time32.lo.go obj/compat/time32/wait4_time32.lo.go -lgcc -lgcc_eh', DO NOT EDIT.
+// Code generated for linux/arm by 'gcc --package-name=libc --prefix-enumerator=_ --prefix-external=x_ --prefix-field=F --prefix-static-internal=_ --prefix-static-none=_ --prefix-tagged-enum=_ --prefix-tagged-struct=T --prefix-tagged-union=T --prefix-typename=T --prefix-undefined=_ -emit-func-aliases -eval-all-macros -extended-errors -ignore-asm-errors -ignore-unsupported-alignment -isystem  -hide strlen -hide __libc_sigaction -std=c99 -nostdinc -ffreestanding -D_XOPEN_SOURCE=700 -I./arch/arm -I./arch/generic -Iobj/src/internal -I./src/include -I./src/internal -Iobj/include -I./include -DNDEBUG -nostdlib -shared -o lib/libc.so.go obj/src/complex/__cexp.lo.go obj/src/complex/__cexpf.lo.go obj/src/complex/cabs.lo.go obj/src/complex/cabsf.lo.go obj/src/complex/cabsl.lo.go obj/src/complex/cacos.lo.go obj/src/complex/cacosf.lo.go obj/src/complex/cacosh.lo.go obj/src/complex/cacoshf.lo.go obj/src/complex/cacoshl.lo.go obj/src/complex/cacosl.lo.go obj/src/complex/carg.lo.go obj/src/complex/cargf.lo.go obj/src/complex/cargl.lo.go obj/src/complex/casin.lo.go obj/src/complex/casinf.lo.go obj/src/complex/casinh.lo.go obj/src/complex/casinhf.lo.go obj/src/complex/casinhl.lo.go obj/src/complex/casinl.lo.go obj/src/complex/catan.lo.go obj/src/complex/catanf.lo.go obj/src/complex/catanh.lo.go obj/src/complex/catanhf.lo.go obj/src/complex/catanhl.lo.go obj/src/complex/catanl.lo.go obj/src/complex/ccos.lo.go obj/src/complex/ccosf.lo.go obj/src/complex/ccosh.lo.go obj/src/complex/ccoshf.lo.go obj/src/complex/ccoshl.lo.go obj/src/complex/ccosl.lo.go obj/src/complex/cexp.lo.go obj/src/complex/cexpf.lo.go obj/src/complex/cexpl.lo.go obj/src/complex/cimag.lo.go obj/src/complex/cimagf.lo.go obj/src/complex/cimagl.lo.go obj/src/complex/clog.lo.go obj/src/complex/clogf.lo.go obj/src/complex/clogl.lo.go obj/src/complex/conj.lo.go obj/src/complex/conjf.lo.go obj/src/complex/conjl.lo.go obj/src/complex/cpow.lo.go obj/src/complex/cpowf.lo.go obj/src/complex/cpowl.lo.go obj/src/complex/cproj.lo.go obj/src/complex/cprojf.lo.go obj/src/complex/cprojl.lo.go obj/src/complex/creal.lo.go obj/src/complex/crealf.lo.go obj/src/complex/creall.lo.go obj/src/complex/csin.lo.go obj/src/complex/csinf.lo.go obj/src/complex/csinh.lo.go obj/src/complex/csinhf.lo.go obj/src/complex/csinhl.lo.go obj/src/complex/csinl.lo.go obj/src/complex/csqrt.lo.go obj/src/complex/csqrtf.lo.go obj/src/complex/csqrtl.lo.go obj/src/complex/ctan.lo.go obj/src/complex/ctanf.lo.go obj/src/complex/ctanh.lo.go obj/src/complex/ctanhf.lo.go obj/src/complex/ctanhl.lo.go obj/src/complex/ctanl.lo.go obj/src/conf/confstr.lo.go obj/src/conf/fpathconf.lo.go obj/src/conf/legacy.lo.go obj/src/conf/pathconf.lo.go obj/src/conf/sysconf.lo.go obj/src/crypt/crypt.lo.go obj/src/crypt/crypt_blowfish.lo.go obj/src/crypt/crypt_des.lo.go obj/src/crypt/crypt_md5.lo.go obj/src/crypt/crypt_r.lo.go obj/src/crypt/crypt_sha256.lo.go obj/src/crypt/crypt_sha512.lo.go obj/src/crypt/encrypt.lo.go obj/src/ctype/__ctype_b_loc.lo.go obj/src/ctype/__ctype_get_mb_cur_max.lo.go obj/src/ctype/__ctype_tolower_loc.lo.go obj/src/ctype/__ctype_toupper_loc.lo.go obj/src/ctype/isalnum.lo.go obj/src/ctype/isalpha.lo.go obj/src/ctype/isascii.lo.go obj/src/ctype/isblank.lo.go obj/src/ctype/iscntrl.lo.go obj/src/ctype/isdigit.lo.go obj/src/ctype/isgraph.lo.go obj/src/ctype/islower.lo.go obj/src/ctype/isprint.lo.go obj/src/ctype/ispunct.lo.go obj/src/ctype/isspace.lo.go obj/src/ctype/isupper.lo.go obj/src/ctype/iswalnum.lo.go obj/src/ctype/iswalpha.lo.go obj/src/ctype/iswblank.lo.go obj/src/ctype/iswcntrl.lo.go obj/src/ctype/iswctype.lo.go obj/src/ctype/iswdigit.lo.go obj/src/ctype/iswgraph.lo.go obj/src/ctype/iswlower.lo.go obj/src/ctype/iswprint.lo.go obj/src/ctype/iswpunct.lo.go obj/src/ctype/iswspace.lo.go obj/src/ctype/iswupper.lo.go obj/src/ctype/iswxdigit.lo.go obj/src/ctype/isxdigit.lo.go obj/src/ctype/toascii.lo.go obj/src/ctype/tolower.lo.go obj/src/ctype/toupper.lo.go obj/src/ctype/towctrans.lo.go obj/src/ctype/wcswidth.lo.go obj/src/ctype/wctrans.lo.go obj/src/ctype/wcwidth.lo.go obj/src/dirent/alphasort.lo.go obj/src/dirent/closedir.lo.go obj/src/dirent/dirfd.lo.go obj/src/dirent/fdopendir.lo.go obj/src/dirent/opendir.lo.go obj/src/dirent/readdir.lo.go obj/src/dirent/readdir_r.lo.go obj/src/dirent/rewinddir.lo.go obj/src/dirent/scandir.lo.go obj/src/dirent/seekdir.lo.go obj/src/dirent/telldir.lo.go obj/src/dirent/versionsort.lo.go obj/src/env/__environ.lo.go obj/src/env/__reset_tls.lo.go obj/src/env/__stack_chk_fail.lo.go obj/src/env/clearenv.lo.go obj/src/env/getenv.lo.go obj/src/env/putenv.lo.go obj/src/env/secure_getenv.lo.go obj/src/env/setenv.lo.go obj/src/env/unsetenv.lo.go obj/src/errno/strerror.lo.go obj/src/exit/_Exit.lo.go obj/src/exit/abort_lock.lo.go obj/src/exit/assert.lo.go obj/src/exit/at_quick_exit.lo.go obj/src/exit/quick_exit.lo.go obj/src/fcntl/creat.lo.go obj/src/fcntl/fcntl.lo.go obj/src/fcntl/open.lo.go obj/src/fcntl/openat.lo.go obj/src/fcntl/posix_fadvise.lo.go obj/src/fcntl/posix_fallocate.lo.go obj/src/fenv/arm/fenv.lo.go obj/src/internal/defsysinfo.lo.go obj/src/internal/emulate_wait4.lo.go obj/src/internal/floatscan.lo.go obj/src/internal/intscan.lo.go obj/src/internal/libc.lo.go obj/src/internal/procfdname.lo.go obj/src/internal/shgetc.lo.go obj/src/internal/syscall_ret.lo.go obj/src/internal/vdso.lo.go obj/src/internal/version.lo.go obj/src/ipc/ftok.lo.go obj/src/ipc/msgctl.lo.go obj/src/ipc/msgget.lo.go obj/src/ipc/msgrcv.lo.go obj/src/ipc/msgsnd.lo.go obj/src/ipc/semctl.lo.go obj/src/ipc/semget.lo.go obj/src/ipc/semop.lo.go obj/src/ipc/semtimedop.lo.go obj/src/ipc/shmat.lo.go obj/src/ipc/shmctl.lo.go obj/src/ipc/shmdt.lo.go obj/src/ipc/shmget.lo.go obj/src/legacy/cuserid.lo.go obj/src/legacy/err.lo.go obj/src/legacy/euidaccess.lo.go obj/src/legacy/ftw.lo.go obj/src/legacy/futimes.lo.go obj/src/legacy/getdtablesize.lo.go obj/src/legacy/getloadavg.lo.go obj/src/legacy/getpagesize.lo.go obj/src/legacy/getpass.lo.go obj/src/legacy/getusershell.lo.go obj/src/legacy/isastream.lo.go obj/src/legacy/lutimes.lo.go obj/src/legacy/ulimit.lo.go obj/src/legacy/utmpx.lo.go obj/src/linux/adjtime.lo.go obj/src/linux/adjtimex.lo.go obj/src/linux/arch_prctl.lo.go obj/src/linux/brk.lo.go obj/src/linux/cache.lo.go obj/src/linux/cap.lo.go obj/src/linux/chroot.lo.go obj/src/linux/clock_adjtime.lo.go obj/src/linux/copy_file_range.lo.go obj/src/linux/epoll.lo.go obj/src/linux/eventfd.lo.go obj/src/linux/fallocate.lo.go obj/src/linux/fanotify.lo.go obj/src/linux/flock.lo.go obj/src/linux/getdents.lo.go obj/src/linux/getrandom.lo.go obj/src/linux/inotify.lo.go obj/src/linux/ioperm.lo.go obj/src/linux/iopl.lo.go obj/src/linux/klogctl.lo.go obj/src/linux/memfd_create.lo.go obj/src/linux/mlock2.lo.go obj/src/linux/module.lo.go obj/src/linux/mount.lo.go obj/src/linux/name_to_handle_at.lo.go obj/src/linux/open_by_handle_at.lo.go obj/src/linux/personality.lo.go obj/src/linux/pivot_root.lo.go obj/src/linux/prctl.lo.go obj/src/linux/preadv2.lo.go obj/src/linux/prlimit.lo.go obj/src/linux/process_vm.lo.go obj/src/linux/ptrace.lo.go obj/src/linux/pwritev2.lo.go obj/src/linux/quotactl.lo.go obj/src/linux/readahead.lo.go obj/src/linux/reboot.lo.go obj/src/linux/remap_file_pages.lo.go obj/src/linux/sbrk.lo.go obj/src/linux/sendfile.lo.go obj/src/linux/setfsgid.lo.go obj/src/linux/setfsuid.lo.go obj/src/linux/sethostname.lo.go obj/src/linux/setns.lo.go obj/src/linux/settimeofday.lo.go obj/src/linux/signalfd.lo.go obj/src/linux/splice.lo.go obj/src/linux/statx.lo.go obj/src/linux/stime.lo.go obj/src/linux/swap.lo.go obj/src/linux/sync_file_range.lo.go obj/src/linux/syncfs.lo.go obj/src/linux/sysinfo.lo.go obj/src/linux/tee.lo.go obj/src/linux/timerfd.lo.go obj/src/linux/unshare.lo.go obj/src/linux/utimes.lo.go obj/src/linux/vhangup.lo.go obj/src/linux/vmsplice.lo.go obj/src/linux/wait3.lo.go obj/src/linux/wait4.lo.go obj/src/linux/xattr.lo.go obj/src/locale/__lctrans.lo.go obj/src/locale/__mo_lookup.lo.go obj/src/locale/bind_textdomain_codeset.lo.go obj/src/locale/c_locale.lo.go obj/src/locale/catclose.lo.go obj/src/locale/catgets.lo.go obj/src/locale/catopen.lo.go obj/src/locale/dcngettext.lo.go obj/src/locale/duplocale.lo.go obj/src/locale/freelocale.lo.go obj/src/locale/iconv.lo.go obj/src/locale/iconv_close.lo.go obj/src/locale/langinfo.lo.go obj/src/locale/locale_map.lo.go obj/src/locale/localeconv.lo.go obj/src/locale/newlocale.lo.go obj/src/locale/pleval.lo.go obj/src/locale/setlocale.lo.go obj/src/locale/strcoll.lo.go obj/src/locale/strfmon.lo.go obj/src/locale/strtod_l.lo.go obj/src/locale/strxfrm.lo.go obj/src/locale/textdomain.lo.go obj/src/locale/uselocale.lo.go obj/src/locale/wcscoll.lo.go obj/src/locale/wcsxfrm.lo.go obj/src/malloc/reallocarray.lo.go obj/src/math/__cos.lo.go obj/src/math/__cosdf.lo.go obj/src/math/__cosl.lo.go obj/src/math/__expo2.lo.go obj/src/math/__expo2f.lo.go obj/src/math/__fpclassify.lo.go obj/src/math/__fpclassifyf.lo.go obj/src/math/__fpclassifyl.lo.go obj/src/math/__invtrigl.lo.go obj/src/math/__math_divzero.lo.go obj/src/math/__math_divzerof.lo.go obj/src/math/__math_invalid.lo.go obj/src/math/__math_invalidf.lo.go obj/src/math/__math_invalidl.lo.go obj/src/math/__math_oflow.lo.go obj/src/math/__math_oflowf.lo.go obj/src/math/__math_uflow.lo.go obj/src/math/__math_uflowf.lo.go obj/src/math/__math_xflow.lo.go obj/src/math/__math_xflowf.lo.go obj/src/math/__polevll.lo.go obj/src/math/__rem_pio2.lo.go obj/src/math/__rem_pio2_large.lo.go obj/src/math/__rem_pio2f.lo.go obj/src/math/__rem_pio2l.lo.go obj/src/math/__signbit.lo.go obj/src/math/__signbitf.lo.go obj/src/math/__signbitl.lo.go obj/src/math/__sin.lo.go obj/src/math/__sindf.lo.go obj/src/math/__sinl.lo.go obj/src/math/__tan.lo.go obj/src/math/__tandf.lo.go obj/src/math/__tanl.lo.go obj/src/math/acos.lo.go obj/src/math/acosf.lo.go obj/src/math/acosh.lo.go obj/src/math/acoshf.lo.go obj/src/math/acoshl.lo.go obj/src/math/acosl.lo.go obj/src/math/asin.lo.go obj/src/math/asinf.lo.go obj/src/math/asinh.lo.go obj/src/math/asinhf.lo.go obj/src/math/asinhl.lo.go obj/src/math/asinl.lo.go obj/src/math/atan.lo.go obj/src/math/atan2.lo.go obj/src/math/atan2f.lo.go obj/src/math/atan2l.lo.go obj/src/math/atanf.lo.go obj/src/math/atanh.lo.go obj/src/math/atanhf.lo.go obj/src/math/atanhl.lo.go obj/src/math/atanl.lo.go obj/src/math/cbrt.lo.go obj/src/math/cbrtf.lo.go obj/src/math/cbrtl.lo.go obj/src/math/ceil.lo.go obj/src/math/ceilf.lo.go obj/src/math/ceill.lo.go obj/src/math/copysign.lo.go obj/src/math/copysignf.lo.go obj/src/math/copysignl.lo.go obj/src/math/cos.lo.go obj/src/math/cosf.lo.go obj/src/math/cosh.lo.go obj/src/math/coshf.lo.go obj/src/math/coshl.lo.go obj/src/math/cosl.lo.go obj/src/math/erf.lo.go obj/src/math/erff.lo.go obj/src/math/erfl.lo.go obj/src/math/exp.lo.go obj/src/math/exp10.lo.go obj/src/math/exp10f.lo.go obj/src/math/exp10l.lo.go obj/src/math/exp2.lo.go obj/src/math/exp2f.lo.go obj/src/math/exp2f_data.lo.go obj/src/math/exp2l.lo.go obj/src/math/exp_data.lo.go obj/src/math/expf.lo.go obj/src/math/expl.lo.go obj/src/math/expm1.lo.go obj/src/math/expm1f.lo.go obj/src/math/expm1l.lo.go obj/src/math/fabs.lo.go obj/src/math/fabsf.lo.go obj/src/math/fabsl.lo.go obj/src/math/fdim.lo.go obj/src/math/fdimf.lo.go obj/src/math/fdiml.lo.go obj/src/math/finite.lo.go obj/src/math/finitef.lo.go obj/src/math/floor.lo.go obj/src/math/floorf.lo.go obj/src/math/floorl.lo.go obj/src/math/fma.lo.go obj/src/math/fmal.lo.go obj/src/math/fmax.lo.go obj/src/math/fmaxf.lo.go obj/src/math/fmaxl.lo.go obj/src/math/fmin.lo.go obj/src/math/fminf.lo.go obj/src/math/fminl.lo.go obj/src/math/fmod.lo.go obj/src/math/fmodf.lo.go obj/src/math/fmodl.lo.go obj/src/math/frexp.lo.go obj/src/math/frexpf.lo.go obj/src/math/frexpl.lo.go obj/src/math/hypot.lo.go obj/src/math/hypotf.lo.go obj/src/math/hypotl.lo.go obj/src/math/ilogb.lo.go obj/src/math/ilogbf.lo.go obj/src/math/ilogbl.lo.go obj/src/math/j0.lo.go obj/src/math/j0f.lo.go obj/src/math/j1.lo.go obj/src/math/j1f.lo.go obj/src/math/jn.lo.go obj/src/math/jnf.lo.go obj/src/math/ldexp.lo.go obj/src/math/ldexpf.lo.go obj/src/math/ldexpl.lo.go obj/src/math/lgamma.lo.go obj/src/math/lgamma_r.lo.go obj/src/math/lgammaf.lo.go obj/src/math/lgammaf_r.lo.go obj/src/math/lgammal.lo.go obj/src/math/llrint.lo.go obj/src/math/llrintf.lo.go obj/src/math/llrintl.lo.go obj/src/math/llround.lo.go obj/src/math/llroundf.lo.go obj/src/math/llroundl.lo.go obj/src/math/log.lo.go obj/src/math/log10.lo.go obj/src/math/log10f.lo.go obj/src/math/log10l.lo.go obj/src/math/log1p.lo.go obj/src/math/log1pf.lo.go obj/src/math/log1pl.lo.go obj/src/math/log2.lo.go obj/src/math/log2_data.lo.go obj/src/math/log2f.lo.go obj/src/math/log2f_data.lo.go obj/src/math/log2l.lo.go obj/src/math/log_data.lo.go obj/src/math/logb.lo.go obj/src/math/logbf.lo.go obj/src/math/logbl.lo.go obj/src/math/logf.lo.go obj/src/math/logf_data.lo.go obj/src/math/logl.lo.go obj/src/math/lrint.lo.go obj/src/math/lrintf.lo.go obj/src/math/lrintl.lo.go obj/src/math/lround.lo.go obj/src/math/lroundf.lo.go obj/src/math/lroundl.lo.go obj/src/math/modf.lo.go obj/src/math/modff.lo.go obj/src/math/modfl.lo.go obj/src/math/nan.lo.go obj/src/math/nanf.lo.go obj/src/math/nanl.lo.go obj/src/math/nextafter.lo.go obj/src/math/nextafterf.lo.go obj/src/math/nextafterl.lo.go obj/src/math/nexttoward.lo.go obj/src/math/nexttowardf.lo.go obj/src/math/nexttowardl.lo.go obj/src/math/pow.lo.go obj/src/math/pow_data.lo.go obj/src/math/powf.lo.go obj/src/math/powf_data.lo.go obj/src/math/powl.lo.go obj/src/math/remainder.lo.go obj/src/math/remainderf.lo.go obj/src/math/remainderl.lo.go obj/src/math/remquo.lo.go obj/src/math/remquof.lo.go obj/src/math/remquol.lo.go obj/src/math/rint.lo.go obj/src/math/rintf.lo.go obj/src/math/rintl.lo.go obj/src/math/round.lo.go obj/src/math/roundf.lo.go obj/src/math/roundl.lo.go obj/src/math/scalb.lo.go obj/src/math/scalbf.lo.go obj/src/math/scalbln.lo.go obj/src/math/scalblnf.lo.go obj/src/math/scalblnl.lo.go obj/src/math/scalbn.lo.go obj/src/math/scalbnf.lo.go obj/src/math/scalbnl.lo.go obj/src/math/signgam.lo.go obj/src/math/significand.lo.go obj/src/math/significandf.lo.go obj/src/math/sin.lo.go obj/src/math/sincos.lo.go obj/src/math/sincosf.lo.go obj/src/math/sincosl.lo.go obj/src/math/sinf.lo.go obj/src/math/sinh.lo.go obj/src/math/sinhf.lo.go obj/src/math/sinhl.lo.go obj/src/math/sinl.lo.go obj/src/math/sqrt.lo.go obj/src/math/sqrt_data.lo.go obj/src/math/sqrtf.lo.go obj/src/math/sqrtl.lo.go obj/src/math/tan.lo.go obj/src/math/tanf.lo.go obj/src/math/tanh.lo.go obj/src/math/tanhf.lo.go obj/src/math/tanhl.lo.go obj/src/math/tanl.lo.go obj/src/math/tgamma.lo.go obj/src/math/tgammaf.lo.go obj/src/math/tgammal.lo.go obj/src/math/trunc.lo.go obj/src/math/truncf.lo.go obj/src/math/truncl.lo.go obj/src/misc/a64l.lo.go obj/src/misc/basename.lo.go obj/src/misc/dirname.lo.go obj/src/misc/ffs.lo.go obj/src/misc/ffsl.lo.go obj/src/misc/ffsll.lo.go obj/src/misc/fmtmsg.lo.go obj/src/misc/get_current_dir_name.lo.go obj/src/misc/getauxval.lo.go obj/src/misc/getdomainname.lo.go obj/src/misc/getentropy.lo.go obj/src/misc/gethostid.lo.go obj/src/misc/getopt.lo.go obj/src/misc/getopt_long.lo.go obj/src/misc/getpriority.lo.go obj/src/misc/getresgid.lo.go obj/src/misc/getresuid.lo.go obj/src/misc/getrlimit.lo.go obj/src/misc/getrusage.lo.go obj/src/misc/getsubopt.lo.go obj/src/misc/ioctl.lo.go obj/src/misc/issetugid.lo.go obj/src/misc/lockf.lo.go obj/src/misc/login_tty.lo.go obj/src/misc/mntent.lo.go obj/src/misc/nftw.lo.go obj/src/misc/openpty.lo.go obj/src/misc/ptsname.lo.go obj/src/misc/pty.lo.go obj/src/misc/realpath.lo.go obj/src/misc/setdomainname.lo.go obj/src/misc/setpriority.lo.go obj/src/misc/setrlimit.lo.go obj/src/misc/syscall.lo.go obj/src/misc/syslog.lo.go obj/src/misc/uname.lo.go obj/src/mman/madvise.lo.go obj/src/mman/mincore.lo.go obj/src/mman/mlock.lo.go obj/src/mman/mlockall.lo.go obj/src/mman/mmap.lo.go obj/src/mman/mprotect.lo.go obj/src/mman/mremap.lo.go obj/src/mman/msync.lo.go obj/src/mman/munlock.lo.go obj/src/mman/munlockall.lo.go obj/src/mman/munmap.lo.go obj/src/mman/posix_madvise.lo.go obj/src/mman/shm_open.lo.go obj/src/multibyte/btowc.lo.go obj/src/multibyte/c16rtomb.lo.go obj/src/multibyte/c32rtomb.lo.go obj/src/multibyte/internal.lo.go obj/src/multibyte/mblen.lo.go obj/src/multibyte/mbrlen.lo.go obj/src/multibyte/mbrtoc16.lo.go obj/src/multibyte/mbrtoc32.lo.go obj/src/multibyte/mbrtowc.lo.go obj/src/multibyte/mbsinit.lo.go obj/src/multibyte/mbsnrtowcs.lo.go obj/src/multibyte/mbsrtowcs.lo.go obj/src/multibyte/mbstowcs.lo.go obj/src/multibyte/mbtowc.lo.go obj/src/multibyte/wcrtomb.lo.go obj/src/multibyte/wcsnrtombs.lo.go obj/src/multibyte/wcsrtombs.lo.go obj/src/multibyte/wcstombs.lo.go obj/src/multibyte/wctob.lo.go obj/src/multibyte/wctomb.lo.go obj/src/network/accept.lo.go obj/src/network/accept4.lo.go obj/src/network/bind.lo.go obj/src/network/connect.lo.go obj/src/network/dn_comp.lo.go obj/src/network/dn_expand.lo.go obj/src/network/dn_skipname.lo.go obj/src/network/dns_parse.lo.go obj/src/network/ent.lo.go obj/src/network/ether.lo.go obj/src/network/freeaddrinfo.lo.go obj/src/network/gai_strerror.lo.go obj/src/network/getaddrinfo.lo.go obj/src/network/gethostbyaddr.lo.go obj/src/network/gethostbyaddr_r.lo.go obj/src/network/gethostbyname.lo.go obj/src/network/gethostbyname2.lo.go obj/src/network/gethostbyname2_r.lo.go obj/src/network/gethostbyname_r.lo.go obj/src/network/getifaddrs.lo.go obj/src/network/getnameinfo.lo.go obj/src/network/getpeername.lo.go obj/src/network/getservbyname.lo.go obj/src/network/getservbyname_r.lo.go obj/src/network/getsockname.lo.go obj/src/network/getsockopt.lo.go obj/src/network/h_errno.lo.go obj/src/network/herror.lo.go obj/src/network/hstrerror.lo.go obj/src/network/htonl.lo.go obj/src/network/htons.lo.go obj/src/network/if_freenameindex.lo.go obj/src/network/if_indextoname.lo.go obj/src/network/if_nameindex.lo.go obj/src/network/if_nametoindex.lo.go obj/src/network/in6addr_any.lo.go obj/src/network/in6addr_loopback.lo.go obj/src/network/inet_addr.lo.go obj/src/network/inet_aton.lo.go obj/src/network/inet_legacy.lo.go obj/src/network/inet_ntoa.lo.go obj/src/network/inet_ntop.lo.go obj/src/network/inet_pton.lo.go obj/src/network/listen.lo.go obj/src/network/lookup_ipliteral.lo.go obj/src/network/lookup_name.lo.go obj/src/network/lookup_serv.lo.go obj/src/network/netlink.lo.go obj/src/network/netname.lo.go obj/src/network/ns_parse.lo.go obj/src/network/ntohl.lo.go obj/src/network/ntohs.lo.go obj/src/network/proto.lo.go obj/src/network/recv.lo.go obj/src/network/recvfrom.lo.go obj/src/network/recvmmsg.lo.go obj/src/network/recvmsg.lo.go obj/src/network/res_init.lo.go obj/src/network/res_mkquery.lo.go obj/src/network/res_msend.lo.go obj/src/network/res_send.lo.go obj/src/network/res_state.lo.go obj/src/network/resolvconf.lo.go obj/src/network/send.lo.go obj/src/network/sendmmsg.lo.go obj/src/network/sendmsg.lo.go obj/src/network/sendto.lo.go obj/src/network/serv.lo.go obj/src/network/setsockopt.lo.go obj/src/network/shutdown.lo.go obj/src/network/sockatmark.lo.go obj/src/network/socket.lo.go obj/src/network/socketpair.lo.go obj/src/passwd/fgetgrent.lo.go obj/src/passwd/fgetpwent.lo.go obj/src/passwd/getgr_a.lo.go obj/src/passwd/getgr_r.lo.go obj/src/passwd/getgrent.lo.go obj/src/passwd/getgrent_a.lo.go obj/src/passwd/getgrouplist.lo.go obj/src/passwd/getpw_a.lo.go obj/src/passwd/getpw_r.lo.go obj/src/passwd/getpwent.lo.go obj/src/passwd/getpwent_a.lo.go obj/src/passwd/getspent.lo.go obj/src/passwd/lckpwdf.lo.go obj/src/passwd/nscd_query.lo.go obj/src/passwd/putgrent.lo.go obj/src/passwd/putpwent.lo.go obj/src/passwd/putspent.lo.go obj/src/prng/__rand48_step.lo.go obj/src/prng/__seed48.lo.go obj/src/prng/drand48.lo.go obj/src/prng/lcong48.lo.go obj/src/prng/lrand48.lo.go obj/src/prng/mrand48.lo.go obj/src/prng/rand.lo.go obj/src/prng/rand_r.lo.go obj/src/prng/random.lo.go obj/src/prng/seed48.lo.go obj/src/prng/srand48.lo.go obj/src/process/execl.lo.go obj/src/process/execle.lo.go obj/src/process/execlp.lo.go obj/src/process/execv.lo.go obj/src/process/execve.lo.go obj/src/process/execvp.lo.go obj/src/process/fexecve.lo.go obj/src/process/fork.lo.go obj/src/process/posix_spawn_file_actions_addchdir.lo.go obj/src/process/posix_spawn_file_actions_addclose.lo.go obj/src/process/posix_spawn_file_actions_adddup2.lo.go obj/src/process/posix_spawn_file_actions_addfchdir.lo.go obj/src/process/posix_spawn_file_actions_addopen.lo.go obj/src/process/posix_spawn_file_actions_destroy.lo.go obj/src/process/posix_spawn_file_actions_init.lo.go obj/src/process/posix_spawnattr_destroy.lo.go obj/src/process/posix_spawnattr_getflags.lo.go obj/src/process/posix_spawnattr_getpgroup.lo.go obj/src/process/posix_spawnattr_getsigdefault.lo.go obj/src/process/posix_spawnattr_getsigmask.lo.go obj/src/process/posix_spawnattr_init.lo.go obj/src/process/posix_spawnattr_sched.lo.go obj/src/process/posix_spawnattr_setflags.lo.go obj/src/process/posix_spawnattr_setpgroup.lo.go obj/src/process/posix_spawnattr_setsigdefault.lo.go obj/src/process/posix_spawnattr_setsigmask.lo.go obj/src/process/vfork.lo.go obj/src/process/wait.lo.go obj/src/process/waitid.lo.go obj/src/process/waitpid.lo.go obj/src/regex/fnmatch.lo.go obj/src/regex/glob.lo.go obj/src/regex/regcomp.lo.go obj/src/regex/regerror.lo.go obj/src/regex/regexec.lo.go obj/src/regex/tre-mem.lo.go obj/src/sched/affinity.lo.go obj/src/sched/sched_cpucount.lo.go obj/src/sched/sched_get_priority_max.lo.go obj/src/sched/sched_getparam.lo.go obj/src/sched/sched_getscheduler.lo.go obj/src/sched/sched_rr_get_interval.lo.go obj/src/sched/sched_setparam.lo.go obj/src/sched/sched_setscheduler.lo.go obj/src/search/hsearch.lo.go obj/src/search/insque.lo.go obj/src/search/lsearch.lo.go obj/src/search/tdelete.lo.go obj/src/search/tdestroy.lo.go obj/src/search/tfind.lo.go obj/src/search/tsearch.lo.go obj/src/search/twalk.lo.go obj/src/select/poll.lo.go obj/src/select/ppoll.lo.go obj/src/select/pselect.lo.go obj/src/select/select.lo.go obj/src/signal/block.lo.go obj/src/signal/getitimer.lo.go obj/src/signal/kill.lo.go obj/src/signal/killpg.lo.go obj/src/signal/psiginfo.lo.go obj/src/signal/psignal.lo.go obj/src/signal/raise.lo.go obj/src/signal/restore.lo.go obj/src/signal/setitimer.lo.go obj/src/signal/sigaction.lo.go obj/src/signal/sigaddset.lo.go obj/src/signal/sigaltstack.lo.go obj/src/signal/sigandset.lo.go obj/src/signal/sigdelset.lo.go obj/src/signal/sigemptyset.lo.go obj/src/signal/sigfillset.lo.go obj/src/signal/sigisemptyset.lo.go obj/src/signal/sigismember.lo.go obj/src/signal/sigorset.lo.go obj/src/signal/sigpending.lo.go obj/src/signal/sigprocmask.lo.go obj/src/signal/sigqueue.lo.go obj/src/signal/sigrtmax.lo.go obj/src/signal/sigrtmin.lo.go obj/src/signal/sigsetjmp.lo.go obj/src/signal/sigsetjmp_tail.lo.go obj/src/signal/sigsuspend.lo.go obj/src/signal/sigtimedwait.lo.go obj/src/signal/sigwait.lo.go obj/src/signal/sigwaitinfo.lo.go obj/src/stat/__xstat.lo.go obj/src/stat/chmod.lo.go obj/src/stat/fchmod.lo.go obj/src/stat/fchmodat.lo.go obj/src/stat/fstat.lo.go obj/src/stat/fstatat.lo.go obj/src/stat/futimens.lo.go obj/src/stat/futimesat.lo.go obj/src/stat/lchmod.lo.go obj/src/stat/lstat.lo.go obj/src/stat/mkdir.lo.go obj/src/stat/mkdirat.lo.go obj/src/stat/mkfifo.lo.go obj/src/stat/mkfifoat.lo.go obj/src/stat/mknod.lo.go obj/src/stat/mknodat.lo.go obj/src/stat/stat.lo.go obj/src/stat/statvfs.lo.go obj/src/stat/umask.lo.go obj/src/stat/utimensat.lo.go obj/src/stdio/__fclose_ca.lo.go obj/src/stdio/__fdopen.lo.go obj/src/stdio/__fmodeflags.lo.go obj/src/stdio/__fopen_rb_ca.lo.go obj/src/stdio/__overflow.lo.go obj/src/stdio/__stdio_close.lo.go obj/src/stdio/__stdio_exit.lo.go obj/src/stdio/__stdio_read.lo.go obj/src/stdio/__stdio_seek.lo.go obj/src/stdio/__stdio_write.lo.go obj/src/stdio/__stdout_write.lo.go obj/src/stdio/__toread.lo.go obj/src/stdio/__towrite.lo.go obj/src/stdio/__uflow.lo.go obj/src/stdio/asprintf.lo.go obj/src/stdio/clearerr.lo.go obj/src/stdio/dprintf.lo.go obj/src/stdio/ext.lo.go obj/src/stdio/ext2.lo.go obj/src/stdio/fclose.lo.go obj/src/stdio/feof.lo.go obj/src/stdio/ferror.lo.go obj/src/stdio/fflush.lo.go obj/src/stdio/fgetc.lo.go obj/src/stdio/fgetln.lo.go obj/src/stdio/fgetpos.lo.go obj/src/stdio/fgets.lo.go obj/src/stdio/fgetwc.lo.go obj/src/stdio/fgetws.lo.go obj/src/stdio/fileno.lo.go obj/src/stdio/flockfile.lo.go obj/src/stdio/fmemopen.lo.go obj/src/stdio/fopen.lo.go obj/src/stdio/fopencookie.lo.go obj/src/stdio/fprintf.lo.go obj/src/stdio/fputc.lo.go obj/src/stdio/fputs.lo.go obj/src/stdio/fputwc.lo.go obj/src/stdio/fputws.lo.go obj/src/stdio/fread.lo.go obj/src/stdio/freopen.lo.go obj/src/stdio/fscanf.lo.go obj/src/stdio/fseek.lo.go obj/src/stdio/fsetpos.lo.go obj/src/stdio/ftell.lo.go obj/src/stdio/ftrylockfile.lo.go obj/src/stdio/funlockfile.lo.go obj/src/stdio/fwide.lo.go obj/src/stdio/fwprintf.lo.go obj/src/stdio/fwrite.lo.go obj/src/stdio/fwscanf.lo.go obj/src/stdio/getc.lo.go obj/src/stdio/getc_unlocked.lo.go obj/src/stdio/getchar.lo.go obj/src/stdio/getchar_unlocked.lo.go obj/src/stdio/getdelim.lo.go obj/src/stdio/getline.lo.go obj/src/stdio/gets.lo.go obj/src/stdio/getw.lo.go obj/src/stdio/getwc.lo.go obj/src/stdio/getwchar.lo.go obj/src/stdio/ofl.lo.go obj/src/stdio/ofl_add.lo.go obj/src/stdio/open_memstream.lo.go obj/src/stdio/open_wmemstream.lo.go obj/src/stdio/pclose.lo.go obj/src/stdio/perror.lo.go obj/src/stdio/printf.lo.go obj/src/stdio/putc.lo.go obj/src/stdio/putc_unlocked.lo.go obj/src/stdio/putchar.lo.go obj/src/stdio/putchar_unlocked.lo.go obj/src/stdio/puts.lo.go obj/src/stdio/putw.lo.go obj/src/stdio/putwc.lo.go obj/src/stdio/putwchar.lo.go obj/src/stdio/remove.lo.go obj/src/stdio/rename.lo.go obj/src/stdio/rewind.lo.go obj/src/stdio/scanf.lo.go obj/src/stdio/setbuf.lo.go obj/src/stdio/setbuffer.lo.go obj/src/stdio/setlinebuf.lo.go obj/src/stdio/setvbuf.lo.go obj/src/stdio/snprintf.lo.go obj/src/stdio/sprintf.lo.go obj/src/stdio/sscanf.lo.go obj/src/stdio/stderr.lo.go obj/src/stdio/stdin.lo.go obj/src/stdio/stdout.lo.go obj/src/stdio/swprintf.lo.go obj/src/stdio/swscanf.lo.go obj/src/stdio/tempnam.lo.go obj/src/stdio/tmpfile.lo.go obj/src/stdio/tmpnam.lo.go obj/src/stdio/ungetc.lo.go obj/src/stdio/ungetwc.lo.go obj/src/stdio/vasprintf.lo.go obj/src/stdio/vdprintf.lo.go obj/src/stdio/vfprintf.lo.go obj/src/stdio/vfscanf.lo.go obj/src/stdio/vfwprintf.lo.go obj/src/stdio/vfwscanf.lo.go obj/src/stdio/vprintf.lo.go obj/src/stdio/vscanf.lo.go obj/src/stdio/vsnprintf.lo.go obj/src/stdio/vsprintf.lo.go obj/src/stdio/vsscanf.lo.go obj/src/stdio/vswprintf.lo.go obj/src/stdio/vswscanf.lo.go obj/src/stdio/vwprintf.lo.go obj/src/stdio/vwscanf.lo.go obj/src/stdio/wprintf.lo.go obj/src/stdio/wscanf.lo.go obj/src/stdlib/abs.lo.go obj/src/stdlib/atof.lo.go obj/src/stdlib/atoi.lo.go obj/src/stdlib/atol.lo.go obj/src/stdlib/atoll.lo.go obj/src/stdlib/bsearch.lo.go obj/src/stdlib/div.lo.go obj/src/stdlib/ecvt.lo.go obj/src/stdlib/fcvt.lo.go obj/src/stdlib/gcvt.lo.go obj/src/stdlib/imaxabs.lo.go obj/src/stdlib/imaxdiv.lo.go obj/src/stdlib/labs.lo.go obj/src/stdlib/ldiv.lo.go obj/src/stdlib/llabs.lo.go obj/src/stdlib/lldiv.lo.go obj/src/stdlib/qsort.lo.go obj/src/stdlib/qsort_nr.lo.go obj/src/stdlib/strtod.lo.go obj/src/stdlib/strtol.lo.go obj/src/stdlib/wcstod.lo.go obj/src/stdlib/wcstol.lo.go obj/src/string/bcmp.lo.go obj/src/string/bcopy.lo.go obj/src/string/bzero.lo.go obj/src/string/explicit_bzero.lo.go obj/src/string/index.lo.go obj/src/string/memccpy.lo.go obj/src/string/memchr.lo.go obj/src/string/memcmp.lo.go obj/src/string/memmem.lo.go obj/src/string/memmove.lo.go obj/src/string/mempcpy.lo.go obj/src/string/memrchr.lo.go obj/src/string/memset.lo.go obj/src/string/rindex.lo.go obj/src/string/stpcpy.lo.go obj/src/string/stpncpy.lo.go obj/src/string/strcasecmp.lo.go obj/src/string/strcasestr.lo.go obj/src/string/strcat.lo.go obj/src/string/strchr.lo.go obj/src/string/strchrnul.lo.go obj/src/string/strcmp.lo.go obj/src/string/strcpy.lo.go obj/src/string/strcspn.lo.go obj/src/string/strdup.lo.go obj/src/string/strerror_r.lo.go obj/src/string/strlcat.lo.go obj/src/string/strlcpy.lo.go obj/src/string/strlen.lo.go obj/src/string/strncasecmp.lo.go obj/src/string/strncat.lo.go obj/src/string/strncmp.lo.go obj/src/string/strncpy.lo.go obj/src/string/strndup.lo.go obj/src/string/strnlen.lo.go obj/src/string/strpbrk.lo.go obj/src/string/strrchr.lo.go obj/src/string/strsep.lo.go obj/src/string/strsignal.lo.go obj/src/string/strspn.lo.go obj/src/string/strstr.lo.go obj/src/string/strtok.lo.go obj/src/string/strtok_r.lo.go obj/src/string/strverscmp.lo.go obj/src/string/swab.lo.go obj/src/string/wcpcpy.lo.go obj/src/string/wcpncpy.lo.go obj/src/string/wcscasecmp.lo.go obj/src/string/wcscasecmp_l.lo.go obj/src/string/wcscat.lo.go obj/src/string/wcschr.lo.go obj/src/string/wcscmp.lo.go obj/src/string/wcscpy.lo.go obj/src/string/wcscspn.lo.go obj/src/string/wcsdup.lo.go obj/src/string/wcslen.lo.go obj/src/string/wcsncasecmp.lo.go obj/src/string/wcsncasecmp_l.lo.go obj/src/string/wcsncat.lo.go obj/src/string/wcsncmp.lo.go obj/src/string/wcsncpy.lo.go obj/src/string/wcsnlen.lo.go obj/src/string/wcspbrk.lo.go obj/src/string/wcsrchr.lo.go obj/src/string/wcsspn.lo.go obj/src/string/wcsstr.lo.go obj/src/string/wcstok.lo.go obj/src/string/wcswcs.lo.go obj/src/string/wmemchr.lo.go obj/src/string/wmemcmp.lo.go obj/src/string/wmemcpy.lo.go obj/src/string/wmemmove.lo.go obj/src/string/wmemset.lo.go obj/src/temp/mkdtemp.lo.go obj/src/temp/mkostemp.lo.go obj/src/temp/mkostemps.lo.go obj/src/temp/mkstemp.lo.go obj/src/temp/mkstemps.lo.go obj/src/temp/mktemp.lo.go obj/src/termios/cfgetospeed.lo.go obj/src/termios/cfmakeraw.lo.go obj/src/termios/cfsetospeed.lo.go obj/src/termios/tcdrain.lo.go obj/src/termios/tcflow.lo.go obj/src/termios/tcflush.lo.go obj/src/termios/tcgetattr.lo.go obj/src/termios/tcgetsid.lo.go obj/src/termios/tcgetwinsize.lo.go obj/src/termios/tcsendbreak.lo.go obj/src/termios/tcsetattr.lo.go obj/src/termios/tcsetwinsize.lo.go obj/src/thread/pthread_kill.lo.go obj/src/thread/pthread_testcancel.lo.go obj/src/thread/sem_destroy.lo.go obj/src/thread/sem_getvalue.lo.go obj/src/thread/sem_init.lo.go obj/src/thread/sem_open.lo.go obj/src/thread/sem_post.lo.go obj/src/thread/sem_timedwait.lo.go obj/src/thread/sem_trywait.lo.go obj/src/thread/sem_unlink.lo.go obj/src/thread/sem_wait.lo.go obj/src/time/__map_file.lo.go obj/src/time/__month_to_secs.lo.go obj/src/time/__secs_to_tm.lo.go obj/src/time/__tm_to_secs.lo.go obj/src/time/__tz.lo.go obj/src/time/__year_to_secs.lo.go obj/src/time/asctime.lo.go obj/src/time/asctime_r.lo.go obj/src/time/clock.lo.go obj/src/time/clock_getcpuclockid.lo.go obj/src/time/clock_getres.lo.go obj/src/time/clock_gettime.lo.go obj/src/time/clock_nanosleep.lo.go obj/src/time/clock_settime.lo.go obj/src/time/ctime.lo.go obj/src/time/ctime_r.lo.go obj/src/time/difftime.lo.go obj/src/time/ftime.lo.go obj/src/time/getdate.lo.go obj/src/time/gettimeofday.lo.go obj/src/time/gmtime.lo.go obj/src/time/gmtime_r.lo.go obj/src/time/localtime.lo.go obj/src/time/localtime_r.lo.go obj/src/time/mktime.lo.go obj/src/time/nanosleep.lo.go obj/src/time/strftime.lo.go obj/src/time/strptime.lo.go obj/src/time/time.lo.go obj/src/time/timegm.lo.go obj/src/time/timer_delete.lo.go obj/src/time/timer_getoverrun.lo.go obj/src/time/timer_gettime.lo.go obj/src/time/timer_settime.lo.go obj/src/time/times.lo.go obj/src/time/timespec_get.lo.go obj/src/time/utime.lo.go obj/src/time/wcsftime.lo.go obj/src/unistd/_exit.lo.go obj/src/unistd/access.lo.go obj/src/unistd/acct.lo.go obj/src/unistd/alarm.lo.go obj/src/unistd/chdir.lo.go obj/src/unistd/chown.lo.go obj/src/unistd/close.lo.go obj/src/unistd/ctermid.lo.go obj/src/unistd/dup.lo.go obj/src/unistd/dup2.lo.go obj/src/unistd/dup3.lo.go obj/src/unistd/faccessat.lo.go obj/src/unistd/fchdir.lo.go obj/src/unistd/fchown.lo.go obj/src/unistd/fchownat.lo.go obj/src/unistd/fdatasync.lo.go obj/src/unistd/fsync.lo.go obj/src/unistd/ftruncate.lo.go obj/src/unistd/getcwd.lo.go obj/src/unistd/getegid.lo.go obj/src/unistd/geteuid.lo.go obj/src/unistd/getgid.lo.go obj/src/unistd/getgroups.lo.go obj/src/unistd/gethostname.lo.go obj/src/unistd/getlogin.lo.go obj/src/unistd/getlogin_r.lo.go obj/src/unistd/getpgid.lo.go obj/src/unistd/getpgrp.lo.go obj/src/unistd/getpid.lo.go obj/src/unistd/getppid.lo.go obj/src/unistd/getsid.lo.go obj/src/unistd/getuid.lo.go obj/src/unistd/isatty.lo.go obj/src/unistd/lchown.lo.go obj/src/unistd/link.lo.go obj/src/unistd/linkat.lo.go obj/src/unistd/lseek.lo.go obj/src/unistd/nice.lo.go obj/src/unistd/pause.lo.go obj/src/unistd/pipe.lo.go obj/src/unistd/pipe2.lo.go obj/src/unistd/posix_close.lo.go obj/src/unistd/pread.lo.go obj/src/unistd/preadv.lo.go obj/src/unistd/pwrite.lo.go obj/src/unistd/pwritev.lo.go obj/src/unistd/read.lo.go obj/src/unistd/readlink.lo.go obj/src/unistd/readlinkat.lo.go obj/src/unistd/readv.lo.go obj/src/unistd/renameat.lo.go obj/src/unistd/rmdir.lo.go obj/src/unistd/setgid.lo.go obj/src/unistd/setpgid.lo.go obj/src/unistd/setpgrp.lo.go obj/src/unistd/setsid.lo.go obj/src/unistd/setuid.lo.go obj/src/unistd/setxid.lo.go obj/src/unistd/sleep.lo.go obj/src/unistd/symlink.lo.go obj/src/unistd/symlinkat.lo.go obj/src/unistd/sync.lo.go obj/src/unistd/tcgetpgrp.lo.go obj/src/unistd/tcsetpgrp.lo.go obj/src/unistd/truncate.lo.go obj/src/unistd/ttyname.lo.go obj/src/unistd/ttyname_r.lo.go obj/src/unistd/ualarm.lo.go obj/src/unistd/unlink.lo.go obj/src/unistd/unlinkat.lo.go obj/src/unistd/usleep.lo.go obj/src/unistd/write.lo.go obj/src/unistd/writev.lo.go obj/compat/time32/__xstat.lo.go obj/compat/time32/adjtime32.lo.go obj/compat/time32/adjtimex_time32.lo.go obj/compat/time32/clock_adjtime32.lo.go obj/compat/time32/clock_getres_time32.lo.go obj/compat/time32/clock_gettime32.lo.go obj/compat/time32/clock_nanosleep_time32.lo.go obj/compat/time32/clock_settime32.lo.go obj/compat/time32/ctime32.lo.go obj/compat/time32/ctime32_r.lo.go obj/compat/time32/difftime32.lo.go obj/compat/time32/fstat_time32.lo.go obj/compat/time32/fstatat_time32.lo.go obj/compat/time32/ftime32.lo.go obj/compat/time32/futimens_time32.lo.go obj/compat/time32/futimes_time32.lo.go obj/compat/time32/futimesat_time32.lo.go obj/compat/time32/getitimer_time32.lo.go obj/compat/time32/getrusage_time32.lo.go obj/compat/time32/gettimeofday_time32.lo.go obj/compat/time32/gmtime32.lo.go obj/compat/time32/gmtime32_r.lo.go obj/compat/time32/localtime32.lo.go obj/compat/time32/localtime32_r.lo.go obj/compat/time32/lstat_time32.lo.go obj/compat/time32/lutimes_time32.lo.go obj/compat/time32/mktime32.lo.go obj/compat/time32/nanosleep_time32.lo.go obj/compat/time32/ppoll_time32.lo.go obj/compat/time32/pselect_time32.lo.go obj/compat/time32/recvmmsg_time32.lo.go obj/compat/time32/select_time32.lo.go obj/compat/time32/semtimedop_time32.lo.go obj/compat/time32/setitimer_time32.lo.go obj/compat/time32/settimeofday_time32.lo.go obj/compat/time32/sigtimedwait_time32.lo.go obj/compat/time32/stat_time32.lo.go obj/compat/time32/stime32.lo.go obj/compat/time32/time32.lo.go obj/compat/time32/time32gm.lo.go obj/compat/time32/timer_gettime32.lo.go obj/compat/time32/timer_settime32.lo.go obj/compat/time32/timerfd_gettime32.lo.go obj/compat/time32/timerfd_settime32.lo.go obj/compat/time32/timespec_get_time32.lo.go obj/compat/time32/utime_time32.lo.go obj/compat/time32/utimensat_time32.lo.go obj/compat/time32/utimes_time32.lo.go obj/compat/time32/wait3_time32.lo.go obj/compat/time32/wait4_time32.lo.go -lgcc -lgcc_eh', DO NOT EDIT.
 
 //go:build linux && arm
 
@@ -12739,7 +12739,6 @@ func X__ctype_b_loc(tls *TLS) (r uintptr) {
 	return uintptr(unsafe.Pointer(&_ptable))
 }
 
-const BLX = "blx"
 const CLOCKS_PER_SEC = 1000000
 const CLOCK_BOOTTIME = 7
 const CLOCK_BOOTTIME_ALARM = 9
@@ -12885,8 +12884,6 @@ const TP_OFFSET = 0
 const __ATTRP_C11_THREAD = 4294967295
 const __CCGO_SIZEOF_GO_MUTEX = 8
 const __SU = 1
-const a_post_llsc = "a_barrier"
-const a_pre_llsc = "a_barrier"
 const a_spin = "a_barrier"
 const pthread = "__pthread"
 const tls_mod_off_t = "size_t"
@@ -24230,7 +24227,7 @@ const L_XTND = 2
 func _dummy(tls *TLS, old uintptr, new1 uintptr) {
 }
 
-func Xclearenv(tls *TLS) (r int32) {
+func ___musl_clearenv(tls *TLS) (r int32) {
 	if __ccgo_strace {
 		trc("tls=%v, (%v:)", tls, origin(2))
 		defer func() { trc("-> %v", r) }()
@@ -24340,7 +24337,7 @@ oom:
 
 var _oldenv uintptr
 
-func Xputenv(tls *TLS, s uintptr) (r int32) {
+func ___musl_putenv(tls *TLS, s uintptr) (r int32) {
 	if __ccgo_strace {
 		trc("tls=%v s=%v, (%v:)", tls, s, origin(2))
 		defer func() { trc("-> %v", r) }()
@@ -24426,7 +24423,7 @@ var _env_alloced uintptr
 
 var _env_alloced_n Tsize_t
 
-func Xsetenv(tls *TLS, var1 uintptr, value uintptr, overwrite int32) (r int32) {
+func ___musl_setenv(tls *TLS, var1 uintptr, value uintptr, overwrite int32) (r int32) {
 	if __ccgo_strace {
 		trc("tls=%v var1=%v value=%v overwrite=%v, (%v:)", tls, var1, value, overwrite, origin(2))
 		defer func() { trc("-> %v", r) }()
@@ -24460,7 +24457,7 @@ func Xsetenv(tls *TLS, var1 uintptr, value uintptr, overwrite int32) (r int32) {
 func _dummy2(tls *TLS, old uintptr, new1 uintptr) {
 }
 
-func Xunsetenv(tls *TLS, name uintptr) (r int32) {
+func ___musl_unsetenv(tls *TLS, name uintptr) (r int32) {
 	if __ccgo_strace {
 		trc("tls=%v name=%v, (%v:)", tls, name, origin(2))
 		defer func() { trc("-> %v", r) }()
@@ -30937,9 +30934,8 @@ func Xbindtextdomain(tls *TLS, domainname uintptr, dirname uintptr) (r uintptr) 
 	bp := tls.Alloc(16)
 	defer tls.Free(16)
 	var dirlen, domlen Tsize_t
-	var old, v4 int32
-	var p3, q, v3 uintptr
-	_, _, _, _, _, _, _ = dirlen, domlen, old, p3, q, v3, v4
+	var p2, q uintptr
+	_, _, _, _ = dirlen, domlen, p2, q
 	if !(domainname != 0) {
 		return uintptr(0)
 	}
@@ -30954,64 +30950,55 @@ func Xbindtextdomain(tls *TLS, domainname uintptr, dirname uintptr) (r uintptr) 
 		return uintptr(0)
 	}
 	___lock(tls, uintptr(unsafe.Pointer(&_lock1)))
-	p3 = AtomicLoadPUintptr(uintptr(unsafe.Pointer(&_bindings)))
+	p2 = AtomicLoadPUintptr(uintptr(unsafe.Pointer(&_bindings)))
 	for {
-		if !(p3 != 0) {
+		if !(p2 != 0) {
 			break
 		}
-		if !(Xstrcmp(tls, (*Tbinding)(unsafe.Pointer(p3)).Fdomainname, domainname) != 0) && !(Xstrcmp(tls, (*Tbinding)(unsafe.Pointer(p3)).Fdirname, dirname) != 0) {
+		if !(Xstrcmp(tls, (*Tbinding)(unsafe.Pointer(p2)).Fdomainname, domainname) != 0) && !(Xstrcmp(tls, (*Tbinding)(unsafe.Pointer(p2)).Fdirname, dirname) != 0) {
 			break
 		}
 		goto _1
 	_1:
 		;
-		p3 = (*Tbinding)(unsafe.Pointer(p3)).Fnext
+		p2 = (*Tbinding)(unsafe.Pointer(p2)).Fnext
 	}
-	if !(p3 != 0) {
-		p3 = Xcalloc(tls, uint32(20)+domlen+dirlen+uint32(2), uint32(1))
-		if !(p3 != 0) {
+	if !(p2 != 0) {
+		p2 = Xcalloc(tls, uint32(20)+domlen+dirlen+uint32(2), uint32(1))
+		if !(p2 != 0) {
 			___unlock(tls, uintptr(unsafe.Pointer(&_lock1)))
 			return uintptr(0)
 		}
-		(*Tbinding)(unsafe.Pointer(p3)).Fnext = AtomicLoadPUintptr(uintptr(unsafe.Pointer(&_bindings)))
-		(*Tbinding)(unsafe.Pointer(p3)).Fdirlen = Int32FromUint32(dirlen)
-		(*Tbinding)(unsafe.Pointer(p3)).Fdomainname = p3 + 20
-		(*Tbinding)(unsafe.Pointer(p3)).Fdirname = p3 + 20 + uintptr(domlen) + uintptr(1)
-		_memcpy(tls, (*Tbinding)(unsafe.Pointer(p3)).Fdomainname, domainname, domlen+uint32(1))
-		_memcpy(tls, (*Tbinding)(unsafe.Pointer(p3)).Fdirname, dirname, dirlen+uint32(1))
-		v3 = uintptr(unsafe.Pointer(&_bindings))
-		_a_barrier(tls)
-		for cond := true; cond; cond = old == int32(AtomicLoadPUintptr(uintptr(unsafe.Pointer(&_bindings)))) && !(_a_sc(tls, v3, int32(p3)) != 0) {
-			old = _a_ll(tls, v3)
-		}
-		_a_barrier(tls)
-		v4 = old
-		goto _5
-	_5:
-		_ = uintptr(v4)
+		(*Tbinding)(unsafe.Pointer(p2)).Fnext = AtomicLoadPUintptr(uintptr(unsafe.Pointer(&_bindings)))
+		(*Tbinding)(unsafe.Pointer(p2)).Fdirlen = Int32FromUint32(dirlen)
+		(*Tbinding)(unsafe.Pointer(p2)).Fdomainname = p2 + 20
+		(*Tbinding)(unsafe.Pointer(p2)).Fdirname = p2 + 20 + uintptr(domlen) + uintptr(1)
+		_memcpy(tls, (*Tbinding)(unsafe.Pointer(p2)).Fdomainname, domainname, domlen+uint32(1))
+		_memcpy(tls, (*Tbinding)(unsafe.Pointer(p2)).Fdirname, dirname, dirlen+uint32(1))
+		_ = uintptr(_a_cas(tls, uintptr(unsafe.Pointer(&_bindings)), int32(AtomicLoadPUintptr(uintptr(unsafe.Pointer(&_bindings)))), int32(p2)))
 		goto _2
 	_2:
 	}
 	_a_barrier(tls)
-	AtomicStorePInt32(p3+8, int32(1))
+	AtomicStorePInt32(p2+8, int32(1))
 	_a_barrier(tls)
 	q = AtomicLoadPUintptr(uintptr(unsafe.Pointer(&_bindings)))
 	for {
 		if !(q != 0) {
 			break
 		}
-		if !(Xstrcmp(tls, (*Tbinding)(unsafe.Pointer(q)).Fdomainname, domainname) != 0) && q != p3 {
+		if !(Xstrcmp(tls, (*Tbinding)(unsafe.Pointer(q)).Fdomainname, domainname) != 0) && q != p2 {
 			_a_barrier(tls)
 			AtomicStorePInt32(q+8, 0)
 			_a_barrier(tls)
 		}
-		goto _6
-	_6:
+		goto _3
+	_3:
 		;
 		q = (*Tbinding)(unsafe.Pointer(q)).Fnext
 	}
 	___unlock(tls, uintptr(unsafe.Pointer(&_lock1)))
-	return (*Tbinding)(unsafe.Pointer(p3)).Fdirname
+	return (*Tbinding)(unsafe.Pointer(p2)).Fdirname
 }
 
 var _catnames = [6][12]uint8{
@@ -31055,13 +31042,13 @@ func Xdcngettext(tls *TLS, domainname uintptr, msgid1 uintptr, msgid2 uintptr, n
 	bp := tls.Alloc(80)
 	defer tls.Free(80)
 	var alt_modlen, catlen, dirlen, domlen, l, loclen, modlen, rem, v5 Tsize_t
-	var catname, csp, dirname, lm, loc, locname, locp, map1, modname, name, old_cats, p2, q, r, rule, trans, v3, v8 uintptr
-	var np, plural, v23 uint32
-	var old, old_errno, v11, v12 int32
+	var catname, csp, dirname, lm, loc, locname, locp, map1, modname, name, old_cats, p1, q, r, rule, trans, v3 uintptr
+	var np, plural, v20 uint32
+	var old_errno, v11, v12 int32
 	var v6 t__predefined_size_t
 	var _ /* map_size at bp+0 */ Tsize_t
 	var _ /* z at bp+4 */ uintptr
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = alt_modlen, catlen, catname, csp, dirlen, dirname, domlen, l, lm, loc, loclen, locname, locp, map1, modlen, modname, name, np, old, old_cats, old_errno, p2, plural, q, r, rem, rule, trans, v11, v12, v23, v3, v5, v6, v8
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = alt_modlen, catlen, catname, csp, dirlen, dirname, domlen, l, lm, loc, loclen, locname, locp, map1, modlen, modname, name, np, old_cats, old_errno, p1, plural, q, r, rem, rule, trans, v11, v12, v20, v3, v5, v6
 	defer func() { Xrealloc(tls, name, 0) }()
 	loc = (*t__pthread)(unsafe.Pointer(uintptr(___get_tp(tls)))).Flocale
 	old_errno = **(**int32)(__ccgo_up(X__errno_location(tls)))
@@ -31111,20 +31098,20 @@ notrans:
 	return v3
 _2:
 	;
-	p2 = AtomicLoadPUintptr(uintptr(unsafe.Pointer(&_cats)))
+	p1 = AtomicLoadPUintptr(uintptr(unsafe.Pointer(&_cats)))
 	for {
-		if !(p2 != 0) {
+		if !(p1 != 0) {
 			break
 		}
-		if (*Tmsgcat)(unsafe.Pointer(p2)).Fbinding == q && (*Tmsgcat)(unsafe.Pointer(p2)).Flm == lm && (*Tmsgcat)(unsafe.Pointer(p2)).Fcat == category {
+		if (*Tmsgcat)(unsafe.Pointer(p1)).Fbinding == q && (*Tmsgcat)(unsafe.Pointer(p1)).Flm == lm && (*Tmsgcat)(unsafe.Pointer(p1)).Fcat == category {
 			break
 		}
 		goto _4
 	_4:
 		;
-		p2 = (*Tmsgcat)(unsafe.Pointer(p2)).Fnext
+		p1 = (*Tmsgcat)(unsafe.Pointer(p1)).Fnext
 	}
-	if !(p2 != 0) {
+	if !(p1 != 0) {
 		dirname = (*Tbinding)(unsafe.Pointer(q)).Fdirname
 		locname = lm + 8
 		catname = uintptr(unsafe.Pointer(&_catnames)) + uintptr(category)*12
@@ -31173,19 +31160,19 @@ _2:
 		if !(map1 != 0) {
 			goto notrans
 		}
-		p2 = Xcalloc(tls, uint32(32), uint32(1))
-		if !(p2 != 0) {
+		p1 = Xcalloc(tls, uint32(32), uint32(1))
+		if !(p1 != 0) {
 			X__munmap(tls, map1, **(**Tsize_t)(__ccgo_up(bp)))
 			goto notrans
 		}
-		(*Tmsgcat)(unsafe.Pointer(p2)).Fcat = category
-		(*Tmsgcat)(unsafe.Pointer(p2)).Fbinding = q
-		(*Tmsgcat)(unsafe.Pointer(p2)).Flm = lm
-		(*Tmsgcat)(unsafe.Pointer(p2)).Fmap1 = map1
-		(*Tmsgcat)(unsafe.Pointer(p2)).Fmap_size = **(**Tsize_t)(__ccgo_up(bp))
+		(*Tmsgcat)(unsafe.Pointer(p1)).Fcat = category
+		(*Tmsgcat)(unsafe.Pointer(p1)).Fbinding = q
+		(*Tmsgcat)(unsafe.Pointer(p1)).Flm = lm
+		(*Tmsgcat)(unsafe.Pointer(p1)).Fmap1 = map1
+		(*Tmsgcat)(unsafe.Pointer(p1)).Fmap_size = **(**Tsize_t)(__ccgo_up(bp))
 		rule = __ccgo_ts + 381
 		np = uint32(2)
-		r = X__mo_lookup(tls, (*Tmsgcat)(unsafe.Pointer(p2)).Fmap1, (*Tmsgcat)(unsafe.Pointer(p2)).Fmap_size, __ccgo_ts)
+		r = X__mo_lookup(tls, (*Tmsgcat)(unsafe.Pointer(p1)).Fmap1, (*Tmsgcat)(unsafe.Pointer(p1)).Fmap_size, __ccgo_ts)
 		for r != 0 && Xstrncmp(tls, r, __ccgo_ts+387, uint32(13)) != 0 {
 			**(**uintptr)(__ccgo_up(bp + 4)) = Xstrchr(tls, r, int32('\n'))
 			if **(**uintptr)(__ccgo_up(bp + 4)) != 0 {
@@ -31231,24 +31218,15 @@ _2:
 				}
 			}
 		}
-		(*Tmsgcat)(unsafe.Pointer(p2)).Fnplurals = Int32FromUint32(np)
-		(*Tmsgcat)(unsafe.Pointer(p2)).Fplural_rule = rule
+		(*Tmsgcat)(unsafe.Pointer(p1)).Fnplurals = Int32FromUint32(np)
+		(*Tmsgcat)(unsafe.Pointer(p1)).Fplural_rule = rule
 		for {
 			old_cats = AtomicLoadPUintptr(uintptr(unsafe.Pointer(&_cats)))
-			(*Tmsgcat)(unsafe.Pointer(p2)).Fnext = old_cats
-			goto _22
-		_22:
+			(*Tmsgcat)(unsafe.Pointer(p1)).Fnext = old_cats
+			goto _19
+		_19:
 			;
-			v8 = uintptr(unsafe.Pointer(&_cats))
-			_a_barrier(tls)
-			for cond := true; cond; cond = old == int32(old_cats) && !(_a_sc(tls, v8, int32(p2)) != 0) {
-				old = _a_ll(tls, v8)
-			}
-			_a_barrier(tls)
-			v11 = old
-			goto _21
-		_21:
-			v3 = uintptr(v11)
+			v3 = uintptr(_a_cas(tls, uintptr(unsafe.Pointer(&_cats)), int32(old_cats), int32(p1)))
 			goto _18
 		_18:
 			;
@@ -31257,24 +31235,24 @@ _2:
 			}
 		}
 	}
-	trans = X__mo_lookup(tls, (*Tmsgcat)(unsafe.Pointer(p2)).Fmap1, (*Tmsgcat)(unsafe.Pointer(p2)).Fmap_size, msgid1)
+	trans = X__mo_lookup(tls, (*Tmsgcat)(unsafe.Pointer(p1)).Fmap1, (*Tmsgcat)(unsafe.Pointer(p1)).Fmap_size, msgid1)
 	if !(trans != 0) {
 		goto notrans
 	}
 	/* Non-plural-processing gettext forms pass a null pointer as
 	 * msgid2 to request that dcngettext suppress plural processing. */
-	if msgid2 != 0 && (*Tmsgcat)(unsafe.Pointer(p2)).Fnplurals != 0 {
-		plural = X__pleval(tls, (*Tmsgcat)(unsafe.Pointer(p2)).Fplural_rule, n)
-		if plural > Uint32FromInt32((*Tmsgcat)(unsafe.Pointer(p2)).Fnplurals) {
+	if msgid2 != 0 && (*Tmsgcat)(unsafe.Pointer(p1)).Fnplurals != 0 {
+		plural = X__pleval(tls, (*Tmsgcat)(unsafe.Pointer(p1)).Fplural_rule, n)
+		if plural > Uint32FromInt32((*Tmsgcat)(unsafe.Pointer(p1)).Fnplurals) {
 			goto notrans
 		}
 		for {
-			v23 = plural
+			v20 = plural
 			plural = plural - 1
-			if !(v23 != 0) {
+			if !(v20 != 0) {
 				break
 			}
-			rem = (*Tmsgcat)(unsafe.Pointer(p2)).Fmap_size - Uint32FromInt32(int32(trans)-int32((*Tmsgcat)(unsafe.Pointer(p2)).Fmap1))
+			rem = (*Tmsgcat)(unsafe.Pointer(p1)).Fmap_size - Uint32FromInt32(int32(trans)-int32((*Tmsgcat)(unsafe.Pointer(p1)).Fmap1))
 			l = Xstrnlen(tls, trans, rem)
 			if l+uint32(1) >= rem {
 				goto notrans
@@ -126853,7 +126831,7 @@ var _atfork_locks = [10]uintptr{
 	2: uintptr(unsafe.Pointer(&X__gettext_lockptr)),
 	3: uintptr(unsafe.Pointer(&X__locale_lockptr)),
 	4: uintptr(unsafe.Pointer(&X__random_lockptr)),
-	5: uintptr(unsafe.Pointer(&_dummy_lockptr)),
+	5: uintptr(unsafe.Pointer(&X__sem_open_lockptr)),
 	6: uintptr(unsafe.Pointer(&X__stdio_ofl_lockptr)),
 	7: uintptr(unsafe.Pointer(&X__syslog_lockptr)),
 	8: uintptr(unsafe.Pointer(&X__timezone_lockptr)),
@@ -133108,6 +133086,159 @@ func X__tre_mem_alloc_impl(tls *TLS, mem Ttre_mem_t, provided int32, provided_bl
 	return ptr
 }
 
+func Xsched_setaffinity(tls *TLS, tid Tpid_t, size Tsize_t, set uintptr) (r int32) {
+	if __ccgo_strace {
+		trc("tls=%v tid=%v size=%v set=%v, (%v:)", tls, tid, size, set, origin(2))
+		defer func() { trc("-> %v", r) }()
+	}
+	return X__syscall_ret(tls, Uint32FromInt32(X__syscall3(tls, int32(SYS_sched_setaffinity), tid, Int32FromUint32(size), int32(set))))
+}
+
+func Xpthread_setaffinity_np(tls *TLS, td Tpthread_t, size Tsize_t, set uintptr) (r int32) {
+	if __ccgo_strace {
+		trc("tls=%v td=%v size=%v set=%v, (%v:)", tls, td, size, set, origin(2))
+		defer func() { trc("-> %v", r) }()
+	}
+	return int32(-X__syscall3(tls, int32(SYS_sched_setaffinity), (*t__pthread)(unsafe.Pointer(td)).Ftid, Int32FromUint32(size), int32(set)))
+}
+
+func _do_getaffinity(tls *TLS, tid Tpid_t, size Tsize_t, set uintptr) (r int32) {
+	var ret int32
+	_ = ret
+	ret = X__syscall3(tls, int32(SYS_sched_getaffinity), tid, Int32FromUint32(size), int32(set))
+	if ret < 0 {
+		return ret
+	}
+	if Uint32FromInt32(ret) < size {
+		Xmemset(tls, set+uintptr(ret), 0, uint32(size-Uint32FromInt32(ret)))
+	}
+	return 0
+}
+
+func Xsched_getaffinity(tls *TLS, tid Tpid_t, size Tsize_t, set uintptr) (r int32) {
+	if __ccgo_strace {
+		trc("tls=%v tid=%v size=%v set=%v, (%v:)", tls, tid, size, set, origin(2))
+		defer func() { trc("-> %v", r) }()
+	}
+	return X__syscall_ret(tls, Uint32FromInt32(_do_getaffinity(tls, tid, size, set)))
+}
+
+func Xpthread_getaffinity_np(tls *TLS, td Tpthread_t, size Tsize_t, set uintptr) (r int32) {
+	if __ccgo_strace {
+		trc("tls=%v td=%v size=%v set=%v, (%v:)", tls, td, size, set, origin(2))
+		defer func() { trc("-> %v", r) }()
+	}
+	return -_do_getaffinity(tls, (*t__pthread)(unsafe.Pointer(td)).Ftid, size, set)
+}
+
+func X__sched_cpucount(tls *TLS, size Tsize_t, set uintptr) (r int32) {
+	if __ccgo_strace {
+		trc("tls=%v size=%v set=%v, (%v:)", tls, size, set, origin(2))
+		defer func() { trc("-> %v", r) }()
+	}
+	var cnt, i, j Tsize_t
+	var p uintptr
+	_, _, _, _ = cnt, i, j, p
+	cnt = uint32(0)
+	p = set
+	i = uint32(0)
+	for {
+		if !(i < size) {
+			break
+		}
+		j = uint32(0)
+		for {
+			if !(j < uint32(8)) {
+				break
+			}
+			if Int32FromUint8(**(**uint8)(__ccgo_up(p + uintptr(i))))&(int32(1)<<j) != 0 {
+				cnt = cnt + 1
+			}
+			goto _2
+		_2:
+			;
+			j = j + 1
+		}
+		goto _1
+	_1:
+		;
+		i = i + 1
+	}
+	return Int32FromUint32(cnt)
+}
+
+func Xsched_get_priority_max(tls *TLS, policy int32) (r int32) {
+	if __ccgo_strace {
+		trc("tls=%v policy=%v, (%v:)", tls, policy, origin(2))
+		defer func() { trc("-> %v", r) }()
+	}
+	return X__syscall_ret(tls, Uint32FromInt32(X__syscall1(tls, int32(SYS_sched_get_priority_max), policy)))
+}
+
+func Xsched_get_priority_min(tls *TLS, policy int32) (r int32) {
+	if __ccgo_strace {
+		trc("tls=%v policy=%v, (%v:)", tls, policy, origin(2))
+		defer func() { trc("-> %v", r) }()
+	}
+	return X__syscall_ret(tls, Uint32FromInt32(X__syscall1(tls, int32(SYS_sched_get_priority_min), policy)))
+}
+
+func Xsched_getparam(tls *TLS, pid Tpid_t, param uintptr) (r int32) {
+	if __ccgo_strace {
+		trc("tls=%v pid=%v param=%v, (%v:)", tls, pid, param, origin(2))
+		defer func() { trc("-> %v", r) }()
+	}
+	return X__syscall_ret(tls, Uint32FromInt32(-Int32FromInt32(ENOSYS)))
+}
+
+func Xsched_getscheduler(tls *TLS, pid Tpid_t) (r int32) {
+	if __ccgo_strace {
+		trc("tls=%v pid=%v, (%v:)", tls, pid, origin(2))
+		defer func() { trc("-> %v", r) }()
+	}
+	return X__syscall_ret(tls, Uint32FromInt32(-Int32FromInt32(ENOSYS)))
+}
+
+func Xsched_rr_get_interval(tls *TLS, pid Tpid_t, ts uintptr) (r1 int32) {
+	if __ccgo_strace {
+		trc("tls=%v pid=%v ts=%v, (%v:)", tls, pid, ts, origin(2))
+		defer func() { trc("-> %v", r1) }()
+	}
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var r int32
+	var _ /* ts32 at bp+0 */ [2]int32
+	_ = r
+	/* On a 32-bit arch, use the old syscall if it exists. */
+	if int32(SYS_sched_rr_get_interval) != int32(SYS_sched_rr_get_interval_time64) {
+		r = int32(X__syscall2(tls, int32(SYS_sched_rr_get_interval), pid, int32(bp)))
+		if !(r != 0) {
+			(*Ttimespec)(unsafe.Pointer(ts)).Ftv_sec = int64((**(**[2]int32)(__ccgo_up(bp)))[0])
+			(*Ttimespec)(unsafe.Pointer(ts)).Ftv_nsec = (**(**[2]int32)(__ccgo_up(bp)))[int32(1)]
+		}
+		return X__syscall_ret(tls, Uint32FromInt32(r))
+	}
+	/* If reaching this point, it's a 64-bit arch or time64-only
+	 * 32-bit arch and we can get result directly into timespec. */
+	return X__syscall_ret(tls, Uint32FromInt32(X__syscall2(tls, int32(SYS_sched_rr_get_interval), pid, int32(ts))))
+}
+
+func Xsched_setparam(tls *TLS, pid Tpid_t, param uintptr) (r int32) {
+	if __ccgo_strace {
+		trc("tls=%v pid=%v param=%v, (%v:)", tls, pid, param, origin(2))
+		defer func() { trc("-> %v", r) }()
+	}
+	return X__syscall_ret(tls, Uint32FromInt32(-Int32FromInt32(ENOSYS)))
+}
+
+func Xsched_setscheduler(tls *TLS, pid Tpid_t, sched int32, param uintptr) (r int32) {
+	if __ccgo_strace {
+		trc("tls=%v pid=%v sched=%v param=%v, (%v:)", tls, pid, sched, param, origin(2))
+		defer func() { trc("-> %v", r) }()
+	}
+	return X__syscall_ret(tls, Uint32FromInt32(-Int32FromInt32(ENOSYS)))
+}
+
 const MAXSIZE = 2147483648
 const MINSIZE = 8
 
@@ -134146,123 +134277,6 @@ func X__get_handler_set(tls *TLS, set uintptr) {
 	_memcpy(tls, set, uintptr(unsafe.Pointer(&_handler_set)), uint32(8))
 }
 
-func X__libc_sigaction(tls *TLS, sig int32, sa uintptr, old1 uintptr) (r1 int32) {
-	if __ccgo_strace {
-		trc("tls=%v sig=%v sa=%v old1=%v, (%v:)", tls, sig, sa, old1, origin(2))
-		defer func() { trc("-> %v", r1) }()
-	}
-	bp := tls.Alloc(64)
-	defer tls.Free(64)
-	var old, r, v2 int32
-	var v1, v3, v5, v6, v8 uintptr
-	var _ /* ksa at bp+16 */ Tk_sigaction
-	var _ /* ksa_old at bp+36 */ Tk_sigaction
-	var _ /* u at bp+8 */ struct {
-		F__ccgo_align [0]uint32
-		Fr            [0][2]Tuint32_t
-		Fv            Tuint64_t
-	}
-	_, _, _, _, _, _, _, _ = old, r, v1, v2, v3, v5, v6, v8
-	if sa != 0 {
-		if uint32(*(*uintptr)(unsafe.Pointer(sa))) > uint32(1) {
-			v1 = uintptr(unsafe.Pointer(&_handler_set)) + uintptr(Uint32FromInt32(sig-Int32FromInt32(1))/(Uint32FromInt32(8)*Uint32FromInt64(4)))*4
-			v2 = Int32FromUint32(uint32(1) << (Uint32FromInt32(sig-Int32FromInt32(1)) % (Uint32FromInt32(8) * Uint32FromInt64(4))))
-			if Uint32FromInt64(4) == Uint32FromInt64(4) {
-				v3 = v1
-				_a_barrier(tls)
-				for cond := true; cond; cond = !(_a_sc(tls, v3, old|v2) != 0) {
-					old = _a_ll(tls, v3)
-				}
-				_a_barrier(tls)
-				_ = old
-				goto _4
-			_4:
-			} else {
-				v5 = v1
-				*(*struct {
-					F__ccgo_align [0]uint32
-					Fr            [0][2]Tuint32_t
-					Fv            Tuint64_t
-				})(unsafe.Pointer(bp + 8)) = struct {
-					F__ccgo_align [0]uint32
-					Fr            [0][2]Tuint32_t
-					Fv            Tuint64_t
-				}{}
-				*(*uint64)(unsafe.Pointer(bp + 8)) = Uint64FromInt32(v2)
-				if **(**Tuint32_t)(__ccgo_up(bp + 8)) != 0 {
-					v6 = v5
-					_a_barrier(tls)
-					for cond := true; cond; cond = !(_a_sc(tls, v6, old|Int32FromUint32(**(**Tuint32_t)(__ccgo_up(bp + 8)))) != 0) {
-						old = _a_ll(tls, v6)
-					}
-					_a_barrier(tls)
-					_ = old
-					goto _7
-				_7:
-				}
-				if **(**Tuint32_t)(__ccgo_up(bp + 8 + 1*4)) != 0 {
-					v8 = v5 + uintptr(1)*4
-					_a_barrier(tls)
-					for cond := true; cond; cond = !(_a_sc(tls, v8, old|Int32FromUint32(**(**Tuint32_t)(__ccgo_up(bp + 8 + 1*4)))) != 0) {
-						old = _a_ll(tls, v8)
-					}
-					_a_barrier(tls)
-					_ = old
-					goto _9
-				_9:
-				}
-			}
-			/* If pthread_create has not yet been called,
-			 * implementation-internal signals might not
-			 * yet have been unblocked. They must be
-			 * unblocked before any signal handler is
-			 * installed, so that an application cannot
-			 * receive an illegal sigset_t (with them
-			 * blocked) as part of the ucontext_t passed
-			 * to the signal handler. */
-			if !(X__libc.Fthreaded != 0) && !(_unmask_done != 0) {
-				*(*[2]uint32)(unsafe.Pointer(bp)) = [2]uint32{
-					1: Uint32FromUint32(3) << (Int32FromInt32(32) * BoolInt32(Uint32FromInt64(4) > Uint32FromInt32(4))),
-				}
-				X__syscall4(tls, int32(SYS_rt_sigprocmask), int32(Int32FromInt32(SIG_UNBLOCK)), int32(bp), int32(Int32FromInt32(0)), int32(Int32FromInt32(_NSIG)/Int32FromInt32(8)))
-				_unmask_done = int32(1)
-			}
-			if !((*Tsigaction)(unsafe.Pointer(sa)).Fsa_flags&Int32FromInt32(SA_RESTART) != 0) {
-				_a_barrier(tls)
-				AtomicStorePInt32(uintptr(unsafe.Pointer(&X__eintr_valid_flag)), int32(1))
-				_a_barrier(tls)
-			}
-		}
-		(**(**Tk_sigaction)(__ccgo_up(bp + 16))).Fhandler = *(*uintptr)(unsafe.Pointer(sa))
-		(**(**Tk_sigaction)(__ccgo_up(bp + 16))).Fflags = Uint32FromInt32((*Tsigaction)(unsafe.Pointer(sa)).Fsa_flags)
-		(**(**Tk_sigaction)(__ccgo_up(bp + 16))).Fflags |= uint32(SA_RESTORER)
-		if (*Tsigaction)(unsafe.Pointer(sa)).Fsa_flags&int32(SA_SIGINFO) != 0 {
-			v1 = __ccgo_fp(X__restore_rt)
-		} else {
-			v1 = __ccgo_fp(X__restore)
-		}
-		(**(**Tk_sigaction)(__ccgo_up(bp + 16))).Frestorer = v1
-		_memcpy(tls, bp+16+12, sa+4, Uint32FromInt32(Int32FromInt32(_NSIG)/Int32FromInt32(8)))
-	}
-	if sa != 0 {
-		v1 = bp + 16
-	} else {
-		v1 = uintptr(0)
-	}
-	if old1 != 0 {
-		v3 = bp + 36
-	} else {
-		v3 = uintptr(0)
-	}
-	r = int32(X__syscall4(tls, int32(SYS_rt_sigaction), sig, int32(v1), int32(v3), int32(Int32FromInt32(_NSIG)/Int32FromInt32(8))))
-	if old1 != 0 && !(r != 0) {
-		*(*uintptr)(unsafe.Pointer(old1)) = (**(**Tk_sigaction)(__ccgo_up(bp + 36))).Fhandler
-		(*Tsigaction)(unsafe.Pointer(old1)).Fsa_flags = Int32FromUint32((**(**Tk_sigaction)(__ccgo_up(bp + 36))).Fflags)
-		_memcpy(tls, old1+4, bp+36+12, Uint32FromInt32(Int32FromInt32(_NSIG)/Int32FromInt32(8)))
-	}
-	return X__syscall_ret(tls, Uint32FromInt32(r))
-}
-
 func X__sigaction(tls *TLS, sig int32, sa uintptr, old uintptr) (r1 int32) {
 	if __ccgo_strace {
 		trc("tls=%v sig=%v sa=%v old=%v, (%v:)", tls, sig, sa, old, origin(2))
@@ -134284,7 +134298,7 @@ func X__sigaction(tls *TLS, sig int32, sa uintptr, old uintptr) (r1 int32) {
 		X__block_all_sigs(tls, bp)
 		___lock(tls, uintptr(unsafe.Pointer(&X__abort_lock)))
 	}
-	r = X__libc_sigaction(tls, sig, sa, old)
+	r = ___libc_sigaction(tls, sig, sa, old)
 	if sig == int32(SIGABRT) {
 		___unlock(tls, uintptr(unsafe.Pointer(&X__abort_lock)))
 		X__restore_sigs(tls, bp)
@@ -136175,50 +136189,30 @@ func Xfflush_unlocked(tls *TLS, f uintptr) (r int32) {
 }
 
 func _locking_getc(tls *TLS, f uintptr) (r int32) {
-	var c, old, old1, v11, v2, v4, v8 int32
-	var v1, v5, v6, v7 uintptr
-	_, _, _, _, _, _, _, _, _, _, _ = c, old, old1, v1, v11, v2, v4, v5, v6, v7, v8
-	v1 = f + 76
-	_a_barrier(tls)
-	for cond := true; cond; cond = old == 0 && !(_a_sc(tls, v1, Int32FromInt32(MAYBE_WAITERS)-Int32FromInt32(1)) != 0) {
-		old = _a_ll(tls, v1)
-	}
-	_a_barrier(tls)
-	v2 = old
-	goto _3
-_3:
-	if v2 != 0 {
+	var c, old, v1, v5 int32
+	var v2, v3, v4 uintptr
+	_, _, _, _, _, _, _ = c, old, v1, v2, v3, v4, v5
+	if _a_cas(tls, f+76, 0, Int32FromInt32(MAYBE_WAITERS)-Int32FromInt32(1)) != 0 {
 		___lockfile(tls, f)
 	}
 	if (*TFILE)(unsafe.Pointer(f)).Frpos != (*TFILE)(unsafe.Pointer(f)).Frend {
-		v5 = f + 4
-		v1 = *(*uintptr)(unsafe.Pointer(v5))
-		*(*uintptr)(unsafe.Pointer(v5)) = *(*uintptr)(unsafe.Pointer(v5)) + 1
-		v2 = Int32FromUint8(**(**uint8)(__ccgo_up(v1)))
+		v3 = f + 4
+		v2 = *(*uintptr)(unsafe.Pointer(v3))
+		*(*uintptr)(unsafe.Pointer(v3)) = *(*uintptr)(unsafe.Pointer(v3)) + 1
+		v1 = Int32FromUint8(**(**uint8)(__ccgo_up(v2)))
 	} else {
-		v2 = X__uflow(tls, f)
+		v1 = X__uflow(tls, f)
 	}
-	c = v2
-	v6 = f + 76
-	_a_barrier(tls)
-	for cond := true; cond; cond = !(_a_sc(tls, v6, 0) != 0) {
-		old1 = _a_ll(tls, v6)
+	c = v1
+	v4 = f + 76
+	for cond := true; cond; cond = _a_cas(tls, v4, old, 0) != old {
+		old = AtomicLoadPInt32(v4)
 	}
-	_a_barrier(tls)
-	v4 = old1
-	goto _9
-_9:
-	if v4&int32(MAYBE_WAITERS) != 0 {
-		v7 = f + 76
-		v8 = int32(1)
-		v11 = int32(1)
-		if v11 != 0 {
-			v11 = int32(FUTEX_PRIVATE)
-		}
-		if v8 < Int32FromInt32(0) {
-			v8 = int32(INT_MAX)
-		}
-		_ = X__syscall3(tls, int32(SYS_futex), int32(v7), int32(Int32FromInt32(FUTEX_WAKE)|v11), v8) != -int32(ENOSYS) || X__syscall3(tls, int32(SYS_futex), int32(v7), int32(Int32FromInt32(FUTEX_WAKE)), v8) != 0
+	v5 = old
+	goto _6
+_6:
+	if v5&int32(MAYBE_WAITERS) != 0 {
+		___wake(tls, f+76, int32(1), int32(1))
 	}
 	return c
 }
@@ -137033,53 +137027,33 @@ func Xfprintf(tls *TLS, f uintptr, fmt uintptr, va uintptr) (r int32) {
 }
 
 func _locking_putc(tls *TLS, c int32, f uintptr) (r int32) {
-	var old, old1, v2, v4, v9 int32
-	var v1, v6 uintptr
-	var v5 uint8
-	_, _, _, _, _, _, _, _ = old, old1, v1, v2, v4, v5, v6, v9
-	v1 = f + 76
-	_a_barrier(tls)
-	for cond := true; cond; cond = old == 0 && !(_a_sc(tls, v1, Int32FromInt32(MAYBE_WAITERS)-Int32FromInt32(1)) != 0) {
-		old = _a_ll(tls, v1)
-	}
-	_a_barrier(tls)
-	v2 = old
-	goto _3
-_3:
-	if v2 != 0 {
+	var old, v1 int32
+	var v2 uint8
+	var v3, v4 uintptr
+	_, _, _, _, _ = old, v1, v2, v3, v4
+	if _a_cas(tls, f+76, 0, Int32FromInt32(MAYBE_WAITERS)-Int32FromInt32(1)) != 0 {
 		___lockfile(tls, f)
 	}
 	if Int32FromUint8(Uint8FromInt32(c)) != (*TFILE)(unsafe.Pointer(f)).Flbf && (*TFILE)(unsafe.Pointer(f)).Fwpos != (*TFILE)(unsafe.Pointer(f)).Fwend {
-		v5 = Uint8FromInt32(c)
-		v6 = f + 20
-		v1 = *(*uintptr)(unsafe.Pointer(v6))
-		*(*uintptr)(unsafe.Pointer(v6)) = *(*uintptr)(unsafe.Pointer(v6)) + 1
-		**(**uint8)(__ccgo_up(v1)) = v5
-		v2 = Int32FromUint8(v5)
+		v2 = Uint8FromInt32(c)
+		v4 = f + 20
+		v3 = *(*uintptr)(unsafe.Pointer(v4))
+		*(*uintptr)(unsafe.Pointer(v4)) = *(*uintptr)(unsafe.Pointer(v4)) + 1
+		**(**uint8)(__ccgo_up(v3)) = v2
+		v1 = Int32FromUint8(v2)
 	} else {
-		v2 = X__overflow(tls, f, Int32FromUint8(Uint8FromInt32(c)))
+		v1 = X__overflow(tls, f, Int32FromUint8(Uint8FromInt32(c)))
 	}
-	c = v2
-	v1 = f + 76
-	_a_barrier(tls)
-	for cond := true; cond; cond = !(_a_sc(tls, v1, 0) != 0) {
-		old1 = _a_ll(tls, v1)
+	c = v1
+	v3 = f + 76
+	for cond := true; cond; cond = _a_cas(tls, v3, old, 0) != old {
+		old = AtomicLoadPInt32(v3)
 	}
-	_a_barrier(tls)
-	v2 = old1
-	goto _10
-_10:
-	if v2&int32(MAYBE_WAITERS) != 0 {
-		v6 = f + 76
-		v4 = int32(1)
-		v9 = int32(1)
-		if v9 != 0 {
-			v9 = int32(FUTEX_PRIVATE)
-		}
-		if v4 < Int32FromInt32(0) {
-			v4 = int32(INT_MAX)
-		}
-		_ = X__syscall3(tls, int32(SYS_futex), int32(v6), int32(Int32FromInt32(FUTEX_WAKE)|v9), v4) != -int32(ENOSYS) || X__syscall3(tls, int32(SYS_futex), int32(v6), int32(Int32FromInt32(FUTEX_WAKE)), v4) != 0
+	v1 = old
+	goto _7
+_7:
+	if v1&int32(MAYBE_WAITERS) != 0 {
+		___wake(tls, f+76, int32(1), int32(1))
 	}
 	return c
 }
@@ -137665,11 +137639,9 @@ func Xftrylockfile(tls *TLS, f uintptr) (r int32) {
 		trc("tls=%v f=%v, (%v:)", tls, f, origin(2))
 		defer func() { trc("-> %v", r) }()
 	}
-	var old, owner, tid, v1 int32
+	var owner, tid, v1 int32
 	var self Tpthread_t
-	var v2 uintptr
-	var v5 bool
-	_, _, _, _, _, _, _ = old, owner, self, tid, v1, v2, v5
+	_, _, _, _ = owner, self, tid, v1
 	self = uintptr(___get_tp(tls))
 	tid = (*t__pthread)(unsafe.Pointer(self)).Ftid
 	owner = AtomicLoadPInt32(f + 76)
@@ -137685,18 +137657,7 @@ func Xftrylockfile(tls *TLS, f uintptr) (r int32) {
 		owner = v1
 		AtomicStorePInt32(f+76, v1)
 	}
-	if v5 = owner != 0; !v5 {
-		v2 = f + 76
-		_a_barrier(tls)
-		for cond := true; cond; cond = old == 0 && !(_a_sc(tls, v2, tid) != 0) {
-			old = _a_ll(tls, v2)
-		}
-		_a_barrier(tls)
-		v1 = old
-		goto _4
-	_4:
-	}
-	if v5 || v1 != 0 {
+	if owner != 0 || _a_cas(tls, f+76, 0, tid) != 0 {
 		return -int32(1)
 	}
 	X__register_locked_file(tls, f, self)
@@ -137876,50 +137837,30 @@ func X__isoc99_fwscanf(tls *TLS, f uintptr, fmt uintptr, va uintptr) (r int32) {
 }
 
 func _locking_getc1(tls *TLS, f uintptr) (r int32) {
-	var c, old, old1, v11, v2, v4, v8 int32
-	var v1, v5, v6, v7 uintptr
-	_, _, _, _, _, _, _, _, _, _, _ = c, old, old1, v1, v11, v2, v4, v5, v6, v7, v8
-	v1 = f + 76
-	_a_barrier(tls)
-	for cond := true; cond; cond = old == 0 && !(_a_sc(tls, v1, Int32FromInt32(MAYBE_WAITERS)-Int32FromInt32(1)) != 0) {
-		old = _a_ll(tls, v1)
-	}
-	_a_barrier(tls)
-	v2 = old
-	goto _3
-_3:
-	if v2 != 0 {
+	var c, old, v1, v5 int32
+	var v2, v3, v4 uintptr
+	_, _, _, _, _, _, _ = c, old, v1, v2, v3, v4, v5
+	if _a_cas(tls, f+76, 0, Int32FromInt32(MAYBE_WAITERS)-Int32FromInt32(1)) != 0 {
 		___lockfile(tls, f)
 	}
 	if (*TFILE)(unsafe.Pointer(f)).Frpos != (*TFILE)(unsafe.Pointer(f)).Frend {
-		v5 = f + 4
-		v1 = *(*uintptr)(unsafe.Pointer(v5))
-		*(*uintptr)(unsafe.Pointer(v5)) = *(*uintptr)(unsafe.Pointer(v5)) + 1
-		v2 = Int32FromUint8(**(**uint8)(__ccgo_up(v1)))
+		v3 = f + 4
+		v2 = *(*uintptr)(unsafe.Pointer(v3))
+		*(*uintptr)(unsafe.Pointer(v3)) = *(*uintptr)(unsafe.Pointer(v3)) + 1
+		v1 = Int32FromUint8(**(**uint8)(__ccgo_up(v2)))
 	} else {
-		v2 = X__uflow(tls, f)
+		v1 = X__uflow(tls, f)
 	}
-	c = v2
-	v6 = f + 76
-	_a_barrier(tls)
-	for cond := true; cond; cond = !(_a_sc(tls, v6, 0) != 0) {
-		old1 = _a_ll(tls, v6)
+	c = v1
+	v4 = f + 76
+	for cond := true; cond; cond = _a_cas(tls, v4, old, 0) != old {
+		old = AtomicLoadPInt32(v4)
 	}
-	_a_barrier(tls)
-	v4 = old1
-	goto _9
-_9:
-	if v4&int32(MAYBE_WAITERS) != 0 {
-		v7 = f + 76
-		v8 = int32(1)
-		v11 = int32(1)
-		if v11 != 0 {
-			v11 = int32(FUTEX_PRIVATE)
-		}
-		if v8 < Int32FromInt32(0) {
-			v8 = int32(INT_MAX)
-		}
-		_ = X__syscall3(tls, int32(SYS_futex), int32(v7), int32(Int32FromInt32(FUTEX_WAKE)|v11), v8) != -int32(ENOSYS) || X__syscall3(tls, int32(SYS_futex), int32(v7), int32(Int32FromInt32(FUTEX_WAKE)), v8) != 0
+	v5 = old
+	goto _6
+_6:
+	if v5&int32(MAYBE_WAITERS) != 0 {
+		___wake(tls, f+76, int32(1), int32(1))
 	}
 	return c
 }
@@ -137996,50 +137937,30 @@ func Xfgetc_unlocked(tls *TLS, f uintptr) (r int32) {
 }
 
 func _locking_getc2(tls *TLS, f uintptr) (r int32) {
-	var c, old, old1, v11, v2, v4, v8 int32
-	var v1, v5, v6, v7 uintptr
-	_, _, _, _, _, _, _, _, _, _, _ = c, old, old1, v1, v11, v2, v4, v5, v6, v7, v8
-	v1 = f + 76
-	_a_barrier(tls)
-	for cond := true; cond; cond = old == 0 && !(_a_sc(tls, v1, Int32FromInt32(MAYBE_WAITERS)-Int32FromInt32(1)) != 0) {
-		old = _a_ll(tls, v1)
-	}
-	_a_barrier(tls)
-	v2 = old
-	goto _3
-_3:
-	if v2 != 0 {
+	var c, old, v1, v5 int32
+	var v2, v3, v4 uintptr
+	_, _, _, _, _, _, _ = c, old, v1, v2, v3, v4, v5
+	if _a_cas(tls, f+76, 0, Int32FromInt32(MAYBE_WAITERS)-Int32FromInt32(1)) != 0 {
 		___lockfile(tls, f)
 	}
 	if (*TFILE)(unsafe.Pointer(f)).Frpos != (*TFILE)(unsafe.Pointer(f)).Frend {
-		v5 = f + 4
-		v1 = *(*uintptr)(unsafe.Pointer(v5))
-		*(*uintptr)(unsafe.Pointer(v5)) = *(*uintptr)(unsafe.Pointer(v5)) + 1
-		v2 = Int32FromUint8(**(**uint8)(__ccgo_up(v1)))
+		v3 = f + 4
+		v2 = *(*uintptr)(unsafe.Pointer(v3))
+		*(*uintptr)(unsafe.Pointer(v3)) = *(*uintptr)(unsafe.Pointer(v3)) + 1
+		v1 = Int32FromUint8(**(**uint8)(__ccgo_up(v2)))
 	} else {
-		v2 = X__uflow(tls, f)
+		v1 = X__uflow(tls, f)
 	}
-	c = v2
-	v6 = f + 76
-	_a_barrier(tls)
-	for cond := true; cond; cond = !(_a_sc(tls, v6, 0) != 0) {
-		old1 = _a_ll(tls, v6)
+	c = v1
+	v4 = f + 76
+	for cond := true; cond; cond = _a_cas(tls, v4, old, 0) != old {
+		old = AtomicLoadPInt32(v4)
 	}
-	_a_barrier(tls)
-	v4 = old1
-	goto _9
-_9:
-	if v4&int32(MAYBE_WAITERS) != 0 {
-		v7 = f + 76
-		v8 = int32(1)
-		v11 = int32(1)
-		if v11 != 0 {
-			v11 = int32(FUTEX_PRIVATE)
-		}
-		if v8 < Int32FromInt32(0) {
-			v8 = int32(INT_MAX)
-		}
-		_ = X__syscall3(tls, int32(SYS_futex), int32(v7), int32(Int32FromInt32(FUTEX_WAKE)|v11), v8) != -int32(ENOSYS) || X__syscall3(tls, int32(SYS_futex), int32(v7), int32(Int32FromInt32(FUTEX_WAKE)), v8) != 0
+	v5 = old
+	goto _6
+_6:
+	if v5&int32(MAYBE_WAITERS) != 0 {
+		___wake(tls, f+76, int32(1), int32(1))
 	}
 	return c
 }
@@ -138705,53 +138626,33 @@ func Xprintf(tls *TLS, fmt uintptr, va uintptr) (r int32) {
 }
 
 func _locking_putc1(tls *TLS, c int32, f uintptr) (r int32) {
-	var old, old1, v2, v4, v9 int32
-	var v1, v6 uintptr
-	var v5 uint8
-	_, _, _, _, _, _, _, _ = old, old1, v1, v2, v4, v5, v6, v9
-	v1 = f + 76
-	_a_barrier(tls)
-	for cond := true; cond; cond = old == 0 && !(_a_sc(tls, v1, Int32FromInt32(MAYBE_WAITERS)-Int32FromInt32(1)) != 0) {
-		old = _a_ll(tls, v1)
-	}
-	_a_barrier(tls)
-	v2 = old
-	goto _3
-_3:
-	if v2 != 0 {
+	var old, v1 int32
+	var v2 uint8
+	var v3, v4 uintptr
+	_, _, _, _, _ = old, v1, v2, v3, v4
+	if _a_cas(tls, f+76, 0, Int32FromInt32(MAYBE_WAITERS)-Int32FromInt32(1)) != 0 {
 		___lockfile(tls, f)
 	}
 	if Int32FromUint8(Uint8FromInt32(c)) != (*TFILE)(unsafe.Pointer(f)).Flbf && (*TFILE)(unsafe.Pointer(f)).Fwpos != (*TFILE)(unsafe.Pointer(f)).Fwend {
-		v5 = Uint8FromInt32(c)
-		v6 = f + 20
-		v1 = *(*uintptr)(unsafe.Pointer(v6))
-		*(*uintptr)(unsafe.Pointer(v6)) = *(*uintptr)(unsafe.Pointer(v6)) + 1
-		**(**uint8)(__ccgo_up(v1)) = v5
-		v2 = Int32FromUint8(v5)
+		v2 = Uint8FromInt32(c)
+		v4 = f + 20
+		v3 = *(*uintptr)(unsafe.Pointer(v4))
+		*(*uintptr)(unsafe.Pointer(v4)) = *(*uintptr)(unsafe.Pointer(v4)) + 1
+		**(**uint8)(__ccgo_up(v3)) = v2
+		v1 = Int32FromUint8(v2)
 	} else {
-		v2 = X__overflow(tls, f, Int32FromUint8(Uint8FromInt32(c)))
+		v1 = X__overflow(tls, f, Int32FromUint8(Uint8FromInt32(c)))
 	}
-	c = v2
-	v1 = f + 76
-	_a_barrier(tls)
-	for cond := true; cond; cond = !(_a_sc(tls, v1, 0) != 0) {
-		old1 = _a_ll(tls, v1)
+	c = v1
+	v3 = f + 76
+	for cond := true; cond; cond = _a_cas(tls, v3, old, 0) != old {
+		old = AtomicLoadPInt32(v3)
 	}
-	_a_barrier(tls)
-	v2 = old1
-	goto _10
-_10:
-	if v2&int32(MAYBE_WAITERS) != 0 {
-		v6 = f + 76
-		v4 = int32(1)
-		v9 = int32(1)
-		if v9 != 0 {
-			v9 = int32(FUTEX_PRIVATE)
-		}
-		if v4 < Int32FromInt32(0) {
-			v4 = int32(INT_MAX)
-		}
-		_ = X__syscall3(tls, int32(SYS_futex), int32(v6), int32(Int32FromInt32(FUTEX_WAKE)|v9), v4) != -int32(ENOSYS) || X__syscall3(tls, int32(SYS_futex), int32(v6), int32(Int32FromInt32(FUTEX_WAKE)), v4) != 0
+	v1 = old
+	goto _7
+_7:
+	if v1&int32(MAYBE_WAITERS) != 0 {
+		___wake(tls, f+76, int32(1), int32(1))
 	}
 	return c
 }
@@ -138835,53 +138736,33 @@ func Xfputc_unlocked(tls *TLS, c int32, f uintptr) (r int32) {
 }
 
 func _locking_putc2(tls *TLS, c int32, f uintptr) (r int32) {
-	var old, old1, v2, v4, v9 int32
-	var v1, v6 uintptr
-	var v5 uint8
-	_, _, _, _, _, _, _, _ = old, old1, v1, v2, v4, v5, v6, v9
-	v1 = f + 76
-	_a_barrier(tls)
-	for cond := true; cond; cond = old == 0 && !(_a_sc(tls, v1, Int32FromInt32(MAYBE_WAITERS)-Int32FromInt32(1)) != 0) {
-		old = _a_ll(tls, v1)
-	}
-	_a_barrier(tls)
-	v2 = old
-	goto _3
-_3:
-	if v2 != 0 {
+	var old, v1 int32
+	var v2 uint8
+	var v3, v4 uintptr
+	_, _, _, _, _ = old, v1, v2, v3, v4
+	if _a_cas(tls, f+76, 0, Int32FromInt32(MAYBE_WAITERS)-Int32FromInt32(1)) != 0 {
 		___lockfile(tls, f)
 	}
 	if Int32FromUint8(Uint8FromInt32(c)) != (*TFILE)(unsafe.Pointer(f)).Flbf && (*TFILE)(unsafe.Pointer(f)).Fwpos != (*TFILE)(unsafe.Pointer(f)).Fwend {
-		v5 = Uint8FromInt32(c)
-		v6 = f + 20
-		v1 = *(*uintptr)(unsafe.Pointer(v6))
-		*(*uintptr)(unsafe.Pointer(v6)) = *(*uintptr)(unsafe.Pointer(v6)) + 1
-		**(**uint8)(__ccgo_up(v1)) = v5
-		v2 = Int32FromUint8(v5)
+		v2 = Uint8FromInt32(c)
+		v4 = f + 20
+		v3 = *(*uintptr)(unsafe.Pointer(v4))
+		*(*uintptr)(unsafe.Pointer(v4)) = *(*uintptr)(unsafe.Pointer(v4)) + 1
+		**(**uint8)(__ccgo_up(v3)) = v2
+		v1 = Int32FromUint8(v2)
 	} else {
-		v2 = X__overflow(tls, f, Int32FromUint8(Uint8FromInt32(c)))
+		v1 = X__overflow(tls, f, Int32FromUint8(Uint8FromInt32(c)))
 	}
-	c = v2
-	v1 = f + 76
-	_a_barrier(tls)
-	for cond := true; cond; cond = !(_a_sc(tls, v1, 0) != 0) {
-		old1 = _a_ll(tls, v1)
+	c = v1
+	v3 = f + 76
+	for cond := true; cond; cond = _a_cas(tls, v3, old, 0) != old {
+		old = AtomicLoadPInt32(v3)
 	}
-	_a_barrier(tls)
-	v2 = old1
-	goto _10
-_10:
-	if v2&int32(MAYBE_WAITERS) != 0 {
-		v6 = f + 76
-		v4 = int32(1)
-		v9 = int32(1)
-		if v9 != 0 {
-			v9 = int32(FUTEX_PRIVATE)
-		}
-		if v4 < Int32FromInt32(0) {
-			v4 = int32(INT_MAX)
-		}
-		_ = X__syscall3(tls, int32(SYS_futex), int32(v6), int32(Int32FromInt32(FUTEX_WAKE)|v9), v4) != -int32(ENOSYS) || X__syscall3(tls, int32(SYS_futex), int32(v6), int32(Int32FromInt32(FUTEX_WAKE)), v4) != 0
+	v1 = old
+	goto _7
+_7:
+	if v1&int32(MAYBE_WAITERS) != 0 {
+		___wake(tls, f+76, int32(1), int32(1))
 	}
 	return c
 }
@@ -147429,6 +147310,533 @@ func Xtcsetwinsize(tls *TLS, fd int32, wsz uintptr) (r int32) {
 	return X__syscall_ret(tls, Uint32FromInt32(X__syscall3(tls, int32(SYS_ioctl), fd, int32(Int32FromInt32(TIOCSWINSZ)), int32(wsz))))
 }
 
+func Xpthread_kill(tls *TLS, t Tpthread_t, sig int32) (r1 int32) {
+	if __ccgo_strace {
+		trc("tls=%v t=%v sig=%v, (%v:)", tls, t, sig, origin(2))
+		defer func() { trc("-> %v", r1) }()
+	}
+	bp := tls.Alloc(128)
+	defer tls.Free(128)
+	var r, v1, v2 int32
+	var _ /* set at bp+0 */ Tsigset_t
+	_, _, _ = r, v1, v2
+	/* Block not just app signals, but internal ones too, since
+	 * pthread_kill is used to implement pthread_cancel, which
+	 * must be async-cancel-safe. */
+	X__block_all_sigs(tls, bp)
+	___lock(tls, t+92)
+	if (*t__pthread)(unsafe.Pointer(t)).Ftid != 0 {
+		v1 = -X__syscall2(tls, int32(SYS_tkill), (*t__pthread)(unsafe.Pointer(t)).Ftid, sig)
+	} else {
+		if Uint32FromInt32(sig)+0 >= uint32(_NSIG) {
+			v2 = int32(EINVAL)
+		} else {
+			v2 = 0
+		}
+		v1 = v2
+	}
+	r = v1
+	___unlock(tls, t+92)
+	X__restore_sigs(tls, bp)
+	return r
+}
+
+func _dummy12(tls *TLS) {
+}
+
+func X__pthread_testcancel(tls *TLS) {
+	if __ccgo_strace {
+		trc("tls=%v, (%v:)", tls, origin(2))
+	}
+	_dummy12(tls)
+}
+
+func Xpthread_testcancel(tls *TLS) {
+	if __ccgo_strace {
+		trc("tls=%v, (%v:)", tls, origin(2))
+	}
+	X__pthread_testcancel(tls)
+}
+
+const SEM_FAILED = 0
+
+type Tsem_t = struct {
+	F__val [4]int32
+}
+
+func Xsem_destroy(tls *TLS, sem uintptr) (r int32) {
+	if __ccgo_strace {
+		trc("tls=%v sem=%v, (%v:)", tls, sem, origin(2))
+		defer func() { trc("-> %v", r) }()
+	}
+	return 0
+}
+
+/* Support signed or unsigned plain-char */
+
+/* Implementation choices... */
+
+/* Arbitrary numbers... */
+
+/* POSIX/SUS requirements follow. These numbers come directly
+ * from SUS and have nothing to do with the host system. */
+
+func Xsem_getvalue(tls *TLS, sem uintptr, valp uintptr) (r int32) {
+	if __ccgo_strace {
+		trc("tls=%v sem=%v valp=%v, (%v:)", tls, sem, valp, origin(2))
+		defer func() { trc("-> %v", r) }()
+	}
+	var val int32
+	_ = val
+	val = **(**int32)(__ccgo_up(sem))
+	**(**int32)(__ccgo_up(valp)) = val & int32(SEM_VALUE_MAX)
+	return 0
+}
+
+func Xsem_init(tls *TLS, sem uintptr, pshared int32, value uint32) (r int32) {
+	if __ccgo_strace {
+		trc("tls=%v sem=%v pshared=%v value=%v, (%v:)", tls, sem, pshared, value, origin(2))
+		defer func() { trc("-> %v", r) }()
+	}
+	var v1 int32
+	_ = v1
+	if value > uint32(SEM_VALUE_MAX) {
+		**(**int32)(__ccgo_up(X__errno_location(tls))) = int32(EINVAL)
+		return -int32(1)
+	}
+	**(**int32)(__ccgo_up(sem)) = Int32FromUint32(value)
+	**(**int32)(__ccgo_up(sem + 1*4)) = 0
+	if pshared != 0 {
+		v1 = 0
+	} else {
+		v1 = int32(128)
+	}
+	**(**int32)(__ccgo_up(sem + 2*4)) = v1
+	return 0
+}
+
+const FLAGS = 559106
+const free4 = "undef"
+
+var _semtab uintptr
+var _lock4 [1]int32
+
+func Xsem_open(tls *TLS, name uintptr, flags int32, va uintptr) (r uintptr) {
+	if __ccgo_strace {
+		trc("tls=%v name=%v flags=%v va=%v, (%v:)", tls, name, flags, va, origin(2))
+		defer func() { trc("-> %v", r) }()
+	}
+	bp := tls.Alloc(544)
+	defer tls.Free(544)
+	var ap Tva_list
+	var cnt, e, fd, first, i, slot, v5 int32
+	var map1, v1 uintptr
+	var mode Tmode_t
+	var value uint32
+	var v3 bool
+	var _ /* buf at bp+256 */ [265]uint8
+	var _ /* cs at bp+0 */ int32
+	var _ /* newsem at bp+4 */ Tsem_t
+	var _ /* st at bp+104 */ Tstat
+	var _ /* tmp at bp+20 */ [64]uint8
+	var _ /* ts at bp+88 */ Ttimespec
+	_, _, _, _, _, _, _, _, _, _, _, _, _ = ap, cnt, e, fd, first, i, map1, mode, slot, value, v1, v3, v5
+	first = int32(1)
+	v1 = X__shm_mapname(tls, name, bp+256)
+	name = v1
+	if !(v1 != 0) {
+		return UintptrFromInt32(0)
+	}
+	___lock(tls, uintptr(unsafe.Pointer(&_lock4)))
+	/* Allocate table if we don't have one yet */
+	if v3 = !(_semtab != 0); v3 {
+		v1 = Xcalloc(tls, uint32(16), uint32(SEM_NSEMS_MAX))
+		_semtab = v1
+	}
+	if v3 && !(v1 != 0) {
+		___unlock(tls, uintptr(unsafe.Pointer(&_lock4)))
+		return UintptrFromInt32(0)
+	}
+	/* Reserve a slot in case this semaphore is not mapped yet;
+	 * this is necessary because there is no way to handle
+	 * failures after creation of the file. */
+	slot = -int32(1)
+	v5 = Int32FromInt32(0)
+	i = v5
+	cnt = v5
+	for {
+		if !(i < int32(SEM_NSEMS_MAX)) {
+			break
+		}
+		cnt = cnt + (**(**struct {
+			F__ccgo_align [0]uint32
+			Fino          Tino_t
+			Fsem          uintptr
+			Frefcnt       int32
+		})(__ccgo_up(_semtab + uintptr(i)*16))).Frefcnt
+		if !((**(**struct {
+			F__ccgo_align [0]uint32
+			Fino          Tino_t
+			Fsem          uintptr
+			Frefcnt       int32
+		})(__ccgo_up(_semtab + uintptr(i)*16))).Fsem != 0) && slot < 0 {
+			slot = i
+		}
+		goto _4
+	_4:
+		;
+		i = i + 1
+	}
+	/* Avoid possibility of overflow later */
+	if cnt == int32(INT_MAX) || slot < 0 {
+		**(**int32)(__ccgo_up(X__errno_location(tls))) = int32(EMFILE)
+		___unlock(tls, uintptr(unsafe.Pointer(&_lock4)))
+		return UintptrFromInt32(0)
+	}
+	/* Dummy pointer to make a reservation */
+	(**(**struct {
+		F__ccgo_align [0]uint32
+		Fino          Tino_t
+		Fsem          uintptr
+		Frefcnt       int32
+	})(__ccgo_up(_semtab + uintptr(slot)*16))).Fsem = uintptr(-Int32FromInt32(1))
+	___unlock(tls, uintptr(unsafe.Pointer(&_lock4)))
+	flags = flags & (Int32FromInt32(O_CREAT) | Int32FromInt32(O_EXCL))
+	_pthread_setcancelstate(tls, int32(PTHREAD_CANCEL_DISABLE), bp)
+	/* Early failure check for exclusive open; otherwise the case
+	 * where the semaphore already exists is expensive. */
+	if flags == Int32FromInt32(O_CREAT)|Int32FromInt32(O_EXCL) && Xaccess(tls, name, F_OK) == 0 {
+		**(**int32)(__ccgo_up(X__errno_location(tls))) = int32(EEXIST)
+		goto fail
+	}
+	for {
+		/* If exclusive mode is not requested, try opening an
+		 * existing file first and fall back to creation. */
+		if flags != Int32FromInt32(O_CREAT)|Int32FromInt32(O_EXCL) {
+			fd = Xopen(tls, name, Int32FromInt32(O_RDWR)|Int32FromInt32(O_NOFOLLOW)|Int32FromInt32(O_CLOEXEC)|Int32FromInt32(O_NONBLOCK), 0)
+			if fd >= 0 {
+				if v3 = Xfstat(tls, fd, bp+104) < 0; !v3 {
+					v1 = Xmmap(tls, uintptr(0), uint32(16), Int32FromInt32(PROT_READ)|Int32FromInt32(PROT_WRITE), int32(MAP_SHARED), fd, 0)
+					map1 = v1
+				}
+				if v3 || v1 == uintptr(-Int32FromInt32(1)) {
+					Xclose(tls, fd)
+					goto fail
+				}
+				Xclose(tls, fd)
+				break
+			}
+			if **(**int32)(__ccgo_up(X__errno_location(tls))) != int32(ENOENT) {
+				goto fail
+			}
+		}
+		if !(flags&Int32FromInt32(O_CREAT) != 0) {
+			goto fail
+		}
+		if first != 0 {
+			first = 0
+			ap = va
+			mode = VaUint32(&ap) & uint32(0666)
+			value = VaUint32(&ap)
+			_ = ap
+			if value > uint32(SEM_VALUE_MAX) {
+				**(**int32)(__ccgo_up(X__errno_location(tls))) = int32(EINVAL)
+				goto fail
+			}
+			Xsem_init(tls, bp+4, int32(1), value)
+		}
+		/* Create a temp file with the new semaphore contents
+		 * and attempt to atomically link it as the new name */
+		Xclock_gettime(tls, CLOCK_REALTIME, bp+88)
+		Xsnprintf(tls, bp+20, uint32(64), __ccgo_ts+1570, VaList(bp+536, int32((**(**Ttimespec)(__ccgo_up(bp + 88))).Ftv_nsec)))
+		fd = Xopen(tls, bp+20, Int32FromInt32(O_CREAT)|Int32FromInt32(O_EXCL)|(Int32FromInt32(O_RDWR)|Int32FromInt32(O_NOFOLLOW)|Int32FromInt32(O_CLOEXEC)|Int32FromInt32(O_NONBLOCK)), VaList(bp+536, mode))
+		if fd < 0 {
+			if **(**int32)(__ccgo_up(X__errno_location(tls))) == int32(EEXIST) {
+				goto _6
+			}
+			goto fail
+		}
+		if v3 = Uint32FromInt32(Xwrite(tls, fd, bp+4, uint32(16))) != uint32(16) || Xfstat(tls, fd, bp+104) < 0; !v3 {
+			v1 = Xmmap(tls, uintptr(0), uint32(16), Int32FromInt32(PROT_READ)|Int32FromInt32(PROT_WRITE), int32(MAP_SHARED), fd, 0)
+			map1 = v1
+		}
+		if v3 || v1 == uintptr(-Int32FromInt32(1)) {
+			Xclose(tls, fd)
+			Xunlink(tls, bp+20)
+			goto fail
+		}
+		Xclose(tls, fd)
+		if Xlink(tls, bp+20, name) != 0 {
+			v5 = **(**int32)(__ccgo_up(X__errno_location(tls)))
+		} else {
+			v5 = 0
+		}
+		e = v5
+		Xunlink(tls, bp+20)
+		if !(e != 0) {
+			break
+		}
+		Xmunmap(tls, map1, uint32(16))
+		/* Failure is only fatal when doing an exclusive open;
+		 * otherwise, next iteration will try to open the
+		 * existing file. */
+		if e != int32(EEXIST) || flags == Int32FromInt32(O_CREAT)|Int32FromInt32(O_EXCL) {
+			goto fail
+		}
+		goto _6
+	_6:
+	}
+	/* See if the newly mapped semaphore is already mapped. If
+	 * so, unmap the new mapping and use the existing one. Otherwise,
+	 * add it to the table of mapped semaphores. */
+	___lock(tls, uintptr(unsafe.Pointer(&_lock4)))
+	i = 0
+	for {
+		if !(i < int32(SEM_NSEMS_MAX) && (**(**struct {
+			F__ccgo_align [0]uint32
+			Fino          Tino_t
+			Fsem          uintptr
+			Frefcnt       int32
+		})(__ccgo_up(_semtab + uintptr(i)*16))).Fino != (**(**Tstat)(__ccgo_up(bp + 104))).Fst_ino) {
+			break
+		}
+		goto _12
+	_12:
+		;
+		i = i + 1
+	}
+	if i < int32(SEM_NSEMS_MAX) {
+		Xmunmap(tls, map1, uint32(16))
+		(**(**struct {
+			F__ccgo_align [0]uint32
+			Fino          Tino_t
+			Fsem          uintptr
+			Frefcnt       int32
+		})(__ccgo_up(_semtab + uintptr(slot)*16))).Fsem = uintptr(0)
+		slot = i
+		map1 = (**(**struct {
+			F__ccgo_align [0]uint32
+			Fino          Tino_t
+			Fsem          uintptr
+			Frefcnt       int32
+		})(__ccgo_up(_semtab + uintptr(i)*16))).Fsem
+	}
+	(**(**struct {
+		F__ccgo_align [0]uint32
+		Fino          Tino_t
+		Fsem          uintptr
+		Frefcnt       int32
+	})(__ccgo_up(_semtab + uintptr(slot)*16))).Frefcnt = (**(**struct {
+		F__ccgo_align [0]uint32
+		Fino          Tino_t
+		Fsem          uintptr
+		Frefcnt       int32
+	})(__ccgo_up(_semtab + uintptr(slot)*16))).Frefcnt + 1
+	(**(**struct {
+		F__ccgo_align [0]uint32
+		Fino          Tino_t
+		Fsem          uintptr
+		Frefcnt       int32
+	})(__ccgo_up(_semtab + uintptr(slot)*16))).Fsem = map1
+	(**(**struct {
+		F__ccgo_align [0]uint32
+		Fino          Tino_t
+		Fsem          uintptr
+		Frefcnt       int32
+	})(__ccgo_up(_semtab + uintptr(slot)*16))).Fino = (**(**Tstat)(__ccgo_up(bp + 104))).Fst_ino
+	___unlock(tls, uintptr(unsafe.Pointer(&_lock4)))
+	_pthread_setcancelstate(tls, **(**int32)(__ccgo_up(bp)), uintptr(0))
+	return map1
+	goto fail
+fail:
+	;
+	_pthread_setcancelstate(tls, **(**int32)(__ccgo_up(bp)), uintptr(0))
+	___lock(tls, uintptr(unsafe.Pointer(&_lock4)))
+	(**(**struct {
+		F__ccgo_align [0]uint32
+		Fino          Tino_t
+		Fsem          uintptr
+		Frefcnt       int32
+	})(__ccgo_up(_semtab + uintptr(slot)*16))).Fsem = uintptr(0)
+	___unlock(tls, uintptr(unsafe.Pointer(&_lock4)))
+	return UintptrFromInt32(0)
+}
+
+func Xsem_close(tls *TLS, sem uintptr) (r int32) {
+	if __ccgo_strace {
+		trc("tls=%v sem=%v, (%v:)", tls, sem, origin(2))
+		defer func() { trc("-> %v", r) }()
+	}
+	var i, v2 int32
+	var v3 uintptr
+	_, _, _ = i, v2, v3
+	___lock(tls, uintptr(unsafe.Pointer(&_lock4)))
+	i = 0
+	for {
+		if !(i < int32(SEM_NSEMS_MAX) && (**(**struct {
+			F__ccgo_align [0]uint32
+			Fino          Tino_t
+			Fsem          uintptr
+			Frefcnt       int32
+		})(__ccgo_up(_semtab + uintptr(i)*16))).Fsem != sem) {
+			break
+		}
+		goto _1
+	_1:
+		;
+		i = i + 1
+	}
+	v3 = _semtab + uintptr(i)*16 + 12
+	*(*int32)(unsafe.Pointer(v3)) = *(*int32)(unsafe.Pointer(v3)) - 1
+	v2 = *(*int32)(unsafe.Pointer(v3))
+	if v2 != 0 {
+		___unlock(tls, uintptr(unsafe.Pointer(&_lock4)))
+		return 0
+	}
+	(**(**struct {
+		F__ccgo_align [0]uint32
+		Fino          Tino_t
+		Fsem          uintptr
+		Frefcnt       int32
+	})(__ccgo_up(_semtab + uintptr(i)*16))).Fsem = uintptr(0)
+	(**(**struct {
+		F__ccgo_align [0]uint32
+		Fino          Tino_t
+		Fsem          uintptr
+		Frefcnt       int32
+	})(__ccgo_up(_semtab + uintptr(i)*16))).Fino = uint64(0)
+	___unlock(tls, uintptr(unsafe.Pointer(&_lock4)))
+	Xmunmap(tls, sem, uint32(16))
+	return 0
+}
+
+func Xsem_post(tls *TLS, sem uintptr) (r int32) {
+	if __ccgo_strace {
+		trc("tls=%v sem=%v, (%v:)", tls, sem, origin(2))
+		defer func() { trc("-> %v", r) }()
+	}
+	var new1, priv, val, waiters, v1 int32
+	_, _, _, _, _ = new1, priv, val, waiters, v1
+	priv = **(**int32)(__ccgo_up(sem + 2*4))
+	for cond := true; cond; cond = _a_cas(tls, sem, val, new1) != val {
+		val = **(**int32)(__ccgo_up(sem))
+		waiters = **(**int32)(__ccgo_up(sem + 1*4))
+		if val&int32(SEM_VALUE_MAX) == int32(SEM_VALUE_MAX) {
+			**(**int32)(__ccgo_up(X__errno_location(tls))) = int32(EOVERFLOW)
+			return -int32(1)
+		}
+		new1 = val + int32(1)
+		if waiters <= int32(1) {
+			new1 = Int32FromUint32(uint32(new1) & ^Uint32FromUint32(0x80000000))
+		}
+	}
+	if val < 0 {
+		if waiters > int32(1) {
+			v1 = int32(1)
+		} else {
+			v1 = -int32(1)
+		}
+		___wake(tls, sem, v1, priv)
+	}
+	return 0
+}
+
+func _cleanup1(tls *TLS, p2 uintptr) {
+	var old int32
+	var v1 uintptr
+	_, _ = old, v1
+	v1 = p2
+	for cond := true; cond; cond = _a_cas(tls, v1, old, Int32FromUint32(Uint32FromInt32(old)+Uint32FromInt32(-int32(1)))) != old {
+		old = AtomicLoadPInt32(v1)
+	}
+	_ = old
+	goto _2
+_2:
+}
+
+func Xsem_timedwait(tls *TLS, sem uintptr, at uintptr) (r1 int32) {
+	if __ccgo_strace {
+		trc("tls=%v sem=%v at=%v, (%v:)", tls, sem, at, origin(2))
+		defer func() { trc("-> %v", r1) }()
+	}
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var old, priv, r, spins, v1 int32
+	var v2 uintptr
+	var _ /* __cb at bp+0 */ t__ptcb
+	_, _, _, _, _, _ = old, priv, r, spins, v1, v2
+	Xpthread_testcancel(tls)
+	if !(Xsem_trywait(tls, sem) != 0) {
+		return 0
+	}
+	spins = int32(100)
+	for {
+		v1 = spins
+		spins = spins - 1
+		if !(v1 != 0 && !(**(**int32)(__ccgo_up(sem))&Int32FromInt32(SEM_VALUE_MAX) != 0) && !(**(**int32)(__ccgo_up(sem + 1*4)) != 0)) {
+			break
+		}
+		_a_barrier(tls)
+	}
+	for Xsem_trywait(tls, sem) != 0 {
+		priv = **(**int32)(__ccgo_up(sem + 2*4))
+		v2 = sem + uintptr(1)*4
+		for cond := true; cond; cond = _a_cas(tls, v2, old, Int32FromUint32(Uint32FromInt32(old)+Uint32FromInt32(int32(1)))) != old {
+			old = AtomicLoadPInt32(v2)
+		}
+		_ = old
+		goto _3
+	_3:
+		;
+		_a_cas(tls, sem, 0, Int32FromUint32(0x80000000))
+		__pthread_cleanup_push(tls, bp, __ccgo_fp(_cleanup1), sem+UintptrFromInt32(1)*4)
+		r = ___timedwait_cp(tls, sem, Int32FromUint32(0x80000000), CLOCK_REALTIME, at, priv)
+		__pthread_cleanup_pop(tls, bp, int32(1))
+		if r != 0 {
+			**(**int32)(__ccgo_up(X__errno_location(tls))) = r
+			return -int32(1)
+		}
+	}
+	return 0
+}
+
+func Xsem_trywait(tls *TLS, sem uintptr) (r int32) {
+	if __ccgo_strace {
+		trc("tls=%v sem=%v, (%v:)", tls, sem, origin(2))
+		defer func() { trc("-> %v", r) }()
+	}
+	var val, v1 int32
+	_, _ = val, v1
+	for {
+		v1 = **(**int32)(__ccgo_up(sem))
+		val = v1
+		if !(v1&int32(SEM_VALUE_MAX) != 0) {
+			break
+		}
+		if _a_cas(tls, sem, val, val-int32(1)) == val {
+			return 0
+		}
+	}
+	**(**int32)(__ccgo_up(X__errno_location(tls))) = int32(EAGAIN)
+	return -int32(1)
+}
+
+func Xsem_unlink(tls *TLS, name uintptr) (r int32) {
+	if __ccgo_strace {
+		trc("tls=%v name=%v, (%v:)", tls, name, origin(2))
+		defer func() { trc("-> %v", r) }()
+	}
+	return Xshm_unlink(tls, name)
+}
+
+func Xsem_wait(tls *TLS, sem uintptr) (r int32) {
+	if __ccgo_strace {
+		trc("tls=%v sem=%v, (%v:)", tls, sem, origin(2))
+		defer func() { trc("-> %v", r) }()
+	}
+	return Xsem_timedwait(tls, sem, uintptr(0))
+}
+
 func X__map_file(tls *TLS, pathname uintptr, size uintptr) (r uintptr) {
 	if __ccgo_strace {
 		trc("tls=%v pathname=%v size=%v, (%v:)", tls, pathname, size, origin(2))
@@ -147628,7 +148036,6 @@ func X__tm_to_secs(tls *TLS, tm uintptr) (r int64) {
 }
 
 const calloc3 = "undef"
-const free4 = "undef"
 
 var _std_name [7]uint8
 var _dst_name [7]uint8
@@ -147649,7 +148056,7 @@ var _old_tz_buf [32]uint8
 var _old_tz = uintptr(unsafe.Pointer(&_old_tz_buf))
 var _old_tz_size = uint32(32)
 
-var _lock4 [1]int32
+var _lock5 [1]int32
 
 func _getint2(tls *TLS, p uintptr) (r int32) {
 	var x uint32
@@ -147809,9 +148216,9 @@ func _do_tzset(tls *TLS) {
 	_, _, _, _, _, _, _, _, _, _, _, _ = i, l, map1, p1, pathname, posix_form, scale, skip, try, v2, v5, v6
 	pathname = bp + 6 + uintptr(24)
 	map1 = uintptr(0)
-	**(**uintptr)(__ccgo_up(bp + 288)) = Xgetenv(tls, __ccgo_ts+1570)
+	**(**uintptr)(__ccgo_up(bp + 288)) = Xgetenv(tls, __ccgo_ts+1586)
 	if !(**(**uintptr)(__ccgo_up(bp + 288)) != 0) {
-		**(**uintptr)(__ccgo_up(bp + 288)) = __ccgo_ts + 1573
+		**(**uintptr)(__ccgo_up(bp + 288)) = __ccgo_ts + 1589
 	}
 	if !(**(**uint8)(__ccgo_up(**(**uintptr)(__ccgo_up(bp + 288)))) != 0) {
 		**(**uintptr)(__ccgo_up(bp + 288)) = uintptr(unsafe.Pointer(&X__utc))
@@ -147860,7 +148267,7 @@ func _do_tzset(tls *TLS) {
 	if Int32FromUint8(**(**uint8)(__ccgo_up(**(**uintptr)(__ccgo_up(bp + 288))))) != int32(':') {
 		**(**uintptr)(__ccgo_up(bp + 292)) = **(**uintptr)(__ccgo_up(bp + 288))
 		_getname(tls, bp+301, bp+292)
-		if **(**uintptr)(__ccgo_up(bp + 292)) != **(**uintptr)(__ccgo_up(bp + 288)) && (Int32FromUint8(**(**uint8)(__ccgo_up(**(**uintptr)(__ccgo_up(bp + 292))))) == int32('+') || Int32FromUint8(**(**uint8)(__ccgo_up(**(**uintptr)(__ccgo_up(bp + 292))))) == int32('-') || BoolInt32(uint32(**(**uint8)(__ccgo_up(**(**uintptr)(__ccgo_up(bp + 292)))))-uint32('0') < uint32(10)) != 0 || !(Xstrcmp(tls, bp+301, __ccgo_ts+1588) != 0) || !(Xstrcmp(tls, bp+301, __ccgo_ts+1592) != 0)) {
+		if **(**uintptr)(__ccgo_up(bp + 292)) != **(**uintptr)(__ccgo_up(bp + 288)) && (Int32FromUint8(**(**uint8)(__ccgo_up(**(**uintptr)(__ccgo_up(bp + 292))))) == int32('+') || Int32FromUint8(**(**uint8)(__ccgo_up(**(**uintptr)(__ccgo_up(bp + 292))))) == int32('-') || BoolInt32(uint32(**(**uint8)(__ccgo_up(**(**uintptr)(__ccgo_up(bp + 292)))))-uint32('0') < uint32(10)) != 0 || !(Xstrcmp(tls, bp+301, __ccgo_ts+1604) != 0) || !(Xstrcmp(tls, bp+301, __ccgo_ts+1608) != 0)) {
 			posix_form = int32(1)
 		}
 	}
@@ -147872,7 +148279,7 @@ func _do_tzset(tls *TLS) {
 			**(**uintptr)(__ccgo_up(bp + 288)) = **(**uintptr)(__ccgo_up(bp + 288)) + 1
 		}
 		if Int32FromUint8(**(**uint8)(__ccgo_up(**(**uintptr)(__ccgo_up(bp + 288))))) == int32('/') || Int32FromUint8(**(**uint8)(__ccgo_up(**(**uintptr)(__ccgo_up(bp + 288))))) == int32('.') {
-			if !(X__libc.Fsecure != 0) || !(Xstrcmp(tls, **(**uintptr)(__ccgo_up(bp + 288)), __ccgo_ts+1573) != 0) {
+			if !(X__libc.Fsecure != 0) || !(Xstrcmp(tls, **(**uintptr)(__ccgo_up(bp + 288)), __ccgo_ts+1589) != 0) {
 				map1 = X__map_file(tls, **(**uintptr)(__ccgo_up(bp + 288)), uintptr(unsafe.Pointer(&_map_size)))
 			}
 		} else {
@@ -147899,7 +148306,7 @@ func _do_tzset(tls *TLS) {
 			**(**uintptr)(__ccgo_up(bp + 288)) = uintptr(unsafe.Pointer(&X__utc))
 		}
 	}
-	if map1 != 0 && (_map_size < uint32(44) || Xmemcmp(tls, map1, __ccgo_ts+1596, uint32(4)) != 0) {
+	if map1 != 0 && (_map_size < uint32(44) || Xmemcmp(tls, map1, __ccgo_ts+1612, uint32(4)) != 0) {
 		X__munmap(tls, map1, _map_size)
 		map1 = uintptr(0)
 		**(**uintptr)(__ccgo_up(bp + 288)) = uintptr(unsafe.Pointer(&X__utc))
@@ -148163,7 +148570,7 @@ func X__secs_to_zone(tls *TLS, t int64, local int32, isdst uintptr, offset uintp
 	var t0, t1, y int64
 	var _ /* alt at bp+0 */ Tsize_t
 	_, _, _, _ = i, t0, t1, y
-	___lock(tls, uintptr(unsafe.Pointer(&_lock4)))
+	___lock(tls, uintptr(unsafe.Pointer(&_lock5)))
 	_do_tzset(tls)
 	if _zi != 0 {
 		i = _scan_trans(tls, t, local, bp)
@@ -148174,7 +148581,7 @@ func X__secs_to_zone(tls *TLS, t int64, local int32, isdst uintptr, offset uintp
 			if oppoff != 0 {
 				**(**int32)(__ccgo_up(oppoff)) = int32(Int32FromUint32(_zi_read32(tls, _types+uintptr(uint32(6)***(**Tsize_t)(__ccgo_up(bp))))))
 			}
-			___unlock(tls, uintptr(unsafe.Pointer(&_lock4)))
+			___unlock(tls, uintptr(unsafe.Pointer(&_lock5)))
 			return
 		}
 	}
@@ -148216,7 +148623,7 @@ std:
 		**(**int32)(__ccgo_up(oppoff)) = -_dst_off
 	}
 	**(**uintptr)(__ccgo_up(zonename)) = Xtzname[0]
-	___unlock(tls, uintptr(unsafe.Pointer(&_lock4)))
+	___unlock(tls, uintptr(unsafe.Pointer(&_lock5)))
 	return
 	goto dst
 dst:
@@ -148227,13 +148634,13 @@ dst:
 		**(**int32)(__ccgo_up(oppoff)) = -Xtimezone
 	}
 	**(**uintptr)(__ccgo_up(zonename)) = Xtzname[int32(1)]
-	___unlock(tls, uintptr(unsafe.Pointer(&_lock4)))
+	___unlock(tls, uintptr(unsafe.Pointer(&_lock5)))
 }
 
 func ___tzset(tls *TLS) {
-	___lock(tls, uintptr(unsafe.Pointer(&_lock4)))
+	___lock(tls, uintptr(unsafe.Pointer(&_lock5)))
 	_do_tzset(tls)
-	___unlock(tls, uintptr(unsafe.Pointer(&_lock4)))
+	___unlock(tls, uintptr(unsafe.Pointer(&_lock5)))
 }
 
 func X__tm_to_tzname(tls *TLS, tm uintptr) (r uintptr) {
@@ -148244,12 +148651,12 @@ func X__tm_to_tzname(tls *TLS, tm uintptr) (r uintptr) {
 	var p uintptr
 	_ = p
 	p = (*Ttm)(unsafe.Pointer(tm)).F__tm_zone
-	___lock(tls, uintptr(unsafe.Pointer(&_lock4)))
+	___lock(tls, uintptr(unsafe.Pointer(&_lock5)))
 	_do_tzset(tls)
 	if p != uintptr(unsafe.Pointer(&X__utc)) && p != Xtzname[0] && p != Xtzname[int32(1)] && (!(_zi != 0) || uint32(p)-uint32(_abbrevs) >= Uint32FromInt32(int32(_abbrevs_end)-int32(_abbrevs))) {
 		p = __ccgo_ts
 	}
-	___unlock(tls, uintptr(unsafe.Pointer(&_lock4)))
+	___unlock(tls, uintptr(unsafe.Pointer(&_lock5)))
 	return p
 }
 
@@ -148338,7 +148745,7 @@ func X__asctime_r(tls *TLS, tm uintptr, buf uintptr) (r uintptr) {
 	}
 	bp := tls.Alloc(64)
 	defer tls.Free(64)
-	if Xsnprintf(tls, buf, uint32(26), __ccgo_ts+1601, VaList(bp+8, X__nl_langinfo_l(tls, int32(ABDAY_1)+(*Ttm)(unsafe.Pointer(tm)).Ftm_wday, uintptr(unsafe.Pointer(&X__c_locale))), X__nl_langinfo_l(tls, int32(ABMON_1)+(*Ttm)(unsafe.Pointer(tm)).Ftm_mon, uintptr(unsafe.Pointer(&X__c_locale))), (*Ttm)(unsafe.Pointer(tm)).Ftm_mday, (*Ttm)(unsafe.Pointer(tm)).Ftm_hour, (*Ttm)(unsafe.Pointer(tm)).Ftm_min, (*Ttm)(unsafe.Pointer(tm)).Ftm_sec, int32(1900)+(*Ttm)(unsafe.Pointer(tm)).Ftm_year)) >= int32(26) {
+	if Xsnprintf(tls, buf, uint32(26), __ccgo_ts+1617, VaList(bp+8, X__nl_langinfo_l(tls, int32(ABDAY_1)+(*Ttm)(unsafe.Pointer(tm)).Ftm_wday, uintptr(unsafe.Pointer(&X__c_locale))), X__nl_langinfo_l(tls, int32(ABMON_1)+(*Ttm)(unsafe.Pointer(tm)).Ftm_mon, uintptr(unsafe.Pointer(&X__c_locale))), (*Ttm)(unsafe.Pointer(tm)).Ftm_mday, (*Ttm)(unsafe.Pointer(tm)).Ftm_hour, (*Ttm)(unsafe.Pointer(tm)).Ftm_min, (*Ttm)(unsafe.Pointer(tm)).Ftm_sec, int32(1900)+(*Ttm)(unsafe.Pointer(tm)).Ftm_year)) >= int32(26) {
 		/* ISO C requires us to use the above format string,
 		 * even if it will not fit in the buffer. Thus asctime_r
 		 * is _supposed_ to crash if the fields in tm are too large.
@@ -148648,7 +149055,7 @@ func Xgetdate(tls *TLS, s uintptr) (r uintptr) {
 	var _ /* fmt at bp+0 */ [100]uint8
 	_, _, _, _ = datemsk, f, p, ret
 	ret = uintptr(0)
-	datemsk = Xgetenv(tls, __ccgo_ts+1633)
+	datemsk = Xgetenv(tls, __ccgo_ts+1649)
 	f = uintptr(0)
 	_pthread_setcancelstate(tls, PTHREAD_CANCEL_DEFERRED, bp+100)
 	if !(datemsk != 0) {
@@ -148930,10 +149337,10 @@ func X__strftime_fmt_1(tls *TLS, s uintptr, l uintptr, f int32, tm uintptr, loc 
 		val = int64((*Ttm)(unsafe.Pointer(tm)).Ftm_mday)
 		goto number
 	case int32('D'):
-		fmt = __ccgo_ts + 1641
+		fmt = __ccgo_ts + 1657
 		goto recu_strftime
 	case int32('F'):
-		fmt = __ccgo_ts + 1650
+		fmt = __ccgo_ts + 1666
 		goto recu_strftime
 	case int32('g'):
 		fallthrough
@@ -149022,7 +149429,7 @@ func X__strftime_fmt_1(tls *TLS, s uintptr, l uintptr, f int32, tm uintptr, loc 
 		item = int32(T_FMT_AMPM)
 		goto nl_strftime
 	case int32('R'):
-		fmt = __ccgo_ts + 1659
+		fmt = __ccgo_ts + 1675
 		goto recu_strftime
 	case int32('s'):
 		val = X__tm_to_secs(tls, tm) - int64((*Ttm)(unsafe.Pointer(tm)).F__tm_gmtoff)
@@ -149035,7 +149442,7 @@ func X__strftime_fmt_1(tls *TLS, s uintptr, l uintptr, f int32, tm uintptr, loc 
 		**(**Tsize_t)(__ccgo_up(l)) = uint32(1)
 		return __ccgo_ts + 1315
 	case int32('T'):
-		fmt = __ccgo_ts + 1665
+		fmt = __ccgo_ts + 1681
 		goto recu_strftime
 	case int32('u'):
 		if (*Ttm)(unsafe.Pointer(tm)).Ftm_wday != 0 {
@@ -149074,7 +149481,7 @@ func X__strftime_fmt_1(tls *TLS, s uintptr, l uintptr, f int32, tm uintptr, loc 
 	case int32('Y'):
 		val = int64((*Ttm)(unsafe.Pointer(tm)).Ftm_year) + int64(1900)
 		if val >= int64(10000) {
-			**(**Tsize_t)(__ccgo_up(l)) = Uint32FromInt32(Xsnprintf(tls, s, uint32(100), __ccgo_ts+1674, VaList(bp+8, val)))
+			**(**Tsize_t)(__ccgo_up(l)) = Uint32FromInt32(Xsnprintf(tls, s, uint32(100), __ccgo_ts+1690, VaList(bp+8, val)))
 			return s
 		}
 		width = int32(4)
@@ -149084,7 +149491,7 @@ func X__strftime_fmt_1(tls *TLS, s uintptr, l uintptr, f int32, tm uintptr, loc 
 			**(**Tsize_t)(__ccgo_up(l)) = uint32(0)
 			return __ccgo_ts
 		}
-		**(**Tsize_t)(__ccgo_up(l)) = Uint32FromInt32(Xsnprintf(tls, s, uint32(100), __ccgo_ts+1680, VaList(bp+8, (*Ttm)(unsafe.Pointer(tm)).F__tm_gmtoff/int32(3600)*int32(100)+(*Ttm)(unsafe.Pointer(tm)).F__tm_gmtoff%int32(3600)/int32(60))))
+		**(**Tsize_t)(__ccgo_up(l)) = Uint32FromInt32(Xsnprintf(tls, s, uint32(100), __ccgo_ts+1696, VaList(bp+8, (*Ttm)(unsafe.Pointer(tm)).F__tm_gmtoff/int32(3600)*int32(100)+(*Ttm)(unsafe.Pointer(tm)).F__tm_gmtoff%int32(3600)/int32(60))))
 		return s
 	case int32('Z'):
 		if (*Ttm)(unsafe.Pointer(tm)).Ftm_isdst < 0 {
@@ -149109,13 +149516,13 @@ number:
 	}
 	switch v1 {
 	case int32('-'):
-		**(**Tsize_t)(__ccgo_up(l)) = Uint32FromInt32(Xsnprintf(tls, s, uint32(100), __ccgo_ts+1687, VaList(bp+8, val)))
+		**(**Tsize_t)(__ccgo_up(l)) = Uint32FromInt32(Xsnprintf(tls, s, uint32(100), __ccgo_ts+1703, VaList(bp+8, val)))
 	case int32('_'):
-		**(**Tsize_t)(__ccgo_up(l)) = Uint32FromInt32(Xsnprintf(tls, s, uint32(100), __ccgo_ts+1692, VaList(bp+8, width, val)))
+		**(**Tsize_t)(__ccgo_up(l)) = Uint32FromInt32(Xsnprintf(tls, s, uint32(100), __ccgo_ts+1708, VaList(bp+8, width, val)))
 	case int32('0'):
 		fallthrough
 	default:
-		**(**Tsize_t)(__ccgo_up(l)) = Uint32FromInt32(Xsnprintf(tls, s, uint32(100), __ccgo_ts+1698, VaList(bp+8, width, val)))
+		**(**Tsize_t)(__ccgo_up(l)) = Uint32FromInt32(Xsnprintf(tls, s, uint32(100), __ccgo_ts+1714, VaList(bp+8, width, val)))
 		break
 	}
 	return s
@@ -149477,7 +149884,7 @@ func Xstrptime(tls *TLS, s uintptr, f uintptr, tm uintptr) (r uintptr) {
 		goto numeric_range
 	_19:
 		;
-		s = Xstrptime(tls, s, __ccgo_ts+1641, tm)
+		s = Xstrptime(tls, s, __ccgo_ts+1657, tm)
 		if !(s != 0) {
 			return uintptr(0)
 		}
@@ -149565,7 +149972,7 @@ func Xstrptime(tls *TLS, s uintptr, f uintptr, tm uintptr) (r uintptr) {
 		goto _41
 	_29:
 		;
-		s = Xstrptime(tls, s, __ccgo_ts+1659, tm)
+		s = Xstrptime(tls, s, __ccgo_ts+1675, tm)
 		if !(s != 0) {
 			return uintptr(0)
 		}
@@ -149578,7 +149985,7 @@ func Xstrptime(tls *TLS, s uintptr, f uintptr, tm uintptr) (r uintptr) {
 		goto numeric_range
 	_31:
 		;
-		s = Xstrptime(tls, s, __ccgo_ts+1665, tm)
+		s = Xstrptime(tls, s, __ccgo_ts+1681, tm)
 		if !(s != 0) {
 			return uintptr(0)
 		}
@@ -150164,7 +150571,7 @@ func Xchown(tls *TLS, path uintptr, uid Tuid_t, gid Tgid_t) (r int32) {
 	return X__syscall_ret(tls, Uint32FromInt32(X__syscall3(tls, int32(SYS_chown32), int32(path), Int32FromUint32(uid), Int32FromUint32(gid))))
 }
 
-func _dummy12(tls *TLS, fd int32) (r int32) {
+func _dummy13(tls *TLS, fd int32) (r int32) {
 	return fd
 }
 
@@ -150175,7 +150582,7 @@ func Xclose(tls *TLS, fd int32) (r1 int32) {
 	}
 	var r int32
 	_ = r
-	fd = _dummy12(tls, fd)
+	fd = _dummy13(tls, fd)
 	r = int32(___syscall_cp(tls, int32(SYS_close), fd, 0, 0, 0, 0, 0))
 	if r == -int32(EINTR) {
 		r = 0
@@ -150495,7 +150902,7 @@ func Xgetlogin(tls *TLS) (r uintptr) {
 		trc("tls=%v, (%v:)", tls, origin(2))
 		defer func() { trc("-> %v", r) }()
 	}
-	return Xgetenv(tls, __ccgo_ts+1705)
+	return Xgetenv(tls, __ccgo_ts+1721)
 }
 
 func Xgetlogin_r(tls *TLS, name uintptr, size Tsize_t) (r int32) {
@@ -155410,6 +155817,8 @@ var X__seed48 = [7]uint16{
 	6: uint16(0xb),
 }
 
+var X__sem_open_lockptr = uintptr(unsafe.Pointer(&_lock4))
+
 var Xsigngam int32
 
 var X__stack_chk_guard Tuintptr_t
@@ -155452,7 +155861,7 @@ var X__syslog_lockptr = uintptr(unsafe.Pointer(&_lock2))
 
 var Xtimezone int32
 
-var X__timezone_lockptr = uintptr(unsafe.Pointer(&_lock4))
+var X__timezone_lockptr = uintptr(unsafe.Pointer(&_lock5))
 
 var Xtzname = [2]uintptr{}
 
@@ -155536,4 +155945,36 @@ var Xstdout = uintptr(unsafe.Pointer(&X__stdout_FILE))
 
 var __ccgo_ts = (*reflect.StringHeader)(unsafe.Pointer(&__ccgo_ts1)).Data
 
-var __ccgo_ts1 = "\x00/bin:/usr/bin\x00%s\x008b \xd0\xc1\xd2\xcf\xcc\xd8\x00$2a$00$abcdefghijklmnopqrstuu\x00\xff\xa334\xff\xff\xff\xa3345\x00*\x00\x80\xff\x80\x01 \x7f\x81\x80\x80\r\n\xff\x7f \x81 test\x00_0.../9Zz\x00_0.../9ZzX7iSJNd21sU\x00\x80x\x00\x80x22/wK52ZKGA\x00x\x00$1$\x00$5$\x00rounds=\x00rounds=%u$\x00$5$%s%.*s$\x00$6$\x00$6$%s%.*s$\x00toupper\x00tolower\x00Assertion failed: %s (%s: %s: %d)\n\x00infinity\x00nan\x00\x00\x01\x02\x04\a\x03\x06\x05\x00/proc/self/fd/\x00%s: \x00: \x00/dev/tty\x00\n\x00/etc/shells\x00rbe\x00rb\x00UTF-8\x00NLSPATH\x00LANG\x00_.@\x00.@\x00%\x00messages\x00%s/%.*s%.*s/%s/%s.mo\x00\x00n!=1;\x00Plural-Forms:\x00nplurals=\x00plural=\x00Ê̄Ê̌ê̄ê̌\x00utf8\x00ASCII\x00C\x00LC_ALL\x00C.UTF-8\x00POSIX\x00MUSL_LOCPATH\x00.\x00%*.*f\x00/\x00MSGVERB\x00label\x00severity\x00text\x00action\x00tag\x00HALT: \x00ERROR: \x00WARNING: \x00INFO: \x00/dev/console\x00\nTO FIX: \x00 \x00%s%s%s%s%s%s%s%s\n\x00PWD\x00: unrecognized option: \x00: option requires an argument: \x00: option does not take an argument: \x00: option is ambiguous: \x00%*[^\n]%*[\n]\x00 %n%*[^ \t]%n %n%*[^ \t]%n %n%*[^ \t]%n %n%*[^ \t]%n %d %d\x00%s\t%s\t%s\t%s\t%d\t%d\n\x00/dev/ptmx\x00/dev/pts/%d\x00%b %e %T\x00<%d>%s %n%s%s%.0d%s: \x00[\x00]\x00%.*s\x00/dev/shm/\x00%.2X\x00:%.2X\x00%d.%d.%d.%d.in-addr.arpa\x00ip6.arpa\x00/etc/hosts\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\xff\x00/etc/services\x00/udp\x00/tcp\x00tcp\x00udp\x00%s%s%s\n\x00%d.%d.%d.%d\x00%x:%x:%x:%x:%x:%x:%x:%x\x00%x:%x:%x:%x:%x:%x:%d.%d.%d.%d\x00:0\x00/etc/resolv.conf\x00options\x00ndots:\x00attempts:\x00timeout:\x00nameserver\x00domain\x00search\x00127.0.0.1\x00/etc/group\x00/etc/passwd\x00/dev/null\x00re\x00r\x00%s:%s:%u:\x00,\x00%s%s\x00%s:%s:%u:%u:%s:%s:%s\n\x00%s:%s:%.*ld:%.*ld:%.*ld:%.*ld:%.*ld:%.*ld:%.*lu\n\x00PATH\x00/usr/local/bin:/bin:/usr/bin\x00HOME\x00\t\x00\r\x00\f\x00\a\x00\x1b\x00[[:alnum:]_]\x00[^[:alnum:]_]\x00[[:space:]]\x00[^[:space:]]\x00[[:digit:]]\x00[^[:digit:]]\x00rwa\x00/tmp\x00temp\x00w+\x00-0X+0X 0X-0x+0x 0x\x00inf\x00INF\x00NAN\x00-+   0X0x\x00(null)\x00%*s\x00%%%s%s%s%s%s*.*%c%c\x00#\x00+\x00-\x000\x00\x00\x00\x00\x00%.*s%.0d%s%c%%lln\x00%*\x00%.*e\x00%.*f\x00000000000000000\x00%.*g\x00@\x00\x00\x00\x00\x00\x00\x00XXXXXX\x00TZ\x00/etc/localtime\x00UTC\x00GMT\x00TZif\x00%.3s %.3s%3d %.2d:%.2d:%.2d %d\n\x00DATEMSK\x00%m/%d/%y\x00%Y-%m-%d\x00%H:%M\x00%H:%M:%S\x00+%lld\x00%+.4ld\x00%lld\x00%*lld\x00%0*lld\x00LOGNAME\x00"
+var __ccgo_ts1 = "\x00/bin:/usr/bin\x00%s\x008b \xd0\xc1\xd2\xcf\xcc\xd8\x00$2a$00$abcdefghijklmnopqrstuu\x00\xff\xa334\xff\xff\xff\xa3345\x00*\x00\x80\xff\x80\x01 \x7f\x81\x80\x80\r\n\xff\x7f \x81 test\x00_0.../9Zz\x00_0.../9ZzX7iSJNd21sU\x00\x80x\x00\x80x22/wK52ZKGA\x00x\x00$1$\x00$5$\x00rounds=\x00rounds=%u$\x00$5$%s%.*s$\x00$6$\x00$6$%s%.*s$\x00toupper\x00tolower\x00Assertion failed: %s (%s: %s: %d)\n\x00infinity\x00nan\x00\x00\x01\x02\x04\a\x03\x06\x05\x00/proc/self/fd/\x00%s: \x00: \x00/dev/tty\x00\n\x00/etc/shells\x00rbe\x00rb\x00UTF-8\x00NLSPATH\x00LANG\x00_.@\x00.@\x00%\x00messages\x00%s/%.*s%.*s/%s/%s.mo\x00\x00n!=1;\x00Plural-Forms:\x00nplurals=\x00plural=\x00Ê̄Ê̌ê̄ê̌\x00utf8\x00ASCII\x00C\x00LC_ALL\x00C.UTF-8\x00POSIX\x00MUSL_LOCPATH\x00.\x00%*.*f\x00/\x00MSGVERB\x00label\x00severity\x00text\x00action\x00tag\x00HALT: \x00ERROR: \x00WARNING: \x00INFO: \x00/dev/console\x00\nTO FIX: \x00 \x00%s%s%s%s%s%s%s%s\n\x00PWD\x00: unrecognized option: \x00: option requires an argument: \x00: option does not take an argument: \x00: option is ambiguous: \x00%*[^\n]%*[\n]\x00 %n%*[^ \t]%n %n%*[^ \t]%n %n%*[^ \t]%n %n%*[^ \t]%n %d %d\x00%s\t%s\t%s\t%s\t%d\t%d\n\x00/dev/ptmx\x00/dev/pts/%d\x00%b %e %T\x00<%d>%s %n%s%s%.0d%s: \x00[\x00]\x00%.*s\x00/dev/shm/\x00%.2X\x00:%.2X\x00%d.%d.%d.%d.in-addr.arpa\x00ip6.arpa\x00/etc/hosts\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\xff\x00/etc/services\x00/udp\x00/tcp\x00tcp\x00udp\x00%s%s%s\n\x00%d.%d.%d.%d\x00%x:%x:%x:%x:%x:%x:%x:%x\x00%x:%x:%x:%x:%x:%x:%d.%d.%d.%d\x00:0\x00/etc/resolv.conf\x00options\x00ndots:\x00attempts:\x00timeout:\x00nameserver\x00domain\x00search\x00127.0.0.1\x00/etc/group\x00/etc/passwd\x00/dev/null\x00re\x00r\x00%s:%s:%u:\x00,\x00%s%s\x00%s:%s:%u:%u:%s:%s:%s\n\x00%s:%s:%.*ld:%.*ld:%.*ld:%.*ld:%.*ld:%.*ld:%.*lu\n\x00PATH\x00/usr/local/bin:/bin:/usr/bin\x00HOME\x00\t\x00\r\x00\f\x00\a\x00\x1b\x00[[:alnum:]_]\x00[^[:alnum:]_]\x00[[:space:]]\x00[^[:space:]]\x00[[:digit:]]\x00[^[:digit:]]\x00rwa\x00/tmp\x00temp\x00w+\x00-0X+0X 0X-0x+0x 0x\x00inf\x00INF\x00NAN\x00-+   0X0x\x00(null)\x00%*s\x00%%%s%s%s%s%s*.*%c%c\x00#\x00+\x00-\x000\x00\x00\x00\x00\x00%.*s%.0d%s%c%%lln\x00%*\x00%.*e\x00%.*f\x00000000000000000\x00%.*g\x00@\x00\x00\x00\x00\x00\x00\x00XXXXXX\x00/dev/shm/tmp-%d\x00TZ\x00/etc/localtime\x00UTC\x00GMT\x00TZif\x00%.3s %.3s%3d %.2d:%.2d:%.2d %d\n\x00DATEMSK\x00%m/%d/%y\x00%Y-%m-%d\x00%H:%M\x00%H:%M:%S\x00+%lld\x00%+.4ld\x00%lld\x00%*lld\x00%0*lld\x00LOGNAME\x00"
+
+// The environment functions below wrap the transpiled musl versions, renamed
+// to ___musl_*, and mirror successful changes to the Go environment. See
+// https://gitlab.com/cznic/libc/-/issues/58.
+
+func Xsetenv(tls *TLS, var1 uintptr, value uintptr, overwrite int32) (r int32) {
+	if r = ___musl_setenv(tls, var1, value, overwrite); r == 0 {
+		envMirrorSet(GoString(var1), GoString(Xgetenv(tls, var1)))
+	}
+	return r
+}
+
+func Xunsetenv(tls *TLS, name uintptr) (r int32) {
+	if r = ___musl_unsetenv(tls, name); r == 0 {
+		envMirrorUnset(GoString(name))
+	}
+	return r
+}
+
+func Xputenv(tls *TLS, s uintptr) (r int32) {
+	if r = ___musl_putenv(tls, s); r == 0 {
+		envMirrorPut(GoString(s))
+	}
+	return r
+}
+
+func Xclearenv(tls *TLS) (r int32) {
+	if r = ___musl_clearenv(tls); r == 0 {
+		envMirrorClear()
+	}
+	return r
+}
