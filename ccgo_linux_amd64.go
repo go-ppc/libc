@@ -3205,8 +3205,8 @@ const BC_SCALE_MAX = 99
 const BC_STRING_MAX = 1000
 const CHARCLASS_NAME_MAX = 14
 const CHAR_BIT = 8
-const CHAR_MAX = 255
-const CHAR_MIN = 0
+const CHAR_MAX = 127
+const CHAR_MIN = -128
 const COLL_WEIGHTS_MAX = 2
 const DELAYTIMER_MAX = 2147483647
 const EXPR_NEST_MAX = 32
@@ -98619,20 +98619,20 @@ var _posix_lconv = Tlconv{
 	Fmon_grouping:       __ccgo_ts,
 	Fpositive_sign:      __ccgo_ts,
 	Fnegative_sign:      __ccgo_ts,
-	Fint_frac_digits:    Int8FromInt32(CHAR_MAX),
-	Ffrac_digits:        Int8FromInt32(CHAR_MAX),
-	Fp_cs_precedes:      Int8FromInt32(CHAR_MAX),
-	Fp_sep_by_space:     Int8FromInt32(CHAR_MAX),
-	Fn_cs_precedes:      Int8FromInt32(CHAR_MAX),
-	Fn_sep_by_space:     Int8FromInt32(CHAR_MAX),
-	Fp_sign_posn:        Int8FromInt32(CHAR_MAX),
-	Fn_sign_posn:        Int8FromInt32(CHAR_MAX),
-	Fint_p_cs_precedes:  Int8FromInt32(CHAR_MAX),
-	Fint_p_sep_by_space: Int8FromInt32(CHAR_MAX),
-	Fint_n_cs_precedes:  Int8FromInt32(CHAR_MAX),
-	Fint_n_sep_by_space: Int8FromInt32(CHAR_MAX),
-	Fint_p_sign_posn:    Int8FromInt32(CHAR_MAX),
-	Fint_n_sign_posn:    Int8FromInt32(CHAR_MAX),
+	Fint_frac_digits:    int8(CHAR_MAX),
+	Ffrac_digits:        int8(CHAR_MAX),
+	Fp_cs_precedes:      int8(CHAR_MAX),
+	Fp_sep_by_space:     int8(CHAR_MAX),
+	Fn_cs_precedes:      int8(CHAR_MAX),
+	Fn_sep_by_space:     int8(CHAR_MAX),
+	Fp_sign_posn:        int8(CHAR_MAX),
+	Fn_sign_posn:        int8(CHAR_MAX),
+	Fint_p_cs_precedes:  int8(CHAR_MAX),
+	Fint_p_sep_by_space: int8(CHAR_MAX),
+	Fint_n_cs_precedes:  int8(CHAR_MAX),
+	Fint_n_sep_by_space: int8(CHAR_MAX),
+	Fint_p_sign_posn:    int8(CHAR_MAX),
+	Fint_n_sign_posn:    int8(CHAR_MAX),
 }
 
 func Xlocaleconv(tls *TLS) (r uintptr) {
