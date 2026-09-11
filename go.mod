@@ -17,7 +17,7 @@ require (
 	github.com/ncruces/go-strftime v1.0.0
 	golang.org/x/sys v0.47.0
 	golang.org/x/tools v0.49.0
-	modernc.org/cc/v4 v4.29.5
+	modernc.org/cc/v4 v4.29.6
 	modernc.org/ccgo/v4 v4.35.1
 	modernc.org/fileutil v1.4.0
 	modernc.org/goabi0 v0.2.0
