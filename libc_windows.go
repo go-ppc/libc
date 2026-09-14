@@ -7538,17 +7538,11 @@ func X_wputenv(t *TLS, envstring uintptr) int32 {
 
 func bootWinEnviron(t *TLS) {
 	winEnviron = winEnviron[:0]
-	p := Environ()
-	for {
-		q := *(*uintptr)(unsafe.Pointer(p))
-		p += unsafe.Sizeof(uintptr(0))
-		if q == 0 {
-			break
-		}
-
-		s := GoString(q)
-		r := allocW(t, s)
-		winEnviron = append(winEnviron, r)
+	// Read the process environment, not the narrow copy getenv uses. That one
+	// is taken during package initialization (X__imp__environ) and misses
+	// everything the Go side has set since.
+	for _, s := range os.Environ() {
+		winEnviron = append(winEnviron, allocW(t, s))
 	}
 	// _wenviron is a null terminated array, and _wgetenv/_wputenv rely on the
 	// terminator being the last element.

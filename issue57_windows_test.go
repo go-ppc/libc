@@ -147,7 +147,9 @@ func TestIssue57Handles(t *testing.T) {
 	tls := NewTLS()
 	defer tls.Close()
 
-	if g := XCloseHandle(tls, uintptr(windows.InvalidHandle)); g != 0 {
+	// Not windows.InvalidHandle: that is also the current process pseudo handle,
+	// which CloseHandle accepts.
+	if g := XCloseHandle(tls, 0); g != 0 {
 		t.Errorf("CloseHandle of an invalid handle: %v, expected 0", g)
 	}
 
@@ -165,13 +167,18 @@ func TestIssue57Handles(t *testing.T) {
 	if g := XCloseHandle(tls, uintptr(r)); g != 1 {
 		t.Errorf("CloseHandle: %v", g)
 	}
-	// A synchronous handle has no overlapped result: the call fails without a
-	// panic and reports FALSE.
-	ov := Xmalloc(tls, 64)
+	// GetOverlappedResult reports the status the OVERLAPPED records in its
+	// Internal field, whatever the handle: TRUE for a completed request, FALSE
+	// for a failed one.
+	ov := Xcalloc(tls, 1, 64)
 	defer Xfree(tls, ov)
 
+	if g := XGetOverlappedResult(tls, uintptr(w), ov, ov+40, 0); g != 1 {
+		t.Errorf("GetOverlappedResult of a completed request: %v", g)
+	}
+	(*windows.Overlapped)(unsafe.Pointer(ov)).Internal = uintptr(windows.STATUS_END_OF_FILE)
 	if g := XGetOverlappedResult(tls, uintptr(w), ov, ov+40, 0); g != 0 {
-		t.Errorf("GetOverlappedResult on a pipe end: %v", g)
+		t.Errorf("GetOverlappedResult of a failed request: %v", g)
 	}
 	windows.CloseHandle(w)
 	XOutputDebugStringW(tls, issue57WString(tls, "libc issue 57"))
