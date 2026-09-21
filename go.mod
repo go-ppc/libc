@@ -10,6 +10,8 @@ retract v1.74.2 // freeaddrinfo leaks a locked ___lock entry; deadlocks name res
 
 retract v1.74.3 // freeaddrinfo leaks a locked ___lock entry; deadlocks name resolution, fixed in v1.74.4
 
+retract v1.77.0 // Xnanf calls itself on linux; nan() and strtod or scanf of "nan" crash with a stack overflow
+
 require (
 	github.com/dustin/go-humanize v1.0.1
 	github.com/google/uuid v1.6.0
