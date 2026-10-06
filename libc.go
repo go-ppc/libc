@@ -15,6 +15,7 @@ package libc // import "modernc.org/libc"
 
 import (
 	"bufio"
+	"bytes"
 	crand "crypto/rand"
 	"fmt"
 	"math"
@@ -2004,12 +2005,16 @@ func Xmemchr(t *TLS, s uintptr, c int32, n types.Size_t) uintptr {
 	if __ccgo_strace {
 		trc("t=%v s=%v c=%v n=%v, (%v:)", t, s, c, n, origin(2))
 	}
-	for ; n != 0; n-- {
-		if *(*byte)(unsafe.Pointer(s)) == byte(c) {
-			return s
+	// Scan in chunks that end at 4096-byte boundaries so n larger than the
+	// object (up to SIZE_MAX) never reads a page past the first match.
+	for n != 0 {
+		chunk := min(4096-s%4096, uintptr(n))
+		if i := bytes.IndexByte(unsafe.Slice((*byte)(unsafe.Pointer(s)), chunk), byte(c)); i >= 0 {
+			return s + uintptr(i)
 		}
 
-		s++
+		s += chunk
+		n -= types.Size_t(chunk)
 	}
 	return 0
 }
