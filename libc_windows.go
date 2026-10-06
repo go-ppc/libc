@@ -8078,22 +8078,7 @@ func Xstrncat(t *TLS, dest, src uintptr, n types.Size_t) (r uintptr) {
 	if __ccgo_strace {
 		trc("t=%v dest=%v src=%v n=%v, (%v:)", t, dest, src, n, origin(2))
 	}
-	r = dest
-	for *(*byte)(unsafe.Pointer(dest)) != 0 {
-		dest++
-	}
-	for ; n != 0; n-- {
-		c := *(*byte)(unsafe.Pointer(src))
-		if c == 0 {
-			break
-		}
-
-		*(*byte)(unsafe.Pointer(dest)) = c
-		dest++
-		src++
-	}
-	*(*byte)(unsafe.Pointer(dest)) = 0
-	return r
+	return strncat(dest, src, n)
 }
 
 // strtoi64 is the common part of strtoll and strtoull. Overflow is reported
