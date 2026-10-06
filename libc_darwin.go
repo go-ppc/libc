@@ -5,6 +5,7 @@
 package libc // import "modernc.org/libc"
 
 import (
+	"bytes"
 	crand "crypto/rand"
 	"encoding/binary"
 	"encoding/hex"
@@ -112,14 +113,135 @@ func (f file) setEOF() {
 	(*stdio.FILE)(unsafe.Pointer(f)).F_flags |= 2
 }
 
+func (f file) clearEOF() {
+	(*stdio.FILE)(unsafe.Pointer(f)).F_flags &^= 2
+}
+
 func (f file) close(t *TLS) int32 {
 	r := Xclose(t, f.fd())
+	Xfree(t, f.s().F_bf.F_base)
 	Xfree(t, uintptr(f))
 	if r < 0 {
 		return stdio.EOF
 	}
 
 	return 0
+}
+
+// Input is buffered using the FILE fields like Apple's libc does: _bf is the buffer, _p the
+// next byte and _r the bytes left, so the __sgetc macro works. Output is not buffered.
+const (
+	fileBufSize   = 4096
+	fileUngetSize = 8 // Space reserved in front of the buffer for ungetc.
+	fileNoBuf     = 4 // F_flags bit set by setvbuf(_IONBF).
+)
+
+func (f file) s() *stdio.FILE { return (*stdio.FILE)(unsafe.Pointer(f)) }
+
+// sysread reads into b and sets the EOF or error indicator. EOF is sticky until cleared.
+func (f file) sysread(t *TLS, b []byte) int {
+	if f.eof() {
+		return 0
+	}
+
+	n, err := unix.Read(int(f.fd()), b)
+	switch {
+	case err != nil:
+		f.setErr()
+		t.setErrno(err)
+		return 0
+	case n == 0:
+		f.setEOF()
+	}
+	return n
+}
+
+// fill refills the read buffer, allocating it on first use.
+func (f file) fill(t *TLS) bool {
+	s := f.s()
+	if s.F_bf.F_base == 0 && !f.allocBuf(t) {
+		return false
+	}
+
+	n := fileBufSize
+	if s.F_flags&fileNoBuf != 0 {
+		n = 1
+	}
+	s.F_p = s.F_bf.F_base + fileUngetSize
+	s.F_r = int32(f.sysread(t, unsafe.Slice((*byte)(unsafe.Pointer(s.F_p)), n)))
+	return s.F_r != 0
+}
+
+func (f file) allocBuf(t *TLS) bool {
+	s := f.s()
+	if s.F_bf.F_base = Xmalloc(t, fileUngetSize+fileBufSize); s.F_bf.F_base == 0 {
+		f.setErr()
+		return false
+	}
+
+	s.F_bf.F_size = fileUngetSize + fileBufSize
+	s.F_p = s.F_bf.F_base + fileUngetSize
+	s.F_r = 0
+	return true
+}
+
+// buffered returns the unread input bytes.
+func (f file) buffered() []byte {
+	s := f.s()
+	if s.F_r <= 0 {
+		return nil
+	}
+
+	return unsafe.Slice((*byte)(unsafe.Pointer(s.F_p)), s.F_r)
+}
+
+func (f file) consume(n int) {
+	s := f.s()
+	s.F_p += uintptr(n)
+	s.F_r -= int32(n)
+}
+
+// read reads up to len(b) bytes, bypassing the buffer for large reads.
+func (f file) read(t *TLS, b []byte) int {
+	n := 0
+	for n < len(b) {
+		if r := f.buffered(); len(r) != 0 {
+			m := copy(b[n:], r)
+			f.consume(m)
+			n += m
+			continue
+		}
+
+		if len(b)-n < fileBufSize && f.s().F_flags&fileNoBuf == 0 {
+			if !f.fill(t) {
+				break
+			}
+
+			continue
+		}
+
+		m := f.sysread(t, b[n:])
+		if m == 0 {
+			break
+		}
+
+		n += m
+	}
+	return n
+}
+
+// unread drops buffered input and moves the descriptor back to the stream position.
+// It fails, keeping the buffer, if the descriptor is not seekable.
+func (f file) unread() bool {
+	s := f.s()
+	if s.F_r > 0 {
+		if _, err := unix.Seek(int(f.fd()), -int64(s.F_r), io.SeekCurrent); err != nil {
+			return false
+		}
+	}
+
+	s.F_r = 0
+	return true
 }
 
 func newFile(t *TLS, fd int32) uintptr {
@@ -182,6 +304,7 @@ func Xfprintf(t *TLS, stream, format, args uintptr) int32 {
 	if __ccgo_strace {
 		trc("t=%v args=%v, (%v:)", t, args, origin(2))
 	}
+	file(stream).unread()
 	n, _ := fwrite(int32((*stdio.FILE)(unsafe.Pointer(stream)).F_file), printf(format, args))
 	return int32(n)
 }
@@ -331,13 +454,57 @@ func Xfgetc(t *TLS, stream uintptr) int32 {
 	if __ccgo_strace {
 		trc("t=%v stream=%v, (%v:)", t, stream, origin(2))
 	}
-	fd := int((*stdio.FILE)(unsafe.Pointer(stream)).F_file)
-	var buf [1]byte
-	if n, _ := unix.Read(fd, buf[:]); n != 0 {
-		return int32(buf[0])
+	f := file(stream)
+	s := f.s()
+	if s.F_r <= 0 && !f.fill(t) {
+		return stdio.EOF
 	}
 
-	return stdio.EOF
+	s.F_r--
+	c := *(*byte)(unsafe.Pointer(s.F_p))
+	s.F_p++
+	return int32(c)
+}
+
+// char *fgets(char *s, int size, FILE *stream);
+func Xfgets(t *TLS, s uintptr, size int32, stream uintptr) uintptr {
+	if __ccgo_strace {
+		trc("t=%v s=%v size=%v stream=%v, (%v:)", t, s, size, stream, origin(2))
+	}
+	if size < 1 {
+		return 0
+	}
+
+	f := file(stream)
+	d := unsafe.Slice((*byte)(unsafe.Pointer(s)), size)
+	n := 0
+	for n < len(d)-1 {
+		b := f.buffered()
+		if len(b) == 0 {
+			if !f.fill(t) {
+				break
+			}
+
+			b = f.buffered()
+		}
+		if m := len(d) - 1 - n; len(b) > m {
+			b = b[:m]
+		}
+		if i := bytes.IndexByte(b, '\n'); i >= 0 {
+			b = b[:i+1]
+		}
+		n += copy(d[n:], b)
+		f.consume(len(b))
+		if d[n-1] == '\n' {
+			break
+		}
+	}
+	if n == 0 && size > 1 {
+		return 0
+	}
+
+	d[n] = 0
+	return s
 }
 
 // int lstat(const char *pathname, struct stat *statbuf);
@@ -1141,7 +1308,16 @@ func Xsetvbuf(t *TLS, stream, buf uintptr, mode int32, size types.Size_t) int32 
 	if __ccgo_strace {
 		trc("t=%v buf=%v mode=%v size=%v, (%v:)", t, buf, mode, size, origin(2))
 	}
-	return 0 //TODO
+	switch mode {
+	case stdio.X_IONBF:
+		file(stream).s().F_flags |= fileNoBuf
+	case stdio.X_IOLBF, stdio.X_IOFBF:
+		file(stream).s().F_flags &^= fileNoBuf
+	default:
+		t.setErrno(errno.EINVAL)
+		return -1
+	}
+	return 0
 }
 
 // int raise(int sig);
@@ -1629,7 +1805,12 @@ func Xfflush(t *TLS, stream uintptr) int32 {
 	if __ccgo_strace {
 		trc("t=%v stream=%v, (%v:)", t, stream, origin(2))
 	}
-	return 0 //TODO
+	// Output is unbuffered. For input, sync the descriptor offset like glibc, ignoring
+	// unseekable descriptors.
+	if stream != 0 {
+		file(stream).unread()
+	}
+	return 0
 }
 
 // size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream);
@@ -1640,32 +1821,9 @@ func Xfread(t *TLS, ptr uintptr, size, nmemb types.Size_t, stream uintptr) types
 	if size == 0 || nmemb == 0 {
 		return 0
 	}
-	fd := uintptr(file(stream).fd())
-	count := size * nmemb
-	var n int
-	var err error
-	switch {
-	case count == 0:
-		n, err = unix.Read(int(fd), nil)
-	default:
-		n, err = unix.Read(int(fd), (*RawMem)(unsafe.Pointer(ptr))[:count:count])
-		if n == 0 {
-			file(stream).setEOF()
-		}
-		if dmesgs && err == nil {
-			dmesg("%v: fd %v, n %#x\n%s", origin(1), fd, n, hex.Dump((*RawMem)(unsafe.Pointer(ptr))[:n:n]))
-		}
-	}
-	if err != nil {
-		if dmesgs {
-			dmesg("%v: %v FAIL", origin(1), err)
-		}
-		file(stream).setErr()
-		return types.Size_t(n) / size
-	}
-
+	n := file(stream).read(t, unsafe.Slice((*byte)(unsafe.Pointer(ptr)), size*nmemb))
 	if dmesgs {
-		dmesg("%v: ok", origin(1))
+		dmesg("%v: fd %v, n %#x", origin(1), file(stream).fd(), n)
 	}
 	return types.Size_t(n) / size
 }
@@ -1678,6 +1836,7 @@ func Xfwrite(t *TLS, ptr uintptr, size, nmemb types.Size_t, stream uintptr) type
 	if size == 0 || nmemb == 0 {
 		return 0
 	}
+	file(stream).unread()
 	fd := uintptr(file(stream).fd())
 	count := size * nmemb
 	var n int
@@ -1730,6 +1889,7 @@ func Xfputc(t *TLS, c int32, stream uintptr) int32 {
 	if __ccgo_strace {
 		trc("t=%v c=%v stream=%v, (%v:)", t, c, stream, origin(2))
 	}
+	file(stream).unread()
 	if _, err := fwrite(file(stream).fd(), []byte{byte(c)}); err != nil {
 		return stdio.EOF
 	}
@@ -1742,6 +1902,10 @@ func Xfseek(t *TLS, stream uintptr, offset long, whence int32) int32 {
 	if __ccgo_strace {
 		trc("t=%v stream=%v offset=%v whence=%v, (%v:)", t, stream, offset, whence, origin(2))
 	}
+	f := file(stream)
+	if r := f.s().F_r; whence == stdio.SEEK_CUR && r > 0 {
+		offset -= long(r)
+	}
 	if n := Xlseek(t, int32(file(stream).fd()), types.Off_t(offset), whence); n < 0 {
 		if dmesgs {
 			dmesg("%v: fd %v, off %#x, whence %v: %v", origin(1), file(stream).fd(), offset, whenceStr(whence), n)
@@ -1753,6 +1917,8 @@ func Xfseek(t *TLS, stream uintptr, offset long, whence int32) int32 {
 	if dmesgs {
 		dmesg("%v: fd %v, off %#x, whence %v: ok", origin(1), file(stream).fd(), offset, whenceStr(whence))
 	}
+	f.s().F_r = 0
+	f.clearEOF()
 	return 0
 }
 
@@ -1767,6 +1933,9 @@ func Xftell(t *TLS, stream uintptr) long {
 		return -1
 	}
 
+	if r := file(stream).s().F_r; r > 0 {
+		n -= types.Off_t(r)
+	}
 	if dmesgs {
 		dmesg("%v: fd %v, n %#x: ok %#x", origin(1), file(stream).fd(), n, long(n))
 	}
@@ -1786,6 +1955,7 @@ func Xfputs(t *TLS, s, stream uintptr) int32 {
 	if __ccgo_strace {
 		trc("t=%v stream=%v, (%v:)", t, stream, origin(2))
 	}
+	file(stream).unread()
 	if _, _, err := unix.Syscall(unix.SYS_WRITE, uintptr(file(stream).fd()), s, uintptr(Xstrlen(t, s))); err != 0 {
 		return -1
 	}
@@ -2451,7 +2621,25 @@ func Xungetc(t *TLS, c int32, stream uintptr) int32 {
 	if __ccgo_strace {
 		trc("t=%v c=%v stream=%v, (%v:)", t, c, stream, origin(2))
 	}
-	panic(todo(""))
+	f := file(stream)
+	s := f.s()
+	if c == stdio.EOF || s.F_bf.F_base == 0 && !f.allocBuf(t) {
+		return stdio.EOF
+	}
+
+	if s.F_r <= 0 {
+		s.F_r = 0
+		s.F_p = s.F_bf.F_base + fileUngetSize
+	}
+	if s.F_p == s.F_bf.F_base {
+		return stdio.EOF
+	}
+
+	s.F_p--
+	s.F_r++
+	*(*byte)(unsafe.Pointer(s.F_p)) = byte(c)
+	f.clearEOF()
+	return int32(byte(c))
 }
 
 // int issetugid(void);
@@ -2534,7 +2722,8 @@ func X__srget(t *TLS, f uintptr) int32 {
 	if __ccgo_strace {
 		trc("t=%v f=%v, (%v:)", t, f, origin(2))
 	}
-	panic(todo(""))
+	// Called by the __sgetc macro once _r went negative.
+	return Xfgetc(t, f)
 }
 
 // int	__svfscanf(FILE *, const char *, va_list) __scanflike(2, 0);
