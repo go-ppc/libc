@@ -1979,12 +1979,7 @@ func Xmemcmp(t *TLS, s1, s2 uintptr, n types.Size_t) int32 {
 	if __ccgo_strace {
 		trc("t=%v s2=%v n=%v, (%v:)", t, s2, n, origin(2))
 	}
-	if n == 0 {
-		return 0
-	}
-
-	// C99 7.21.4 specifies only the sign of the result
-	return int32(bytes.Compare(unsafe.Slice((*byte)(unsafe.Pointer(s1)), n), unsafe.Slice((*byte)(unsafe.Pointer(s2)), n)))
+	return memcmp(s1, s2, Tsize_t(n))
 }
 
 // void *memchr(const void *s, int c, size_t n);

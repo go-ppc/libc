@@ -11,13 +11,13 @@ import (
 	"unsafe"
 )
 
-// guarded returns a buffer of n bytes surrounded by guard bytes
-func guarded(tls *TLS, n int) (p uintptr, b []byte, free func()) {
+// guarded returns a buffer of n bytes surrounded by guard bytes of value fill
+func guarded(tls *TLS, n int, fill byte) (p uintptr, b []byte, free func()) {
 	const guard = 16
 	base := Xmalloc(tls, Tsize_t(n+2*guard))
 	all := unsafe.Slice((*byte)(unsafe.Pointer(base)), n+2*guard)
 	for i := range all {
-		all[i] = 0xee
+		all[i] = fill
 	}
 	return base + guard, all[guard : guard+n], func() { Xfree(tls, base) }
 }
@@ -28,8 +28,9 @@ func TestMemcmpFastPath(t *testing.T) {
 
 	rng := rand.New(rand.NewSource(1))
 	for _, n := range []int{0, 1, 2, 7, 8, 15, 16, 63, 64, 1000, 4097} {
-		p1, b1, f1 := guarded(tls, n)
-		p2, b2, f2 := guarded(tls, n)
+		// different guards make a read past n compare unequal
+		p1, b1, f1 := guarded(tls, n, 0xee)
+		p2, b2, f2 := guarded(tls, n, 0x11)
 		rng.Read(b1)
 		copy(b2, b1)
 

@@ -7,7 +7,6 @@
 package libc // import "modernc.org/libc"
 
 import (
-	"bytes"
 	"math"
 	"math/bits"
 	"unsafe"
@@ -113,14 +112,7 @@ func Xmemcmp(tls *TLS, vl uintptr, vr uintptr, n Tsize_t) (r1 int32) {
 		trc("tls=%v vl=%v vr=%v n=%v, (%v:)", tls, vl, vr, n, origin(2))
 		defer func() { trc("-> %v", r1) }()
 	}
-	if n == 0 {
-		return 0
-	}
-	l := unsafe.Slice((*byte)(unsafe.Pointer(vl)), n)
-	r := unsafe.Slice((*byte)(unsafe.Pointer(vr)), n)
-	// bytes.Compare returns -1/0/+1 rather than musl's difference of
-	// the first mismatched bytes; C99 7.21.4 specifies only the sign.
-	return int32(bytes.Compare(l, r))
+	return memcmp(vl, vr, n)
 }
 
 // double fabs(double x);

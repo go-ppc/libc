@@ -19,6 +19,7 @@ func TestMutexTrylockNormal(t *testing.T) {
 	m := Xmalloc(tls, 64) // zeroed type field is PTHREAD_MUTEX_NORMAL
 	defer Xfree(tls, m)
 	Xmemset(tls, m, 0, 64)
+	defer Xpthread_mutex_destroy(tls, m) // drop the per-address state before free
 
 	if r := Xpthread_mutex_trylock(tls, m); r != 0 {
 		t.Fatalf("trylock on free mutex: %d", r)
