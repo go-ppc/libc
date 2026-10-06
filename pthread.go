@@ -371,9 +371,14 @@ func Xpthread_cond_wait(t *TLS, pCond, pMutex uintptr) int32 {
 	mu := mutexes[pMutex]
 	mutexesMu.Unlock()
 
-	mu.Unlock()
+	// Release and reacquire through the mutex's own unlock and lock: the
+	// embedded sync.Mutex is the lock itself only for a NORMAL mutex, a
+	// RECURSIVE one holds it only briefly (#62). A recursive mutex releases
+	// one level, like musl's pthread_cond_wait, so one locked more than once
+	// stays held while waiting.
+	mu.unlock()
 	<-t.wait
-	mu.Lock()
+	mu.lock(t.ID)
 	return 0
 }
 
@@ -384,6 +389,16 @@ func Xpthread_cond_timedwait(t *TLS, pCond, pMutex, pAbsTime uintptr) int32 {
 	}
 	if pCond == 0 {
 		return errno.EINVAL
+	}
+
+	deadlineSecs := (*ctime.Timespec)(unsafe.Pointer(pAbsTime)).Ftv_sec
+	deadlineNsecs := (*ctime.Timespec)(unsafe.Pointer(pAbsTime)).Ftv_nsec
+	deadline := time.Unix(int64(deadlineSecs), int64(deadlineNsecs))
+	d := deadline.Sub(time.Now())
+	if d <= 0 {
+		// Return before registering as a waiter: a registration left behind
+		// would take a later pthread_cond_signal meant for a real waiter.
+		return errno.ETIMEDOUT
 	}
 
 	condsMu.Lock()
@@ -403,34 +418,26 @@ func Xpthread_cond_timedwait(t *TLS, pCond, pMutex, pAbsTime uintptr) int32 {
 	mu := mutexes[pMutex]
 	mutexesMu.Unlock()
 
-	deadlineSecs := (*ctime.Timespec)(unsafe.Pointer(pAbsTime)).Ftv_sec
-	deadlineNsecs := (*ctime.Timespec)(unsafe.Pointer(pAbsTime)).Ftv_nsec
-	deadline := time.Unix(int64(deadlineSecs), int64(deadlineNsecs))
-	d := deadline.Sub(time.Now())
-	switch {
-	case d <= 0:
-		return errno.ETIMEDOUT
-	default:
-		to := time.After(d)
-		mu.Unlock()
+	// See Xpthread_cond_wait for why this goes through unlock and lock.
+	to := time.After(d)
+	mu.unlock()
 
-		defer mu.Lock()
+	defer mu.lock(t.ID)
 
+	select {
+	case <-t.wait:
+		return 0
+	case <-to:
+		cond.Lock()
+
+		defer cond.Unlock()
+
+		delete(cond.waiters, t)
 		select {
 		case <-t.wait:
-			return 0
-		case <-to:
-			cond.Lock()
-
-			defer cond.Unlock()
-
-			delete(cond.waiters, t)
-			select {
-			case <-t.wait:
-			default:
-			}
-			return errno.ETIMEDOUT
+		default:
 		}
+		return errno.ETIMEDOUT
 	}
 }
 

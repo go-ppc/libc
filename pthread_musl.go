@@ -400,15 +400,21 @@ func Xpthread_cond_timedwait(tls *TLS, c, m, ts uintptr) (r int32) {
 	}()
 
 	switch typ := (*pthreadMutex)(unsafe.Pointer(m)).typ; typ {
-	case PTHREAD_MUTEX_NORMAL:
-		(*pthreadMutex)(unsafe.Pointer(m)).Unlock()
+	case PTHREAD_MUTEX_NORMAL, PTHREAD_MUTEX_RECURSIVE:
+		// A recursive mutex releases one level, like musl's own
+		// pthread_cond_timedwait, so one locked more than once stays held
+		// while waiting (#62).
+		if r = Xpthread_mutex_unlock(tls, m); r != 0 {
+			return r
+		}
+
 		select {
 		case <-ch:
 			// ok
 		case <-to:
 			r = ETIMEDOUT
 		}
-		(*pthreadMutex)(unsafe.Pointer(m)).Lock()
+		Xpthread_mutex_lock(tls, m)
 		return r
 	default:
 		panic(todo("", typ))
