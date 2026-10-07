@@ -321,7 +321,7 @@ func Xfprintf(t *TLS, stream, format, args uintptr) int32 {
 	defer file(stream).mu().Unlock()
 
 	file(stream).unread()
-	n, _ := fwrite(int32((*stdio.FILE)(unsafe.Pointer(stream)).F_file), b)
+	n, _ := fwrite(file(stream).fd(), b)
 	return int32(n)
 }
 
