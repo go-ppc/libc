@@ -15,6 +15,7 @@ package libc // import "modernc.org/libc"
 
 import (
 	"bufio"
+	"bytes"
 	crand "crypto/rand"
 	"fmt"
 	"math"
@@ -1727,18 +1728,11 @@ func Xstrncpy(t *TLS, dest, src uintptr, n types.Size_t) (r uintptr) {
 		trc("t=%v src=%v n=%v, (%v:)", t, src, n, origin(2))
 		defer func() { trc("-> %v", r) }()
 	}
-	r = dest
-	for c := *(*int8)(unsafe.Pointer(src)); c != 0 && n > 0; n-- {
-		*(*int8)(unsafe.Pointer(dest)) = c
-		dest++
-		src++
-		c = *(*int8)(unsafe.Pointer(src))
-	}
-	for ; uintptr(n) > 0; n-- {
-		*(*int8)(unsafe.Pointer(dest)) = 0
-		dest++
-	}
-	return r
+	k := strnlen(src, n)
+	d := unsafe.Slice((*byte)(unsafe.Pointer(dest)), n)
+	copy(d, unsafe.Slice((*byte)(unsafe.Pointer(src)), k))
+	clear(d[k:])
+	return dest
 }
 
 // char * __builtin___strncpy_chk (char *dest, const char *src, size_t n, size_t os);
@@ -1829,15 +1823,19 @@ func Xstrcpy(t *TLS, dest, src uintptr) (r uintptr) {
 		defer func() { trc("-> %v", r) }()
 	}
 	r = dest
-	// src0 := src
-	for ; ; dest++ {
-		c := *(*int8)(unsafe.Pointer(src))
-		src++
-		*(*int8)(unsafe.Pointer(dest)) = c
+	// Short strings are cheaper to copy bytewise than to scan twice.
+	for i := 0; i < 16; i++ {
+		c := *(*byte)(unsafe.Pointer(src + uintptr(i)))
+		*(*byte)(unsafe.Pointer(dest + uintptr(i))) = c
 		if c == 0 {
 			return r
 		}
 	}
+	dest += 16
+	src += 16
+	n := strlen(src) + 1
+	copy(unsafe.Slice((*byte)(unsafe.Pointer(dest)), n), unsafe.Slice((*byte)(unsafe.Pointer(src)), n))
+	return r
 }
 
 // char *strchr(const char *s, int c)
@@ -1845,18 +1843,25 @@ func Xstrchr(t *TLS, s uintptr, c int32) uintptr {
 	if __ccgo_strace {
 		trc("t=%v s=%v c=%v, (%v:)", t, s, c, origin(2))
 	}
-	for {
-		ch2 := *(*byte)(unsafe.Pointer(s))
-		if ch2 == byte(c) {
+	// Short strings are cheaper to scan bytewise than twice.
+	for i := 0; i < 16; i++ {
+		ch := *(*byte)(unsafe.Pointer(s))
+		if ch == byte(c) {
 			return s
 		}
 
-		if ch2 == 0 {
+		if ch == 0 {
 			return 0
 		}
 
 		s++
 	}
+	// The scan includes the NUL so that c == 0 finds the terminator.
+	if i := bytes.IndexByte(unsafe.Slice((*byte)(unsafe.Pointer(s)), strlen(s)+1), byte(c)); i >= 0 {
+		return s + uintptr(i)
+	}
+
+	return 0
 }
 
 // char *strrchr(const char *s, int c)
@@ -2071,11 +2076,10 @@ func Xstrstr(t *TLS, haystack, needle uintptr) uintptr {
 	if __ccgo_strace {
 		trc("t=%v needle=%v, (%v:)", t, needle, origin(2))
 	}
-	hs := GoString(haystack)
-	nd := GoString(needle)
-	if i := strings.Index(hs, nd); i >= 0 {
-		r := haystack + uintptr(i)
-		return r
+	hs := unsafe.Slice((*byte)(unsafe.Pointer(haystack)), strlen(haystack))
+	nd := unsafe.Slice((*byte)(unsafe.Pointer(needle)), strlen(needle))
+	if i := bytes.Index(hs, nd); i >= 0 {
+		return haystack + uintptr(i)
 	}
 
 	return 0
