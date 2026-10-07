@@ -8,6 +8,8 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"sync"
+	"sync/atomic"
 	"testing"
 	"unsafe"
 
@@ -401,5 +403,74 @@ func BenchmarkStdioFwrite4K(b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		Xfwrite(tls, buf, 1, 4096, f)
+	}
+}
+
+func TestStdioThreads(t *testing.T) {
+	const size = 1 << 20
+	data := make([]byte, size)
+	for i := range data {
+		data[i] = byte('a' + i%26)
+	}
+	fn := filepath.Join(t.TempDir(), "f")
+	if err := os.WriteFile(fn, data, 0o600); err != nil {
+		t.Fatal(err)
+	}
+	for round := 0; round < 5; round++ {
+		tls := NewTLS()
+		f := Xfopen(tls, mustCString(fn), mustCString("r"))
+		var total, foreign atomic.Int64
+		var wg sync.WaitGroup
+		for g := 0; g < 4; g++ {
+			wg.Add(1)
+			go func() {
+				defer wg.Done()
+				tls := NewTLS()
+				defer tls.Close()
+				for {
+					c := Xfgetc(tls, f)
+					if c < 0 {
+						return
+					}
+					total.Add(1)
+					if c < 'a' || c > 'z' {
+						foreign.Add(1)
+					}
+				}
+			}()
+		}
+		wg.Wait()
+		if total.Load() != size || foreign.Load() != 0 {
+			t.Errorf("round %d: %d bytes read for a %d byte file (%+d), %d bytes not from the file", round, total.Load(), size, total.Load()-size, foreign.Load())
+		}
+		Xfclose(tls, f)
+		tls.Close()
+	}
+}
+
+func TestStdioTmpfile(t *testing.T) {
+	tls := NewTLS()
+	defer tls.Close()
+
+	f := Xtmpfile(tls)
+	if f == 0 {
+		t.Fatal("tmpfile failed")
+	}
+
+	var st unix.Stat_t
+	if err := unix.Fstat(int(file(f).fd()), &st); err != nil {
+		t.Fatal(err)
+	}
+	if st.Nlink != 0 {
+		t.Errorf("tmpfile has %d links, want 0", st.Nlink)
+	}
+
+	Xfputs(tls, mustCString("abc"), f)
+	Xrewind(tls, f)
+	if c := Xfgetc(tls, f); c != 'a' {
+		t.Errorf("got %q, want 'a'", c)
+	}
+	if Xfclose(tls, f) != 0 {
+		t.Error("fclose failed")
 	}
 }
