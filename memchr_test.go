@@ -32,23 +32,33 @@ func TestMemchrRandom(t *testing.T) {
 	p := Xmalloc(tls, bufSize)
 	defer Xfree(tls, p)
 	pb := unsafe.Slice((*byte)(unsafe.Pointer(p)), bufSize)
+	for j := range pb {
+		pb[j] = 'x'
+	}
 
 	cs := []int32{0, 1, 'a', 0x7f, 0x80, 0xff, 0x100, 0x161, -1, -256, -0x9f}
 	rng := rand.New(rand.NewSource(1))
+	var pos []int
 	for i := 0; i < 20000; i++ {
-		// A sparse alphabet gives both early, late and missing matches.
-		density := 1 + rng.Intn(5000)
-		for j := range pb {
-			pb[j] = 'x'
-			if rng.Intn(density) == 0 {
+		// A few random bytes in a sea of 'x' give early, late and missing matches.
+		c := cs[rng.Intn(len(cs))]
+		pos = pos[:0]
+		for k := rng.Intn(64); k > 0; k-- {
+			j := rng.Intn(bufSize)
+			if rng.Intn(4) == 0 {
+				pb[j] = byte(c)
+			} else {
 				pb[j] = byte(rng.Intn(256))
 			}
+			pos = append(pos, j)
 		}
 		off := uintptr(rng.Intn(4096 + 64))
 		n := types.Size_t(rng.Intn(bufSize - int(off) + 1))
-		c := cs[rng.Intn(len(cs))]
 		if got, want := Xmemchr(tls, p+off, c, n), memchrRef(p+off, c, n); got != want {
 			t.Fatalf("off=%d n=%d c=%#x: got %#x, want %#x", off, n, c, got, want)
+		}
+		for _, j := range pos {
+			pb[j] = 'x'
 		}
 	}
 }
