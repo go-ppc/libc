@@ -13,14 +13,14 @@ retract v1.74.3 // freeaddrinfo leaks a locked ___lock entry; deadlocks name res
 retract v1.77.0 // Xnanf calls itself on linux; nan() and strtod or scanf of "nan" crash with a stack overflow
 
 require (
-	github.com/dustin/go-humanize v1.0.1
+	github.com/dustin/go-humanize v1.1.0
 	github.com/google/uuid v1.6.0
 	github.com/mattn/go-isatty v0.0.24
 	github.com/ncruces/go-strftime v1.0.0
 	golang.org/x/sys v0.48.0
-	golang.org/x/tools v0.50.0
-	modernc.org/cc/v4 v4.29.7
-	modernc.org/ccgo/v4 v4.36.1
+	golang.org/x/tools v0.51.0
+	modernc.org/cc/v4 v4.30.0
+	modernc.org/ccgo/v4 v4.36.2
 	modernc.org/fileutil v1.4.0
 	modernc.org/goabi0 v0.2.0
 	modernc.org/mathutil v1.7.1
@@ -33,7 +33,7 @@ require (
 	golang.org/x/mod v0.41.0 // indirect
 	golang.org/x/sync v0.23.0 // indirect
 	modernc.org/gc/v2 v2.6.5 // indirect
-	modernc.org/gc/v3 v3.1.5 // indirect
+	modernc.org/gc/v3 v3.2.0 // indirect
 	modernc.org/opt v0.2.0 // indirect
 	modernc.org/sortutil v1.2.1 // indirect
 	modernc.org/strutil v1.2.1 // indirect
