@@ -2184,11 +2184,56 @@ func getLocalLocation() (loc *gotime.Location) {
 		// A colon never starts a POSIX rule, so a name that does not load means UTC.
 		loc = gotime.UTC
 	default:
+		if l, ok := posixTZLocation(zname); ok {
+			// A POSIX rule such as EST5EDT,M3.2.0,M11.1.0, DST transitions included.
+			loc = l
+			break
+		}
+
 		zone, off := parseZone(zname)
 		loc = gotime.FixedZone(zone, -off)
 	}
 	localLocation.Store(&tzLocation{tz: zname, loc: loc})
 	return loc
+}
+
+// posixTZBlock is one section of a TZif version 2 file: the header, with no
+// transitions and one local time type, then that type, offset 1 s and an empty
+// name. posixTZLocation uses it for both the 32-bit and the 64-bit section.
+var posixTZBlock = []byte{
+	'T', 'Z', 'i', 'f', '2', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	0, 0, 0, 0, // UT/local indicators
+	0, 0, 0, 0, // standard/wall indicators
+	0, 0, 0, 0, // leap seconds
+	0, 0, 0, 0, // transitions
+	0, 0, 0, 1, // local time types
+	0, 0, 0, 1, // abbreviation bytes
+	0, 0, 0, 1, 0, 0, // offset 1 s, not DST, abbreviation at 0
+	0, // empty abbreviation
+}
+
+// posixTZLocation returns a Location for a POSIX TZ rule string such as
+// "CET-1CEST,M3.5.0,M10.5.0/3". It puts s in the footer of a TZif file without
+// transitions, which the time package evaluates for every instant, so DST
+// follows the rule. It reports false if the time package does not accept s:
+// then it falls back to the sentinel local time type.
+func posixTZLocation(s string) (*gotime.Location, bool) {
+	if s == "" || strings.ContainsRune(s, '\n') {
+		return nil, false
+	}
+
+	data := append(append([]byte(nil), posixTZBlock...), posixTZBlock...)
+	data = append(append(append(data, '\n'), s...), '\n')
+	loc, err := gotime.LoadLocationFromTZData(s, data)
+	if err != nil {
+		return nil, false
+	}
+
+	if name, off := gotime.Unix(0, 0).In(loc).Zone(); name == "" && off == 1 {
+		return nil, false
+	}
+
+	return loc, true
 }
 
 // time_t mktime(struct tm *tm);
