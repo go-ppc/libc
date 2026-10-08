@@ -2190,8 +2190,13 @@ func getLocalLocation() (loc *gotime.Location) {
 			break
 		}
 
-		zone, off := parseZone(zname)
-		loc = gotime.FixedZone(zone, -off)
+		// Not a rule the time package accepts: keep the standard time part, or use
+		// UTC rather than end the process over a malformed TZ.
+		if zone, off, ok := parseZone(zname); ok {
+			loc = gotime.FixedZone(zone, -off)
+		} else {
+			loc = gotime.UTC
+		}
 	}
 	localLocation.Store(&tzLocation{tz: zname, loc: loc})
 	return loc

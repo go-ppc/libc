@@ -78,6 +78,12 @@ func TestLocaltimeTZ(t *testing.T) {
 		{"AEST-10AEDT,M10.1.0,M4.1.0/3", 1782907200, 22, 0, 36000}, //
 		{"<+03>-3", 1782907200, 15, 0, 10800},                      // quoted name, no DST
 		{"IST-5:30", 1782907200, 17, 0, 19800},                     // offset with minutes
+		{"UTC+", 1782907200, 12, 0, 0},                             // malformed TZ values used to end the process; now UTC
+		{"A1", 1782907200, 12, 0, 0},                               //
+		{"123", 1782907200, 12, 0, 0},                              //
+		{"EST5:", 1782907200, 12, 0, 0},                            //
+		{"Europe/Berlin\t", 1782907200, 12, 0, 0},                  //
+		{"America/New_York ", 1782907200, 12, 0, 0},                //
 		{"America/Port-au-Prince", 1767268800, 7, 0, -18000},       // '-' in the name used to exit the process
 		{"Asia/Ust-Nera", 1782907200, 22, 0, 36000},                //
 		{"GB-Eire", 1782907200, 13, 1, 3600},                       //

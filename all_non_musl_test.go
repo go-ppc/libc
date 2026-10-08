@@ -131,8 +131,21 @@ func TestParseZone(t *testing.T) {
 		{"UTC+10", "UTC", 36000},
 		{"UTC-1", "UTC", -3600},
 		{"UTC-10", "UTC", -36000},
+		{"IST-5:30", "IST", -19800},
+		{"EST5:", "", 0},           // malformed: the cases below used to end the process
+		{"UTC+", "", 0},            //
+		{"UTC-x", "", 0},           //
+		{"A1", "", 0},              //
+		{"123", "", 0},             //
+		{"+", "", 0},               //
+		{"..", "", 0},              //
+		{"EST99999", "", 0},        // hours beyond what an int32 offset holds
+		{"Europe/Berlin\t", "", 0}, //
 	} {
-		out, off := parseZone(test.in)
+		out, off, ok := parseZone(test.in)
+		if g, e := ok, test.out != ""; g != e {
+			t.Errorf("%d: %q: ok %v, want %v", itest, test.in, g, e)
+		}
 		if g, e := out, test.out; g != e {
 			t.Errorf("%d: %+v %v %v", itest, test, g, e)
 		}
