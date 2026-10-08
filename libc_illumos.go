@@ -200,7 +200,7 @@ func Xlocaltime(_ *TLS, timep uintptr) uintptr {
 	// localtime.Ftm_mon = int32(t.Month() - 1)
 	// localtime.Ftm_year = int32(t.Year() - 1900)
 	// localtime.Ftm_wday = int32(t.Weekday())
-	// localtime.Ftm_yday = int32(t.YearDay())
+	// localtime.Ftm_yday = int32(t.YearDay() - 1)
 	// localtime.Ftm_isdst = Bool32(isTimeDST(t))
 	// return uintptr(unsafe.Pointer(&localtime))
 }
@@ -218,7 +218,7 @@ func Xlocaltime_r(_ *TLS, timep, result uintptr) uintptr {
 	// (*ctime.Tm)(unsafe.Pointer(result)).Ftm_mon = int32(t.Month() - 1)
 	// (*ctime.Tm)(unsafe.Pointer(result)).Ftm_year = int32(t.Year() - 1900)
 	// (*ctime.Tm)(unsafe.Pointer(result)).Ftm_wday = int32(t.Weekday())
-	// (*ctime.Tm)(unsafe.Pointer(result)).Ftm_yday = int32(t.YearDay())
+	// (*ctime.Tm)(unsafe.Pointer(result)).Ftm_yday = int32(t.YearDay() - 1)
 	// (*ctime.Tm)(unsafe.Pointer(result)).Ftm_isdst = Bool32(isTimeDST(t))
 	// return result
 }
