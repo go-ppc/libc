@@ -511,6 +511,11 @@ func (m *mutex) tryLock(id int32) int32 {
 	default:
 		fallthrough
 	case pthread.PTHREAD_MUTEX_NORMAL:
+		if m.TryLock() {
+			m.id = id
+			return 0
+		}
+
 		return errno.EBUSY
 	case pthread.PTHREAD_MUTEX_RECURSIVE:
 		m.Lock()

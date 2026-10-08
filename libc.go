@@ -1870,17 +1870,12 @@ func Xstrrchr(t *TLS, s uintptr, c int32) (r uintptr) {
 		trc("t=%v s=%v c=%v, (%v:)", t, s, c, origin(2))
 		defer func() { trc("-> %v", r) }()
 	}
-	for {
-		ch2 := *(*byte)(unsafe.Pointer(s))
-		if ch2 == 0 {
-			return r
-		}
-
-		if ch2 == byte(c) {
-			r = s
-		}
-		s++
+	// the terminating NUL is part of the string and matches c == 0
+	n := Xstrlen(t, s)
+	if i := bytes.LastIndexByte(unsafe.Slice((*byte)(unsafe.Pointer(s)), n+1), byte(c)); i >= 0 {
+		return s + uintptr(i)
 	}
+	return 0
 }
 
 // void *memset(void *s, int c, size_t n)
@@ -1988,20 +1983,7 @@ func Xmemcmp(t *TLS, s1, s2 uintptr, n types.Size_t) int32 {
 	if __ccgo_strace {
 		trc("t=%v s2=%v n=%v, (%v:)", t, s2, n, origin(2))
 	}
-	for ; n != 0; n-- {
-		c1 := *(*byte)(unsafe.Pointer(s1))
-		s1++
-		c2 := *(*byte)(unsafe.Pointer(s2))
-		s2++
-		if c1 < c2 {
-			return -1
-		}
-
-		if c1 > c2 {
-			return 1
-		}
-	}
-	return 0
+	return memcmp(s1, s2, Tsize_t(n))
 }
 
 // void *memchr(const void *s, int c, size_t n);
