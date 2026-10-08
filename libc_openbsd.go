@@ -263,8 +263,14 @@ func Xlocaltime(_ *TLS, timep uintptr) uintptr {
 	localtime.Ftm_wday = int32(t.Weekday())
 	localtime.Ftm_yday = int32(t.YearDay())
 	localtime.Ftm_isdst = Bool32(isTimeDST(t))
+	_, off := t.Zone()
+	setGmtoff(&localtime.Ftm_gmtoff, off)
+	localtime.Ftm_zone = 0
 	return uintptr(unsafe.Pointer(&localtime))
 }
+
+// setGmtoff sets tm_gmtoff, a long, which is 32 bits wide on some of the targets of this OS.
+func setGmtoff[T ~int32 | ~int64](p *T, off int) { *p = T(off) }
 
 // struct tm *localtime_r(const time_t *timep, struct tm *result);
 func Xlocaltime_r(_ *TLS, timep, result uintptr) uintptr {
@@ -280,6 +286,9 @@ func Xlocaltime_r(_ *TLS, timep, result uintptr) uintptr {
 	(*time.Tm)(unsafe.Pointer(result)).Ftm_wday = int32(t.Weekday())
 	(*time.Tm)(unsafe.Pointer(result)).Ftm_yday = int32(t.YearDay())
 	(*time.Tm)(unsafe.Pointer(result)).Ftm_isdst = Bool32(isTimeDST(t))
+	_, off := t.Zone()
+	setGmtoff(&(*time.Tm)(unsafe.Pointer(result)).Ftm_gmtoff, off)
+	(*time.Tm)(unsafe.Pointer(result)).Ftm_zone = 0
 	return result
 }
 
