@@ -2185,11 +2185,17 @@ func getLocalLocation() (loc *gotime.Location) {
 	}
 
 	zname := GoString(r)
-	zone, off := parseZone(zname)
-	loc = gotime.FixedZone(zone, -off)
-	loc2, _ := gotime.LoadLocation(zname)
-	if loc2 != nil {
+	switch loc2, err := gotime.LoadLocation(strings.TrimPrefix(zname, ":")); {
+	case err == nil:
+		// Try a zone name first: parseZone exits at characters like '-' that valid names
+		// such as America/Port-au-Prince contain. POSIX lets a name follow a colon.
 		loc = loc2
+	case strings.HasPrefix(zname, ":"):
+		// A colon never starts a POSIX rule, so a name that does not load means UTC.
+		loc = gotime.UTC
+	default:
+		zone, off := parseZone(zname)
+		loc = gotime.FixedZone(zone, -off)
 	}
 	localLocation.Store(&tzLocation{tz: zname, loc: loc})
 	return loc
