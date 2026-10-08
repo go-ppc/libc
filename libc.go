@@ -2045,14 +2045,9 @@ func getenv(p uintptr, nm string) uintptr {
 			return 0
 		}
 
-		s := GoString(q)
-		a := strings.SplitN(s, "=", 2)
-		if len(a) != 2 {
-			panic(todo("%q %q %q", nm, s, a))
-		}
-
-		if a[0] == nm {
-			return q + uintptr(len(nm)) + 1
+		// compare in place, the environment is scanned on every localtime call
+		if n := cstrPrefix(q, nm); n == len(nm) && *(*byte)(unsafe.Pointer(q + uintptr(n))) == '=' {
+			return q + uintptr(n) + 1
 		}
 	}
 }
@@ -2152,19 +2147,48 @@ func Xatol(t *TLS, nptr uintptr) long {
 	}
 }
 
+// cstrPrefix returns the length of the common prefix of the C string p and s.
+func cstrPrefix(p uintptr, s string) int {
+	var i int
+	for i < len(s) && *(*byte)(unsafe.Pointer(p + uintptr(i))) == s[i] {
+		i++
+	}
+	return i
+}
+
+type tzLocation struct {
+	tz  string
+	loc *gotime.Location
+}
+
+// localLocation caches the location of the last TZ value, loading it reads the zoneinfo file.
+var localLocation atomic.Pointer[tzLocation]
+
 func getLocalLocation() (loc *gotime.Location) {
-	loc = gotime.Local
-	if r := getenv(Environ(), "TZ"); r != 0 {
-		zname := GoString(r)
+	r := getenv(Environ(), "TZ")
+	if r == 0 {
+		return gotime.Local
+	}
+
+	if c := localLocation.Load(); c != nil && cstrPrefix(r, c.tz) == len(c.tz) && *(*byte)(unsafe.Pointer(r + uintptr(len(c.tz)))) == 0 {
+		return c.loc
+	}
+
+	zname := GoString(r)
+	switch loc2, err := gotime.LoadLocation(strings.TrimPrefix(zname, ":")); {
+	case err == nil:
+		// Try a zone name first: parseZone exits at characters like '-' that valid names
+		// such as America/Port-au-Prince contain. POSIX lets a name follow a colon.
+		loc = loc2
+	case strings.HasPrefix(zname, ":"):
+		// A colon never starts a POSIX rule, so a name that does not load means UTC.
+		loc = gotime.UTC
+	default:
 		zone, off := parseZone(zname)
 		loc = gotime.FixedZone(zone, -off)
-		loc2, _ := gotime.LoadLocation(zname)
-		if loc2 != nil {
-			loc = loc2
-		}
 	}
+	localLocation.Store(&tzLocation{tz: zname, loc: loc})
 	return loc
-
 }
 
 // time_t mktime(struct tm *tm);
