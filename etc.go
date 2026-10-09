@@ -619,30 +619,6 @@ func Bool64(b bool) int64 {
 	return 0
 }
 
-type sorter struct {
-	len  int
-	base uintptr
-	sz   uintptr
-	f    func(*TLS, uintptr, uintptr) int32
-	t    *TLS
-}
-
-func (s *sorter) Len() int { return s.len }
-
-func (s *sorter) Less(i, j int) bool {
-	return s.f(s.t, s.base+uintptr(i)*s.sz, s.base+uintptr(j)*s.sz) < 0
-}
-
-func (s *sorter) Swap(i, j int) {
-	p := uintptr(s.base + uintptr(i)*s.sz)
-	q := uintptr(s.base + uintptr(j)*s.sz)
-	for i := 0; i < int(s.sz); i++ {
-		*(*byte)(unsafe.Pointer(p)), *(*byte)(unsafe.Pointer(q)) = *(*byte)(unsafe.Pointer(q)), *(*byte)(unsafe.Pointer(p))
-		p++
-		q++
-	}
-}
-
 func CString(s string) (uintptr, error) {
 	n := len(s)
 	p := Xmalloc(nil, types.Size_t(n)+1)
