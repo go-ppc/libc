@@ -8,6 +8,7 @@ package libc // import "modernc.org/libc"
 
 import (
 	"bytes"
+	"fmt"
 	"math"
 	"math/rand"
 	"os"
@@ -110,6 +111,22 @@ func TestNativeMuslEquivalence(t *testing.T) {
 		qb[256+uintptr(cLen)] = 0
 		if got, want := Xstrcspn(tls, q+off, q+256), ___musl_strcspn(tls, q+off, q+256); got != want {
 			t.Fatalf("strcspn mismatch: got=%d want=%d", got, want)
+		}
+	}
+
+	// qsort: a total order on the whole element, so that both sorts agree
+	// on the result whatever their stability.
+	for _, width := range []int{1, 4, 12, 64} {
+		for _, nel := range []int{0, 1, 2, 10, 60} {
+			rng.Read(pb[:nel*width])
+			copy(qb, pb)
+			copy(sb, pb)
+			cmp := qsortFuncPtr(qsortCmpBytes(width))
+			Xqsort(tls, q, Tsize_t(nel), Tsize_t(width), cmp)
+			___musl_qsort(tls, scratch, Tsize_t(nel), Tsize_t(width), cmp)
+			if !bytes.Equal(qb[:nel*width], sb[:nel*width]) {
+				t.Fatalf("qsort mismatch: width=%d nel=%d", width, nel)
+			}
 		}
 	}
 
@@ -308,6 +325,33 @@ func BenchmarkXstrcspn(b *testing.B) {
 					_ = sink
 					sb[size] = 'a'
 				})
+			}
+		})
+	}
+}
+
+func BenchmarkXqsort(b *testing.B) {
+	tls := NewTLS()
+	defer tls.Close()
+	for _, impl := range []struct {
+		name string
+		f    func(*TLS, uintptr, Tsize_t, Tsize_t, Tcmpfun)
+	}{
+		{"native", Xqsort},
+		{"musl", ___musl_qsort},
+	} {
+		b.Run(impl.name, func(b *testing.B) {
+			for _, width := range []int{4, 16, 64} {
+				for _, nel := range []int{100, 10000} {
+					b.Run(fmt.Sprintf("width%d/nel%d", width, nel), func(b *testing.B) {
+						p, q := benchBufs(b, tls, nel*width)
+						cmp := qsortFuncPtr(qsortCmpInt32)
+						for i := 0; i < b.N; i++ {
+							Xmemcpy(tls, q, p, Tsize_t(nel*width))
+							impl.f(tls, q, Tsize_t(nel), Tsize_t(width), cmp)
+						}
+					})
+				}
 			}
 		})
 	}

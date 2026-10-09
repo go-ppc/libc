@@ -24,7 +24,6 @@ import (
 	"os"
 	"runtime"
 	"runtime/debug"
-	"sort"
 	"strings"
 	"sync"
 	"sync/atomic"
@@ -770,15 +769,7 @@ func Xqsort(t *TLS, base uintptr, nmemb, size types.Size_t, compar uintptr) {
 	if __ccgo_strace {
 		trc("t=%v base=%v size=%v compar=%v, (%v:)", t, base, size, compar, origin(2))
 	}
-	sort.Sort(&sorter{
-		len:  int(nmemb),
-		base: base,
-		sz:   uintptr(size),
-		f: (*struct {
-			f func(*TLS, uintptr, uintptr) int32
-		})(unsafe.Pointer(&struct{ uintptr }{compar})).f,
-		t: t,
-	})
+	qsort(t, base, uintptr(nmemb), uintptr(size), compar)
 }
 
 // void __assert_fail(const char * assertion, const char * file, unsigned int line, const char * function);

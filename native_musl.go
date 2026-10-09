@@ -128,6 +128,14 @@ func Xfabs(tls *TLS, x float64) (r float64) {
 	return r
 }
 
+// void qsort(void *base, size_t nel, size_t width, int (*cmp)(const void *, const void *));
+func Xqsort(tls *TLS, base uintptr, nel Tsize_t, width Tsize_t, __ccgo_fp_cmp Tcmpfun) {
+	if __ccgo_strace {
+		trc("tls=%v base=%v nel=%v width=%v __ccgo_fp_cmp=%v, (%v:)", tls, base, nel, width, __ccgo_fp_cmp, origin(2))
+	}
+	qsort(tls, base, uintptr(nel), uintptr(width), uintptr(__ccgo_fp_cmp))
+}
+
 // size_t strcspn(const char *s, const char *c);
 func Xstrcspn(tls *TLS, s uintptr, c uintptr) (r Tsize_t) {
 	if __ccgo_strace {
