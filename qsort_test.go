@@ -13,11 +13,15 @@ import (
 	"unsafe"
 )
 
+// qsortCmp holds the last comparator passed to qsortFuncPtr. Storing it here
+// puts a closure on the heap and keeps it reachable: the uintptr handed to
+// Xqsort is not updated when a goroutine stack moves.
+var qsortCmp func(*TLS, uintptr, uintptr) int32
+
 // qsortFuncPtr returns f as a C function pointer for Xqsort.
 func qsortFuncPtr(f func(*TLS, uintptr, uintptr) int32) uintptr {
-	return *(*uintptr)(unsafe.Pointer(&struct {
-		f func(*TLS, uintptr, uintptr) int32
-	}{f}))
+	qsortCmp = f
+	return *(*uintptr)(unsafe.Pointer(&qsortCmp))
 }
 
 // qsortCmpInt32 orders elements by their leading int32.
