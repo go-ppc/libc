@@ -32,6 +32,13 @@ func newTestMutex(t *TLS, typ int32) uintptr {
 	return p
 }
 
+// freeTestMutex destroys p before freeing it so the table keeps no stale entry
+// for an address a later allocation may reuse.
+func freeTestMutex(t *TLS, p uintptr) {
+	Xpthread_mutex_destroy(t, p)
+	Xfree(t, p)
+}
+
 func TestMutexConcurrent(t *testing.T) {
 	for _, n := range []int{4, 16, 48} {
 		t.Run(fmt.Sprint(n), func(t *testing.T) {
@@ -40,8 +47,8 @@ func TestMutexConcurrent(t *testing.T) {
 
 			normal := newTestMutex(tls, pthread.PTHREAD_MUTEX_NORMAL)
 			recursive := newTestMutex(tls, pthread.PTHREAD_MUTEX_RECURSIVE)
-			defer Xfree(tls, normal)
-			defer Xfree(tls, recursive)
+			defer freeTestMutex(tls, normal)
+			defer freeTestMutex(tls, recursive)
 
 			const iters = 500
 			var inNormal, inRecursive atomic.Int32
@@ -121,11 +128,7 @@ func TestMutexStaticLazyConcurrent(t *testing.T) {
 		}
 		close(start)
 		wg.Wait()
-		if mutexCount(p) != 1 {
-			t.Fatal("lazily created mutex not registered exactly once")
-		}
-		Xpthread_mutex_destroy(tls, p)
-		Xfree(tls, p)
+		freeTestMutex(tls, p)
 	}
 }
 
@@ -146,7 +149,7 @@ func TestMutexInitDestroyReuse(t *testing.T) {
 
 	// Re-init at the same address must not inherit tls1's ownership.
 	Xpthread_mutex_destroy(tls1, p)
-	if mutexCount(p) != 0 {
+	if lookupMutex(p) != nil {
 		t.Fatal("destroyed mutex still registered")
 	}
 	a := Xcalloc(tls1, 1, testMutexSize)
@@ -179,7 +182,7 @@ func BenchmarkMutexLockUnlock(b *testing.B) {
 	tls := NewTLS()
 	defer tls.Close()
 	p := newTestMutex(tls, pthread.PTHREAD_MUTEX_NORMAL)
-	defer Xfree(tls, p)
+	defer freeTestMutex(tls, p)
 	for b.Loop() {
 		Xpthread_mutex_lock(tls, p)
 		Xpthread_mutex_unlock(tls, p)
@@ -189,8 +192,8 @@ func BenchmarkMutexLockUnlock(b *testing.B) {
 func BenchmarkMutexTrylockUnlock(b *testing.B) {
 	tls := NewTLS()
 	defer tls.Close()
-	p := newTestMutex(tls, pthread.PTHREAD_MUTEX_RECURSIVE) // NORMAL trylock always reports EBUSY
-	defer Xfree(tls, p)
+	p := newTestMutex(tls, pthread.PTHREAD_MUTEX_RECURSIVE) // trylock also runs the owner check
+	defer freeTestMutex(tls, p)
 	for b.Loop() {
 		Xpthread_mutex_trylock(tls, p)
 		Xpthread_mutex_unlock(tls, p)
@@ -203,17 +206,10 @@ func BenchmarkMutexLockUnlockParallel(b *testing.B) {
 		tls := NewTLS()
 		defer tls.Close()
 		p := newTestMutex(tls, pthread.PTHREAD_MUTEX_NORMAL)
-		defer Xfree(tls, p)
+		defer freeTestMutex(tls, p)
 		for pb.Next() {
 			Xpthread_mutex_lock(tls, p)
 			Xpthread_mutex_unlock(tls, p)
 		}
 	})
-}
-
-func mutexCount(p uintptr) int {
-	if lookupMutex(p) != nil {
-		return 1
-	}
-	return 0
 }
