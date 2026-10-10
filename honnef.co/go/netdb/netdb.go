@@ -840,7 +840,7 @@ func GetProtoByName(name string) (protoent *Protoent) {
 // the service name is returned.
 func GetServByName(name string, protocol *Protoent) (servent *Servent) {
 	for _, servent := range Services {
-		if !servent.Protocol.Equal(protocol) {
+		if protocol != nil && !servent.Protocol.Equal(protocol) {
 			continue
 		}
 
@@ -863,7 +863,7 @@ func GetServByName(name string, protocol *Protoent) (servent *Servent) {
 // port number is returned.
 func GetServByPort(port int, protocol *Protoent) *Servent {
 	for _, servent := range Services {
-		if servent.Port == port && servent.Protocol.Equal(protocol) {
+		if servent.Port == port && (protocol == nil || servent.Protocol.Equal(protocol)) {
 			return servent
 		}
 	}
