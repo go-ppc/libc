@@ -9,11 +9,17 @@ import (
 	"testing"
 )
 
+// The table sizes as package initialization left them. This init runs after
+// those of netdb.go, and before any test can trigger a lookup.
+var initProtocols, initServices int
+
+func init() { initProtocols, initServices = len(Protocols), len(Services) }
+
 // TestLoadOnFirstUse checks that the tables stay empty until the first lookup
 // and that concurrent first lookups all see the loaded tables.
 func TestLoadOnFirstUse(t *testing.T) {
-	if Protocols != nil || Services != nil {
-		t.Fatalf("tables loaded before any lookup: %d protocols, %d services", len(Protocols), len(Services))
+	if initProtocols != 0 || initServices != 0 {
+		t.Fatalf("tables loaded before any lookup: %d protocols, %d services", initProtocols, initServices)
 	}
 
 	var wg sync.WaitGroup
@@ -39,6 +45,7 @@ func TestLoadOnFirstUse(t *testing.T) {
 // TestLoadFallsBack checks that a file that exists but cannot be read, here a
 // directory, falls back to the built-in table instead of panicking.
 func TestLoadFallsBack(t *testing.T) {
+	loadOnce.Do(load) // So that the lookups below do not load again.
 	p, s, pf, sf := Protocols, Services, protocolsFile, servicesFile
 	defer func() { Protocols, Services, protocolsFile, servicesFile = p, s, pf, sf }()
 
