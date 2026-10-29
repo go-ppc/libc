@@ -4,7 +4,7 @@
 
 // ppc is 32-bit on Darwin too: it must get this 32-bit RawMem, not
 // libc64.go's 1<<50-1 array, which does not fit a 32-bit uintptr.
-//go:build !linux && (arm || 386 || ppc)
+//go:build (!linux && (arm || 386 || ppc)) || (linux && ppc)
 
 package libc // import "modernc.org/libc"
 

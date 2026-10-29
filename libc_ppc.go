@@ -7,8 +7,11 @@
 // accesses, so the plain load/store forms those files already justify are
 // what is used here: no lwarx/stwcx. reservation loop is needed for 8- and
 // 16-bit atomics.
-
-//go:build !linux
+//
+// Unlike libc_386.go and libc_arm.go this file carries no !linux constraint:
+// linux/386 and linux/arm are musl-shaped (ccgo_linux_*.go defines these),
+// while linux/ppc uses the non-musl libc_linux.go + libc_linux_ppc.go half,
+// which needs them exactly as darwin/ppc does.
 
 package libc // import "modernc.org/libc"
 

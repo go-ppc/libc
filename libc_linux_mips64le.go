@@ -25,6 +25,24 @@ var (
 	startTime = gotime.Now() // For clock(3)
 )
 
+// Moved here unchanged from libc_linux.go when linux/ppc made long and ulong
+// per-ABI (glibc's names; musl has no __syscall_slong_t).
+type (
+	long  = types.X__syscall_slong_t
+	ulong = types.X__syscall_ulong_t
+)
+
+// getrusage is libc_linux.go's original Xgetrusage body, moved unchanged when
+// linux/ppc needed a layout conversion there.
+func getrusage(t *TLS, who int32, usage uintptr) int32 {
+	if _, _, err := unix.Syscall(unix.SYS_GETRUSAGE, uintptr(who), usage, 0); err != 0 {
+		t.setErrno(err)
+		return -1
+	}
+
+	return 0
+}
+
 // int sigaction(int signum, const struct sigaction *act, struct sigaction *oldact);
 func Xsigaction(t *TLS, signum int32, act, oldact uintptr) int32 {
 	if __ccgo_strace {
