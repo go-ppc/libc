@@ -329,6 +329,15 @@ func makeMuslDarwin(goos, goarch string) {
 		fail(err)
 	}
 
+	// Resolve the override before entering musl, so it is relative to the caller.
+	table := "../darwin/table.c"
+	if s := os.Getenv("LIBC_DARWIN_TABLE"); s != "" {
+		table, err = filepath.Abs(s)
+		if err != nil {
+			fail(err)
+		}
+	}
+
 	if err := os.Chdir("musl"); err != nil {
 		fail(err)
 	}
@@ -339,6 +348,10 @@ func makeMuslDarwin(goos, goarch string) {
 		arch = "x86_64"
 	case "arm64":
 		arch = "aarch64"
+	case "ppc":
+		arch = "powerpc"
+	case "ppc64":
+		arch = "powerpc64"
 	default:
 		fail(fmt.Errorf("unknown/unsupported GOARCH: %q", goarch))
 	}
@@ -376,7 +389,7 @@ func makeMuslDarwin(goos, goarch string) {
 
 		"copyright.c", // Inject legalese first
 
-		"../darwin/table.c",
+		table,
 
 		// Keep the below lines sorted.
 		"src/env/putenv.c",
@@ -925,6 +938,11 @@ func libcHeaders(paths []string) error {
 
 		var src string
 		switch filepath.ToSlash(path) {
+		case "fcntl":
+			src = `
+#define _GNU_SOURCE 1
+#include <fcntl.h>
+`
 		case "fts":
 			src = `
 #include <sys/types.h>
@@ -962,7 +980,7 @@ func libcHeaders(paths []string) error {
 		}
 		out, err := runcc(argv...)
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "%s: %s%s\n", path, out, err)
+			return fmt.Errorf("%s: %s%w", path, out, err)
 		} else {
 			fmt.Fprintf(os.Stdout, "%s\n%s", path, out)
 		}
@@ -1332,6 +1350,23 @@ func PostIncBitFieldPtr%dUint%d(p uintptr, d uint%[2]d, w, off int, mask uint%[1
 	}
 
 	b.WriteString("\n")
+	// ccgo.go is shared by all targets; retain its current selection constraints.
+	previous, err := ioutil.ReadFile("ccgo.go")
+	if err != nil {
+		fail(err)
+	}
+	var constraints []string
+	for _, line := range strings.Split(string(previous), "\n") {
+		if strings.HasPrefix(line, "package ") {
+			break
+		}
+		if strings.HasPrefix(line, "//go:build ") || strings.HasPrefix(line, "// +build ") {
+			constraints = append(constraints, line)
+		}
+	}
+	if len(constraints) != 0 {
+		b = bytes.NewBuffer(append([]byte(strings.Join(constraints, "\n")+"\n\n"), b.Bytes()...))
+	}
 	if err := ioutil.WriteFile(fmt.Sprintf("ccgo.go"), b.Bytes(), 0660); err != nil {
 		fail(err)
 	}

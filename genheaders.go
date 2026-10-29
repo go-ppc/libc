@@ -5,6 +5,7 @@ package main
 
 import (
 	"bytes"
+	"flag"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -27,12 +28,20 @@ func fail(err error) {
 }
 
 func main() {
+	if s := os.Getenv("TARGET_GOOS"); s != "" {
+		goos = s
+	}
+	if s := os.Getenv("TARGET_GOARCH"); s != "" {
+		goarch = s
+	}
+	dryRun := flag.Bool("dry-run", false, "list header outputs without writing or translating")
+	flag.Parse()
 	_, _, hostSysIncludes, err := cc.HostConfig(os.Getenv("CCGO_CPP"))
 	if err != nil {
 		fail(err)
 	}
 
-	if err := libcHeaders(hostSysIncludes); err != nil {
+	if err := libcHeaders(hostSysIncludes, *dryRun); err != nil {
 		fail(err)
 	}
 }
@@ -54,7 +63,7 @@ func runcc(args ...string) ([]byte, error) {
 	return out.w.Bytes(), err
 }
 
-func libcHeaders(paths []string) error {
+func libcHeaders(paths []string, dryRun bool) error {
 	const cfile = "gen.c"
 	return filepath.Walk(".", func(path string, info os.FileInfo, err error) error {
 		if err != nil {
@@ -80,6 +89,11 @@ func libcHeaders(paths []string) error {
 			}
 		}
 		if !ok {
+			return nil
+		}
+
+		if dryRun {
+			fmt.Printf("%s: %s_%s_%s.go capi_%s_%s.go\n", dir, filepath.Base(dir), goos, goarch, goos, goarch)
 			return nil
 		}
 
@@ -127,7 +141,7 @@ func libcHeaders(paths []string) error {
 		}
 		out, err := runcc(argv...)
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "%s: %s%s\n", path, out, err)
+			return fmt.Errorf("%s: %s%w", path, out, err)
 		} else {
 			fmt.Fprintf(os.Stdout, "%s\n%s", path, out)
 		}
