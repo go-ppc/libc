@@ -742,8 +742,8 @@ func Xmmap(t *TLS, addr uintptr, length types.Size_t, prot, flags, fd int32, off
 		trc("t=%v addr=%v length=%v fd=%v offset=%v, (%v:)", t, addr, length, fd, offset, origin(2))
 	}
 	// Cannot avoid the syscall here, addr sometimes matter.
-	data, _, err := unix.Syscall6(unix.SYS_MMAP, addr, uintptr(length), uintptr(prot), uintptr(flags), uintptr(fd), uintptr(offset))
-	if err != 0 {
+	data, err := xmmap(addr, uintptr(length), int(prot), int(flags), int(fd), int64(offset))
+	if err != nil {
 		if dmesgs {
 			dmesg("%v: %v FAIL", origin(1), err)
 		}
