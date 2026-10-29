@@ -110,6 +110,17 @@ func libcHeaders(paths []string, dryRun bool) error {
 #include <sys/stat.h>
 #include <fts.h>
 `
+		case "sys/random":
+			// Leopard's <sys/random.h> declares read_random with a u_int
+			// parameter but includes neither <sys/types.h> nor a
+			// definition of u_int, so it only compiles for an includer
+			// that has already pulled one in. Newer SDKs include
+			// <sys/types.h> themselves, which is why the amd64/arm64
+			// generations never needed this prelude.
+			src = `
+#include <sys/types.h>
+#include <sys/random.h>
+`
 		default:
 			src = fmt.Sprintf("#include <%s.h>\n", dir)
 		}
