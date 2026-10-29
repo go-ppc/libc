@@ -14,6 +14,7 @@ import (
 	"modernc.org/libc/signal"
 	"modernc.org/libc/stdio"
 	"modernc.org/libc/sys/types"
+	"modernc.org/libc/unistd"
 	"modernc.org/libc/utime"
 )
 
@@ -21,6 +22,11 @@ import (
 // #define FE_DOWNWARD         0x00800000
 const FE_UPWARD = 0x00400000
 const FE_DOWNWARD = 0x00800000
+
+const (
+	oCloexec     = fcntl.O_CLOEXEC
+	xSCPhysPages = unistd.X_SC_PHYS_PAGES
+)
 
 // int sigaction(int signum, const struct sigaction *act, struct sigaction *oldact);
 func Xsigaction(t *TLS, signum int32, act, oldact uintptr) int32 {

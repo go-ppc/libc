@@ -392,7 +392,11 @@ func Xlocaltime(_ *TLS, timep uintptr) uintptr {
 	localtime.Ftm_yday = int32(t.YearDay())
 	localtime.Ftm_isdst = Bool32(isTimeDST(t))
 	_, off := t.Zone()
-	localtime.Ftm_gmtoff = int64(off)
+	// types.Intptr_t is intptr_t, which Leopard defines as long at both ppc
+	// widths; it carries the real C long width the generated struct tm field
+	// was generated at. types.User_long_t (always 64-bit reservation type)
+	// does not match that field at ppc32.
+	localtime.Ftm_gmtoff = types.Intptr_t(off)
 	localtime.Ftm_zone = 0
 	return uintptr(unsafe.Pointer(&localtime))
 }
@@ -412,7 +416,8 @@ func Xlocaltime_r(_ *TLS, timep, result uintptr) uintptr {
 	(*time.Tm)(unsafe.Pointer(result)).Ftm_yday = int32(t.YearDay())
 	(*time.Tm)(unsafe.Pointer(result)).Ftm_isdst = Bool32(isTimeDST(t))
 	_, off := t.Zone()
-	(*time.Tm)(unsafe.Pointer(result)).Ftm_gmtoff = int64(off)
+	// See Xlocaltime above for the types.Intptr_t choice.
+	(*time.Tm)(unsafe.Pointer(result)).Ftm_gmtoff = types.Intptr_t(off)
 	(*time.Tm)(unsafe.Pointer(result)).Ftm_zone = 0
 	return result
 }
@@ -522,7 +527,13 @@ func Xsysconf(t *TLS, name int32) long {
 		}
 
 		return 1048576
-	case unistd.X_SC_PHYS_PAGES:
+	case xSCPhysPages:
+		if xSCPhysPages == 0 {
+			// This target's headers have no _SC_PHYS_PAGES (see
+			// libc_darwin_ppc.go); sysconf reports it like any unknown name.
+			t.setErrno(errno.EINVAL)
+			return -1
+		}
 		if v, err := unix.SysctlUint64("hw.memsize"); err == nil {
 			return long(v / uint64(unix.Getpagesize()))
 		}
@@ -2101,12 +2112,12 @@ func Xopendir(t *TLS, name uintptr) uintptr {
 	if __ccgo_strace {
 		trc("t=%v name=%v, (%v:)", t, name, origin(2))
 	}
-	p := Xmalloc(t, uint64(unsafe.Sizeof(darwinDir{})))
+	p := Xmalloc(t, types.Size_t(unsafe.Sizeof(darwinDir{})))
 	if p == 0 {
 		panic("OOM")
 	}
 
-	fd := int(Xopen(t, name, fcntl.O_RDONLY|fcntl.O_DIRECTORY|fcntl.O_CLOEXEC, 0))
+	fd := int(Xopen(t, name, fcntl.O_RDONLY|fcntl.O_DIRECTORY|oCloexec, 0))
 	if fd < 0 {
 		if dmesgs {
 			dmesg("%v: FAIL %v", origin(1), (*darwinDir)(unsafe.Pointer(p)).fd)
@@ -2114,6 +2125,11 @@ func Xopendir(t *TLS, name uintptr) uintptr {
 		Xfree(t, p)
 		// trc("==== opendir: %#x", 0)
 		return 0
+	}
+	if oCloexec == 0 {
+		// This target has no O_CLOEXEC open flag (see libc_darwin_ppc.go);
+		// set the FD_CLOEXEC descriptor flag, which it does support, instead.
+		unix.FcntlInt(uintptr(fd), fcntl.F_SETFD, fcntl.FD_CLOEXEC)
 	}
 
 	if dmesgs {
@@ -2597,8 +2613,12 @@ func Xopen64(t *TLS, pathname uintptr, flags int32, args uintptr) int32 {
 	if args != 0 {
 		mode = (types.Mode_t)(VaUint32(&args))
 	}
-	fdcwd := fcntl.AT_FDCWD
-	n, _, err := unix.Syscall6(unix.SYS_OPENAT, uintptr(fdcwd), pathname, uintptr(flags), uintptr(mode), 0, 0)
+	// Leopard has no openat(2) and no AT_FDCWD at all — measured absent from
+	// /usr/include (runs/a1-capture-20261029) and from the ppc syscall table —
+	// and this fork's x/sys implements the *at family by path only, returning
+	// ENOTSUP for any other dirfd. openat(AT_FDCWD, ...) is equivalent to
+	// open(...), which exists on every Darwin this package targets.
+	n, _, err := unix.Syscall(unix.SYS_OPEN, pathname, uintptr(flags), uintptr(mode))
 	if err != 0 {
 		// if dmesgs {
 		// 	dmesg("%v: %q %#x: %v", origin(1), GoString(pathname), flags, err)
@@ -3095,7 +3115,7 @@ func Xfdopendir(t *TLS, fd int32) uintptr {
 	if __ccgo_strace {
 		trc("t=%v fd=%v, (%v:)", t, fd, origin(2))
 	}
-	p := Xmalloc(t, uint64(unsafe.Sizeof(darwinDir{})))
+	p := Xmalloc(t, types.Size_t(unsafe.Sizeof(darwinDir{})))
 	if p == 0 {
 		panic("OOM")
 	}

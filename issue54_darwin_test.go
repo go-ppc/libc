@@ -22,10 +22,22 @@ import (
 	"modernc.org/libc/unistd"
 )
 
+// keventIdentIs compares a Kevent_t's Ident against fd, in Ident's own width:
+// uint32 at ppc32, uint64 at LP64.
+func keventIdentIs(kev *unix.Kevent_t, fd int32) bool {
+	switch unsafe.Sizeof(kev.Ident) {
+	case 4:
+		return *(*uint32)(unsafe.Pointer(&kev.Ident)) == uint32(fd)
+	case 8:
+		return *(*uint64)(unsafe.Pointer(&kev.Ident)) == uint64(fd)
+	}
+	panic("unreachable Kevent_t.Ident width")
+}
+
 // https://gitlab.com/cznic/libc/-/issues/54
 
 func issue54CString(t *TLS, s string) uintptr {
-	p := Xmalloc(t, uint64(len(s)+1))
+	p := Xmalloc(t, types.Size_t(len(s)+1)) // types.Size_t: uint32 at ppc32, uint64 at LP64
 	copy(unsafe.Slice((*byte)(unsafe.Pointer(p)), len(s)+1), s+"\x00")
 	return p
 }
@@ -90,7 +102,7 @@ func TestIssue54Files(t *testing.T) {
 	}
 	Xclose(tls, fd)
 
-	st := Xmalloc(tls, uint64(unsafe.Sizeof(unix.Stat_t{})))
+	st := Xmalloc(tls, types.Size_t(unsafe.Sizeof(unix.Stat_t{})))
 	defer Xfree(tls, st)
 
 	if g := Xfstatat(tls, dfd, name, st, 0); g != 0 {
@@ -160,7 +172,7 @@ func TestIssue54Files(t *testing.T) {
 	}
 
 	// utimensat and futimens set the mtime.
-	ts := Xmalloc(tls, uint64(2*unsafe.Sizeof(unix.Timespec{})))
+	ts := Xmalloc(tls, types.Size_t(2*unsafe.Sizeof(unix.Timespec{})))
 	defer Xfree(tls, ts)
 
 	*(*[2]unix.Timespec)(unsafe.Pointer(ts)) = [2]unix.Timespec{{Sec: 1000000, Nsec: 0}, {Sec: 2000000, Nsec: 0}}
@@ -388,14 +400,24 @@ func TestIssue54Kqueue(t *testing.T) {
 		t.Fatalf("pipe: %v", g)
 	}
 	r, w := *(*int32)(unsafe.Pointer(fds)), *(*int32)(unsafe.Pointer(fds + 4))
-	ev := Xmalloc(tls, uint64(2*unsafe.Sizeof(unix.Kevent_t{})))
+	ev := Xmalloc(tls, types.Size_t(2*unsafe.Sizeof(unix.Kevent_t{})))
 	defer Xfree(tls, ev)
 
-	*(*unix.Kevent_t)(unsafe.Pointer(ev)) = unix.Kevent_t{Ident: uint64(r), Filter: unix.EVFILT_READ, Flags: unix.EV_ADD}
+	kev := unix.Kevent_t{Filter: unix.EVFILT_READ, Flags: unix.EV_ADD}
+	// Kevent_t.Ident is uint32 at ppc32 and uint64 at LP64; write r through
+	// the field's own width (unsafe.Sizeof is a compile-time constant, so the
+	// other branch is dead at each width).
+	switch unsafe.Sizeof(kev.Ident) {
+	case 4:
+		*(*uint32)(unsafe.Pointer(&kev.Ident)) = uint32(r)
+	case 8:
+		*(*uint64)(unsafe.Pointer(&kev.Ident)) = uint64(r)
+	}
+	*(*unix.Kevent_t)(unsafe.Pointer(ev)) = kev
 	if g := Xkevent(tls, kq, ev, 1, 0, 0, 0); g != 0 {
 		t.Fatalf("kevent register: %v errno %v", g, issue54Errno(tls))
 	}
-	ts := Xmalloc(tls, uint64(unsafe.Sizeof(unix.Timespec{})))
+	ts := Xmalloc(tls, types.Size_t(unsafe.Sizeof(unix.Timespec{})))
 	defer Xfree(tls, ts)
 
 	*(*unix.Timespec)(unsafe.Pointer(ts)) = unix.Timespec{}
@@ -404,7 +426,7 @@ func TestIssue54Kqueue(t *testing.T) {
 	}
 	Xwrite(tls, w, fds, 1)
 	*(*unix.Timespec)(unsafe.Pointer(ts)) = unix.Timespec{Sec: 5}
-	if g := Xkevent(tls, kq, 0, 0, ev, 1, ts); g != 1 || (*unix.Kevent_t)(unsafe.Pointer(ev)).Ident != uint64(r) {
+	if g := Xkevent(tls, kq, 0, 0, ev, 1, ts); g != 1 || !keventIdentIs((*unix.Kevent_t)(unsafe.Pointer(ev)), r) {
 		t.Fatalf("kevent after a write: %v", g)
 	}
 	Xclose(tls, r)
