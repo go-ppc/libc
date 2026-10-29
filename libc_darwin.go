@@ -3124,25 +3124,6 @@ func Xfdopendir(t *TLS, fd int32) uintptr {
 	return p
 }
 
-// int getloadavg(double loadavg[], int nelem);
-func Xgetloadavg(t *TLS, loadavg uintptr, nelem int32) int32 {
-	if __ccgo_strace {
-		trc("t=%v loadavg=%v nelem=%v, (%v:)", t, loadavg, nelem, origin(2))
-	}
-	// struct loadavg { fixpt_t ldavg[3]; long fscale; }
-	b, err := unix.SysctlRaw("vm.loadavg")
-	if err != nil || len(b) < 24 {
-		return -1
-	}
-
-	fscale := float64(*(*int64)(unsafe.Pointer(&b[16])))
-	n := int32(0)
-	for ; n < nelem && n < 3; n++ {
-		*(*float64)(unsafe.Pointer(loadavg + uintptr(n)*8)) = float64(*(*uint32)(unsafe.Pointer(&b[4*n]))) / fscale
-	}
-	return n
-}
-
 // int posix_openpt(int flags);
 func Xposix_openpt(t *TLS, flags int32) int32 {
 	if __ccgo_strace {
