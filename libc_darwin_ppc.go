@@ -153,11 +153,17 @@ func Xstat64(t *TLS, pathname, statbuf uintptr) int32 {
 	if __ccgo_strace {
 		trc("t=%v statbuf=%v, (%v:)", t, statbuf, origin(2))
 	}
-	if err := unix.Stat(GoString(pathname), (*unix.Stat_t)(unsafe.Pointer(statbuf))); err != nil {
+	// SYS_stat, not unix.Stat: x/sys's Stat issues stat64 and fills its own
+	// 64-bit Stat_t (mode/nlink before ino, with st_birthtimespec), while the
+	// caller here hands us Leopard's 32-bit struct stat, whose layout the
+	// generated code uses. Letting the kernel fill the buffer keeps the two in
+	// step; casting it to *unix.Stat_t would write the wrong shape into it and
+	// overrun it by four bytes.
+	if _, _, e := unix.Syscall(unix.SYS_STAT, pathname, statbuf, 0); e != 0 {
 		if dmesgs {
-			dmesg("%v: %q: %v FAIL", origin(1), GoString(pathname), err)
+			dmesg("%v: %q: %v FAIL", origin(1), GoString(pathname), e)
 		}
-		t.setErrno(err)
+		t.setErrno(e)
 		return -1
 	}
 
@@ -210,11 +216,12 @@ func Xfstat64(t *TLS, fd int32, statbuf uintptr) int32 {
 	if __ccgo_strace {
 		trc("t=%v fd=%v statbuf=%v, (%v:)", t, fd, statbuf, origin(2))
 	}
-	if err := unix.Fstat(int(fd), (*unix.Stat_t)(unsafe.Pointer(statbuf))); err != nil {
+	// See Xstat64: SYS_fstat leaves Leopard's 32-bit struct stat in the buffer.
+	if _, _, e := unix.Syscall(unix.SYS_FSTAT, uintptr(fd), statbuf, 0); e != 0 {
 		if dmesgs {
-			dmesg("%v: fd %d: %v FAIL", origin(1), fd, err)
+			dmesg("%v: fd %d: %v FAIL", origin(1), fd, e)
 		}
-		t.setErrno(err)
+		t.setErrno(e)
 		return -1
 	}
 
