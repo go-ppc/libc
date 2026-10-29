@@ -466,6 +466,8 @@ func makeMuslLinux(goos, goarch string) {
 		arch = "aarch64"
 	case "s390x":
 		arch = "s390x"
+	case "ppc":
+		arch = "powerpc"
 	case "ppc64le":
 		arch = "powerpc64"
 	case "riscv64":
