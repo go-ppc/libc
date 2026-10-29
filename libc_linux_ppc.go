@@ -103,9 +103,21 @@ func Xfcntl64(t *TLS, fd, cmd int32, args uintptr) int32 {
 	if __ccgo_strace {
 		trc("t=%v cmd=%v args=%v, (%v:)", t, cmd, args, origin(2))
 	}
+	// VaList stores a pointer as one uintptr at the start of its 8-byte slot
+	// but an int32 as an int64, so on this 32-bit big-endian target the int
+	// is in the slot's second word: reading a uintptr there yields 0, and
+	// F_SETFD FD_CLOEXEC would silently clear the flag. The commands that
+	// take a pointer are read as one; every other command takes an int.
 	var arg uintptr
 	if args != 0 {
-		arg = *(*uintptr)(unsafe.Pointer(args))
+		switch cmd {
+		case fcntl.F_GETLK, fcntl.F_SETLK, fcntl.F_SETLKW,
+			fcntl.F_OFD_GETLK, fcntl.F_OFD_SETLK, fcntl.F_OFD_SETLKW,
+			fcntl.F_GETOWN_EX, fcntl.F_SETOWN_EX:
+			arg = *(*uintptr)(unsafe.Pointer(args))
+		default:
+			arg = uintptr(VaInt32(&args))
+		}
 	}
 	if cmd == fcntl.F_SETFL {
 		arg |= unix.O_LARGEFILE
