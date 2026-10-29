@@ -106,7 +106,7 @@ func Xfcntl64(t *TLS, fd, cmd int32, args uintptr) (r int32) {
 	case fcntl.F_GETLK, fcntl.F_SETLK:
 		p = *(*uintptr)(unsafe.Pointer(args))
 		err = unix.FcntlFlock(uintptr(fd), int(cmd), (*unix.Flock_t)(unsafe.Pointer(p)))
-	case fcntl.F_GETFL, fcntl.F_FULLFSYNC:
+	case fcntl.F_GETFD, fcntl.F_GETFL, fcntl.F_FULLFSYNC:
 		i, err = unix.FcntlInt(uintptr(fd), int(cmd), 0)
 		r = int32(i)
 	case fcntl.F_SETFD, fcntl.F_SETFL:
