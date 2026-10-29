@@ -24,6 +24,19 @@ import (
 	"modernc.org/libc/utime"
 )
 
+// long/ulong are the C types of this ABI: Leopard ppc32 long is 4 bytes
+// (measured: runs/a1-capture-20261029/art/macros-ppc-longdouble64.txt,
+// __SIZEOF_LONG__ 4; cc/v4 darwin/ppc row Long {4,4,4}). The universal
+// libc_darwin.go aliased them to types.User_long_t/user_ulong_t, which is
+// Apple's "largest possible size" RESERVE type for syscall marshalling
+// (ppc/types.h:114-121: "These types are used for reserving the largest
+// possible size"), deliberately 64-bit even at ppc32 -- that alias was
+// correct only at LP64 targets. Pattern: libc_freebsd_386.go.
+type (
+	long  = int32
+	ulong = uint32
+)
+
 // #define FE_UPWARD           0x00000002
 // #define FE_DOWNWARD         0x00000003
 // The only arch-divergent values in this file's amd64 source. Taken from
@@ -558,4 +571,18 @@ func Xrewinddir(tls *TLS, f uintptr) {
 		trc("tls=%v f=%v, (%v:)", tls, f, origin(2))
 	}
 	Xfseek(tls, f, 0, stdio.SEEK_SET)
+}
+
+// int fsctl(const char *,unsigned long,void*,unsigned int);
+func Xfsctl(t *TLS, path uintptr, request ulong, data uintptr, options uint32) int32 {
+	if __ccgo_strace {
+		trc("t=%v path=%v request=%v data=%v options=%v, (%v:)", t, path, request, data, options, origin(2))
+	}
+	panic(todo(""))
+	// if _, _, err := unix.Syscall6(unix.SYS_FSCTL, path, uintptr(request), data, uintptr(options), 0, 0); err != 0 {
+	// 	t.setErrno(err)
+	// 	return -1
+	// }
+
+	// return 0
 }

@@ -18,6 +18,17 @@ import (
 	"modernc.org/libc/utime"
 )
 
+// long/ulong are the C types of this ABI (Leopard): LP64. The universal
+// libc_darwin.go can no longer alias them: types.User_long_t is Apple's
+// "largest possible size" RESERVE type for syscall marshalling (ppc/types.h:
+// 114-121), deliberately 64-bit at ppc32 too, and the two coincide only at
+// 64-bit targets. See sqlite-gen-20261029 and the freebsd/netbsd per-arch
+// pattern (e.g. libc_freebsd_386.go).
+type (
+	long  = types.User_long_t
+	ulong = types.User_ulong_t
+)
+
 // #define FE_DOWNWARD         0x0400
 // #define FE_UPWARD           0x0800
 const FE_DOWNWARD = 0x0400
@@ -536,4 +547,18 @@ func Xrewinddir(tls *TLS, f uintptr) {
 		trc("tls=%v f=%v, (%v:)", tls, f, origin(2))
 	}
 	Xfseek(tls, f, 0, stdio.SEEK_SET)
+}
+
+// int fsctl(const char *,unsigned long,void*,unsigned int);
+func Xfsctl(t *TLS, path uintptr, request ulong, data uintptr, options uint32) int32 {
+	if __ccgo_strace {
+		trc("t=%v path=%v request=%v data=%v options=%v, (%v:)", t, path, request, data, options, origin(2))
+	}
+	panic(todo(""))
+	// if _, _, err := unix.Syscall6(unix.SYS_FSCTL, path, uintptr(request), data, uintptr(options), 0, 0); err != 0 {
+	// 	t.setErrno(err)
+	// 	return -1
+	// }
+
+	// return 0
 }

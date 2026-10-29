@@ -24,6 +24,14 @@ import (
 	"modernc.org/libc/utime"
 )
 
+// long/ulong are the C types of this ABI: Leopard ppc64 is LP64
+// (macros-ppc64-longdouble64.txt: __SIZEOF_LONG__ 8). Kept per-ABI along
+// with ppc32's int32/uint32; see libc_darwin_ppc.go.
+type (
+	long  = int64
+	ulong = uint64
+)
+
 // #define FE_UPWARD           0x00000002
 // #define FE_DOWNWARD         0x00000003
 // The only arch-divergent values in this file's amd64 source. Taken from
@@ -558,4 +566,18 @@ func Xrewinddir(tls *TLS, f uintptr) {
 		trc("tls=%v f=%v, (%v:)", tls, f, origin(2))
 	}
 	Xfseek(tls, f, 0, stdio.SEEK_SET)
+}
+
+// int fsctl(const char *,unsigned int,void*,unsigned int);  -- unistd.h:595 (__LP64__ branch: the request is 32-bit; unistd.h:603 uses unsigned long = 4 at ppc32)
+func Xfsctl(t *TLS, path uintptr, request uint32, data uintptr, options uint32) int32 {
+	if __ccgo_strace {
+		trc("t=%v path=%v request=%v data=%v options=%v, (%v:)", t, path, request, data, options, origin(2))
+	}
+	panic(todo(""))
+	// if _, _, err := unix.Syscall6(unix.SYS_FSCTL, path, uintptr(request), data, uintptr(options), 0, 0); err != 0 {
+	// 	t.setErrno(err)
+	// 	return -1
+	// }
+
+	// return 0
 }

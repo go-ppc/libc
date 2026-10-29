@@ -61,8 +61,6 @@ type Tsize_t = types.Size_t
 
 type (
 	syscallErrno = unix.Errno
-	long         = types.User_long_t
-	ulong        = types.User_ulong_t
 )
 
 // // Keep these outside of the var block otherwise go generate will miss them.
@@ -270,20 +268,6 @@ func Xflock(t *TLS, fd, operation int32) int32 {
 		dmesg("%v: ok", origin(1))
 	}
 	return 0
-}
-
-// int fsctl(const char *,unsigned long,void*,unsigned int);
-func Xfsctl(t *TLS, path uintptr, request ulong, data uintptr, options uint32) int32 {
-	if __ccgo_strace {
-		trc("t=%v path=%v request=%v data=%v options=%v, (%v:)", t, path, request, data, options, origin(2))
-	}
-	panic(todo(""))
-	// if _, _, err := unix.Syscall6(unix.SYS_FSCTL, path, uintptr(request), data, uintptr(options), 0, 0); err != 0 {
-	// 	t.setErrno(err)
-	// 	return -1
-	// }
-
-	// return 0
 }
 
 // int * __error(void);
